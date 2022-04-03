@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+mat-toolbar img {
+  max-height: 56px !important;
+  margin-left: 20px;
+}
+
+#bm-logo-minimal {
+  display: none;
+}
+@media only screen and (max-width: 500px) {
+  #bm-logo-minimal {
+    display: block;
+  }
+  #bm-logo-text {
+    display: none;
+  }
+  #header-button-text {
+    display: none;
+  }
+}

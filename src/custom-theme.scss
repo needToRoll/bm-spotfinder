@@ -1,0 +1,184 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+@import '~@angular/material/theming';
+
+// region colors
+$black: #000000;
+$white: #ffffff;
+
+$gray: #b3b3b3;
+$bm_primary: (
+  main: $black,
+  lighter: $gray,
+  darker: $black,
+  text: $white,
+  200: $gray, // For slide toggle,
+  contrast : (
+    main: $white,
+    lighter: $white,
+    darker: $white,
+  )
+);
+
+$grassGreen: #228848;
+$grassGreen-light: #bddbc8;
+$grassGreen-dark: #146b30;
+$bm-grassGreen: (
+  main: $grassGreen,
+  lighter: $grassGreen-light,
+  darker: $grassGreen-dark,
+  200: $grassGreen-light, // For slide toggle,
+  contrast : (
+    main: $white,
+    lighter: $black,
+    darker: $white,
+  )
+);
+
+
+$skyBlue: #298fc2;
+$skyBlue-light: #bfdded;
+$skyBlue-dark: #1972ac;
+$bm-skyBlue: (
+  main: $skyBlue,
+  lighter: $skyBlue-light,
+  darker: $skyBlue-dark,
+  200: $skyBlue-light, // For slide toggle,
+  text: $white,
+  contrast : (
+    main: $white,
+    lighter: $black,
+    darker: $white,
+  )
+);
+
+
+$banana: #ffcd00;
+$banana-dark: #ffba00;
+$banana-light: #fff0b3;
+
+$bm-banana: (
+  main: $banana,
+  lighter: $banana-light,
+  darker: $banana-dark,
+  text: $black,
+  200: $banana-light, // For slide toggle,
+  contrast : (
+    main: $black,
+    lighter: $black,
+    darker: $black,
+  )
+);
+
+// endregion
+
+// region typography
+$brandon-regular: "BrandonText-Regular";
+$brandon-bold: "BrandonText-Bold";
+$brandon-black: "BrandonText-Black";
+$brandon-font: "Brandon Text";
+
+$bm-heading1: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: bolder,
+  $font-size: 44px,
+  $letter-spacing: 5px,
+  $line-height: 48px
+);
+$bm-heading2: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: bolder,
+  $font-size: 22px,
+  $letter-spacing: 3px,
+  $line-height: 39px
+);
+$bm-heading3: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: normal,
+  $font-size: 22px,
+  $letter-spacing: normal,
+  $line-height: 30px
+);
+$bm-heading4: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: bold,
+  $font-size: 14px,
+  $letter-spacing: normal,
+  $line-height: 20px
+);
+
+$bm-input: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: bold,
+  $font-size: 16px,
+  $letter-spacing: normal,
+  $line-height: 1.4375em
+);
+
+$bm-caption: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: normal,
+  $font-size: 11px,
+  $letter-spacing: normal,
+  $line-height: 16px
+);
+
+$bm-text-regular: mat-typography-level(
+  $font-family: $brandon-font,
+  $font-weight: normal,
+  $font-size: 14px,
+  $letter-spacing: normal,
+  $line-height: 20px
+);
+
+
+
+$bm-typography: mat-typography-config(
+  $font-family: $brandon-font,
+  $display-4: $bm-heading1,
+  $display-3: $bm-heading2,
+  $display-2: $bm-heading3,
+  $display-1: $bm-heading3,
+  $headline: $bm-heading2,
+  $title: $bm-heading3,
+  $subheading-2: $bm-heading4,
+  $subheading-1: $bm-heading4,
+  $body-1: $bm-text-regular,
+  $body-2: $bm-text-regular,
+  $caption: $bm-caption,
+  $button: $bm-input,
+  $input: $bm-input
+);
+
+//endregion
+
+//region palette definition
+$angular-pwa-primary: mat.define-palette($bm_primary, main, lighter, darker, text);
+$angular-pwa-accent: mat.define-palette($bm-skyBlue, main, lighter, darker, text);
+
+$angular-pwa-warn: mat.define-palette($bm-banana, main, lighter, darker, text);
+
+
+$angular-pwa-theme: mat.define-light-theme((
+  color: (
+    primary: $angular-pwa-primary,
+    accent: $angular-pwa-accent,
+    warn: $angular-pwa-warn,
+  ),
+  typography: $bm-typography
+));
+//endregion
+
+@include mat.all-component-themes($angular-pwa-theme);
+
+.mat-toolbar h2 {
+  @include mat-typography-level-to-styles($bm-typography, headline); // where headline maps to h1
+}

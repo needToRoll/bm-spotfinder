@@ -1,0 +1,11 @@
+<div id="map-container-parent">
+  <!--
+    [center]="mapOptions.center" [zoom]="mapOptions.zoom" -->
+  <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" width="100%" height="90vh">
+    <map-marker *ngFor="let spot of getSurfSpotsToDisplay()"
+                [icon]="markerIcon"
+                [position]="spot.coords"
+
+    ></map-marker>
+  </google-map>
+</div>
