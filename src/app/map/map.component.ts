@@ -3,7 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {SurfSpotService} from "../service/surf-spot.service";
 import {Surfspot} from "../model/Surfspot";
 import {GeolocationService} from "../service/geolocation.service";
-import {GoogleMap, MapMarker} from "@angular/google-maps";
+import {GoogleMap} from "@angular/google-maps";
+import {SpotFilter} from "../model/SpotFilter";
+import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-map',
@@ -14,6 +16,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   public readonly DEFAULT_ZOOM = 13
   private accessAttemptCount = 0
+  public spotsToMark: Observable<Surfspot[]>
 
   mapOptions: google.maps.MapOptions
   markerIcon: google.maps.Icon
@@ -21,7 +24,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild(GoogleMap) googleMapComponent: GoogleMap
 
   constructor(private httpClient: HttpClient, private surfspotService: SurfSpotService, private geolocationService: GeolocationService) {
-    this.mapOptions = MapComponent.getMapOptions()
+    this.mapOptions = MapComponent._getMapOptions()
     this.markerIcon = {
       url: './assets/icons/pin-white.svg',
       anchor: new google.maps.Point(20, 60),
@@ -32,6 +35,16 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.geolocationService.getUserLocation()
+  }
+
+  ngOnInit(): void {
+    this.spotsToMark = of(this.surfspotService.getAllSurfspots())
+  }
+
+  onFilterValueChanged(spotFilter: SpotFilter): void {
+    let filteredSpots = this.surfspotService.getSurfSpotsMatchingFilter(spotFilter)
+    this.spotsToMark = of(filteredSpots)
+    console.warn("Filter matched: "+filteredSpots.length + " spots!" )
   }
 
   // @ts-ignore
@@ -51,17 +64,17 @@ export class MapComponent implements OnInit, AfterViewInit {
   trySetCenterMapComponent(location: GeolocationPosition) {
     let longLat: google.maps.LatLngLiteral = {lng: location.coords.longitude, lat: location.coords.latitude}
     this.getGoogleMapObject()?.setCenter(longLat)
-      let locationMarker = new google.maps.Marker({
+    let locationMarker = new google.maps.Marker({
       position: longLat,
-        map: this.getGoogleMapObject()!!,
-        title: 'My location',
-        icon: {
-          path: google.maps.SymbolPath.CIRCLE,
-          scale: 12,
-          fillColor: "#228848",
-          fillOpacity: 0.8,
-          strokeOpacity: 0,
-        }
+      map: this.getGoogleMapObject()!!,
+      title: 'My location',
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 12,
+        fillColor: "#228848",
+        fillOpacity: 0.8,
+        strokeOpacity: 0,
+      }
     });
     console.log("Center set")
   }
@@ -85,7 +98,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
 
-  private static getMapOptions(): google.maps.MapOptions {
+  private static _getMapOptions(): google.maps.MapOptions {
     return {
       center: {lat: 46.948367, lng: 7.456186},
       fullscreenControl: true,
@@ -98,8 +111,5 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
   }
 
-  ngOnInit(): void {
-    console.warn("Init called")
-    console.warn("zoom is " + this.mapOptions.zoom)
-  }
+
 }

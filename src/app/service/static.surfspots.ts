@@ -8,7 +8,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJ03sOKsI5jkcR0NoYDx9o4P4",
       "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "ropeLength": 16,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -25,8 +25,8 @@ export const SPOTS = [
     "coords": {"lat": 46.9493701, "lng": 7.458472900000001},
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJbaUTS9w5jkcRzRRGmQ61YUA",
-      "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "difficulty": 2,
+      "ropeLength": 24,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -44,7 +44,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJ_3GTXKE5jkcRAiXBsWnDQwI",
       "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "ropeLength": 30,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -62,7 +62,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJR5LHjrtLjkcR6e-vqbAe3Ec",
       "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "ropeLength": 16,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -80,7 +80,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:EipMZWNoc3RlZywgODY4OTkgTGFuZHNiZXJnIGFtIExlY2gsIEdlcm1hbnkiLiosChQKEgnzz0haRSOcRxE0i0DB4Ny53xIUChIJwcNpobo8nEcRkJ6L161IHgQ",
       "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "ropeLength": 20,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -98,7 +98,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJtWWi9YYLkEcRjXsvhTQjdYw",
       "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "ropeLength": 24,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -115,8 +115,8 @@ export const SPOTS = [
     "coords": {"lat": 47.4892602, "lng": 8.232154399999997},
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJt8A7afVrkEcRxZ4jHwlRYz8",
-      "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "difficulty": 2,
+      "ropeLength": 30,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],
@@ -133,8 +133,8 @@ export const SPOTS = [
     "coords": {"lat": 50.8417582, "lng": -113.9536031},
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJvwjzHK2dcVMRp3A8FZuyuY4",
-      "difficulty": 1,
-      "ropeLength": "0 - 1m",
+      "difficulty": 3,
+      "ropeLength": 24,
       "minimalWaterLevel": -1,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": ["Danger: LOREM_IPSUM"],

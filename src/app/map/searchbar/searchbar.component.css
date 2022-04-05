@@ -1,0 +1,30 @@
+
+.row-form-container {
+  display: flex;
+  flex-grow: 1;
+  max-width: 60vw;
+}
+mat-toolbar-row form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+mat-toolbar-row mat-form-field {
+  margin-top: 15px;
+}
+mat-toolbar-row {
+  justify-content: center;
+}
+#locationSearchField {
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .row-form-container {
+    max-width: 95vw;
+  }
+  mat-toolbar-row mat-form-field {
+    margin-top: 15px;
+  }
+}

@@ -1,0 +1,45 @@
+<mat-toolbar color="white">
+  <mat-toolbar-row>
+    <div class="row-form-container">
+      <mat-form-field id="locationSearchField">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of placeAutoCompleteOption | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <input [formControl]="mapPlaceSearchControl"
+               [matAutocomplete]="auto"
+               aria-label="Place search"
+               matInput
+               placeholder="Search for a location (address, zip, etc)"
+               type="text">
+      </mat-form-field>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <div class="row-form-container">
+      <form [formGroup]="surfSpotFilterControl">
+        <mat-form-field appearance="fill">
+          <mat-label>Rope length</mat-label>
+          <mat-select formControlName="ropeLength">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let ropeLengthOption of ropeLengthOptions" [value]="ropeLengthOption.value">
+              {{ropeLengthOption.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="row-form-spacer"></div>
+        <mat-form-field appearance="fill">
+          <mat-label>Difficulty / Level</mat-label>
+          <mat-select formControlName="difficulty">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let difficultyOption of difficultyOptions" [value]="difficultyOption.value">
+              {{difficultyOption.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

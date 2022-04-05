@@ -10,7 +10,7 @@ export interface Surfspot {
 export interface BmSpotInfo {
   webLink: string;
   difficulty: number;
-  ropeLength: string;
+  ropeLength: number;
   minimalWaterLevel: number;
   waterLevelSource: string;
   dangers: string[];

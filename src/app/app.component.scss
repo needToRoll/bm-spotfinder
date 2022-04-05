@@ -1,6 +1,7 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
 mat-toolbar img {
   max-height: 56px !important;
   margin-left: 20px;
@@ -9,10 +10,19 @@ mat-toolbar img {
 #bm-logo-minimal {
   display: none;
 }
+
 @media only screen and (max-width: 500px) {
+
   #bm-logo-minimal {
     display: block;
+    margin: 0 auto;
   }
+
+  mat-toolbar img {
+    max-height: 52px !important;
+    margin-left: unset;
+  }
+
   #bm-logo-text {
     display: none;
   }
