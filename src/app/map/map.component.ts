@@ -6,6 +6,8 @@ import {GeolocationService} from "../service/geolocation.service";
 import {GoogleMap} from "@angular/google-maps";
 import {SpotFilter} from "../model/SpotFilter";
 import {Observable, of} from "rxjs";
+import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
+import {PlaceSearchResult} from "../service/PlaceSearchResult";
 
 @Component({
   selector: 'app-map',
@@ -15,9 +17,13 @@ import {Observable, of} from "rxjs";
 export class MapComponent implements OnInit, AfterViewInit {
 
   public readonly DEFAULT_ZOOM = 13
+  private readonly DEFAULT_MAP_CENTER: LatLngLiteral = {lng: 46.948367, lat: 7.456186}
+
   private accessAttemptCount = 0
   public spotsToMark: Observable<Surfspot[]>
-
+  public userSelectedLocation: Observable<LatLngLiteral>
+  public selectedSurfSpot: Observable<Surfspot>
+  public locationMarker?: google.maps.Marker;
   mapOptions: google.maps.MapOptions
   markerIcon: google.maps.Icon
 
@@ -44,7 +50,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   onFilterValueChanged(spotFilter: SpotFilter): void {
     let filteredSpots = this.surfspotService.getSurfSpotsMatchingFilter(spotFilter)
     this.spotsToMark = of(filteredSpots)
-    console.warn("Filter matched: "+filteredSpots.length + " spots!" )
+    console.warn("Filter matched: " + filteredSpots.length + " spots!")
   }
 
   // @ts-ignore
@@ -61,13 +67,40 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  trySetCenterMapComponent(location: GeolocationPosition) {
-    let longLat: google.maps.LatLngLiteral = {lng: location.coords.longitude, lat: location.coords.latitude}
-    this.getGoogleMapObject()?.setCenter(longLat)
-    let locationMarker = new google.maps.Marker({
-      position: longLat,
+  trySetCenterMapComponent(coords: LatLngLiteral) {
+    this.getGoogleMapObject()?.setCenter(coords)
+    console.log("Center set")
+  }
+
+  onGeolocationFound(self: MapComponent, location: GeolocationPosition) {
+    console.log("Location found")
+    let coords: google.maps.LatLngLiteral = {lng: location.coords.longitude, lat: location.coords.latitude}
+    self.trySetCenterMapComponent(coords)
+    self.placeUserMarkerAtPosition(coords)
+  }
+
+  onPlaceFound(placeSearchResult: PlaceSearchResult){
+    let pos = placeSearchResult.geometry.location
+    let coords = {lat: pos.lat(), lng: pos.lng()}
+    this.trySetCenterMapComponent(coords)
+    this.placeUserMarkerAtPosition(coords)
+
+  }
+
+  getCenter(): google.maps.LatLng | google.maps.LatLngLiteral {
+
+    if (this.mapOptions.center == null) {
+      return this.DEFAULT_MAP_CENTER
+    } else {
+      return this.mapOptions.center
+    }
+  }
+
+  private placeUserMarkerAtPosition(coords: LatLngLiteral) {
+    this.locationMarker = new google.maps.Marker({
+      position: coords,
       map: this.getGoogleMapObject()!!,
-      title: 'My location',
+      title: 'Location',
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         scale: 12,
@@ -76,21 +109,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         strokeOpacity: 0,
       }
     });
-    console.log("Center set")
-  }
 
-  onGeolocationFound(self: MapComponent, location: GeolocationPosition) {
-    console.log("Location found")
-    self.trySetCenterMapComponent(location)
-  }
-
-  getCenter(): google.maps.LatLng | google.maps.LatLngLiteral {
-
-    if (this.mapOptions.center == null) {
-      return {lng: 46.948367, lat: 7.456186}
-    } else {
-      return this.mapOptions.center
-    }
   }
 
   getSurfSpotsToDisplay(): Surfspot[] {

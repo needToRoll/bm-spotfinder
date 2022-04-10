@@ -20,9 +20,24 @@ mat-toolbar-row {
   width: 100%;
 }
 
+mat-toolbar-row {
+  height: 70px;
+}
+
 @media only screen and (max-width: 700px) {
   .row-form-container {
     max-width: 95vw;
+  }
+  mat-toolbar-row mat-form-field {
+    margin-top: 15px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .row-form-container {
+    max-width: 98vw;
+  }
+  mat-form-field.filter-select {
+    max-width: 160px;
   }
   mat-toolbar-row mat-form-field {
     margin-top: 15px;

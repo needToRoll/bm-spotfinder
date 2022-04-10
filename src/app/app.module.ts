@@ -19,6 +19,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    GooglePlaceModule,
     MatSelectModule,
     MatOptionModule,
     GoogleMapsModule,
@@ -42,7 +44,7 @@ import {MatInputModule} from "@angular/material/input";
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:20000'
     }),
     NoopAnimationsModule,
     MatButtonModule,

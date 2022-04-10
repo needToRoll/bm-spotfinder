@@ -18,4 +18,3 @@ export interface BmSpotInfo {
   exits: string[];
   additionalInfo: string[];
 }
-

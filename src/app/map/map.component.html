@@ -1,7 +1,7 @@
 <div id="map-container-parent">
   <!--
     [center]="mapOptions.center" [zoom]="mapOptions.zoom" -->
-  <map-searchbar (spotFilterValue)="onFilterValueChanged($event)"></map-searchbar>
+  <map-searchbar (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
   <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" width="100%" height="80vh">
     <map-marker *ngFor="let spot of spotsToMark | async"
                 [icon]="markerIcon"

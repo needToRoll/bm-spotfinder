@@ -2,17 +2,11 @@
   <mat-toolbar-row>
     <div class="row-form-container">
       <mat-form-field id="locationSearchField">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of placeAutoCompleteOption | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-        <input [formControl]="mapPlaceSearchControl"
-               [matAutocomplete]="auto"
+        <input ngx-google-places-autocomplete [options]="npxPlaceSearchAutocompleteOptions" #placesRef="ngx-places" (onAddressChange)="onPlaceFoundBasedOnSearch($event)"
                aria-label="Place search"
                matInput
                placeholder="Search for a location (address, zip, etc)"
-               type="text">
+               type="text"/>
       </mat-form-field>
     </div>
   </mat-toolbar-row>
@@ -20,7 +14,7 @@
   <mat-toolbar-row>
     <div class="row-form-container">
       <form [formGroup]="surfSpotFilterControl">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="filter-select">
           <mat-label>Rope length</mat-label>
           <mat-select formControlName="ropeLength">
             <mat-option>None</mat-option>
@@ -30,7 +24,7 @@
           </mat-select>
         </mat-form-field>
         <div class="row-form-spacer"></div>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="filter-select">
           <mat-label>Difficulty / Level</mat-label>
           <mat-select formControlName="difficulty">
             <mat-option>None</mat-option>
