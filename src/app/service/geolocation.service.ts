@@ -5,25 +5,20 @@ import {EventEmitter, Injectable} from '@angular/core';
 })
 export class GeolocationService {
 
-  positionDetectedEmitter: EventEmitter<GeolocationPosition>
+  // positionDetectedEmitter: EventEmitter<GeolocationPosition>
+  //
+  // constructor() {
+  //   this.positionDetectedEmitter = new EventEmitter();
+  // }
 
-  constructor() {
-    this.positionDetectedEmitter = new EventEmitter();
-  }
-
-  getUserLocation(): void {
+  getUserLocation(): Promise<GeolocationPosition> {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          this.positionDetectedEmitter.emit(pos)
-        },
-        () => {
-          console.warn("Geolocation lookup attempt failed")
-        }
+      return new Promise((resolve, reject) =>
+        navigator.geolocation.getCurrentPosition(resolve, reject)
       );
     } else {
-      // Browser doesn't support Geolocation
-      console.warn("Geolocation lookup not supported")
+      // Browser doesn't support
+      return Promise.reject("Geolocation lookup not supported")
     }
   }
 }

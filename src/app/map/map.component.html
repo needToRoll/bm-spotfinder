@@ -2,9 +2,16 @@
   <!--
     [center]="mapOptions.center" [zoom]="mapOptions.zoom" -->
   <map-searchbar (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
-  <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" width="100%" height="80vh">
+  <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" width="100%" height="76vh">
     <map-marker *ngFor="let spot of spotsToMark | async"
-                [icon]="markerIcon"
+                [icon]="surfspotMarkerIcon"
                 [position]="spot.coords"></map-marker>
+    <map-marker [icon]="userSelectedLocationMarkerIcon"
+                [position]="userSelectedLocation | async"></map-marker>
+<!--    <button class="mdc-fab" aria-label="Favorite" (click)="clicked()">-->
+<!--      <div class="mdc-fab__ripple"></div>-->
+<!--      <span class="mdc-fab__icon material-icons">favorite</span>-->
+<!--    </button>-->
   </google-map>
+
 </div>
