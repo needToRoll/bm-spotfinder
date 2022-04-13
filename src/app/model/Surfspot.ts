@@ -5,6 +5,7 @@ export interface Surfspot {
   address2: string;
   coords: google.maps.LatLng|google.maps.LatLngLiteral;
   bmSpotInfo: BmSpotInfo;
+  distanceToCurrentLocation: string | undefined
 }
 
 export interface BmSpotInfo {
