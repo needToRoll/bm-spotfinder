@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Surfspot} from "../model/Surfspot";
-import {LatLng, LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
+import {GoogleCoordinates} from "../model/Types";
+import {concat, from, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,38 +17,39 @@ export class DistanceMatrixService {
     this.service = new google.maps.DistanceMatrixService()
   }
 
-  public calculateDistanceFromOriginToSpots(origin: LatLngLiteral | LatLng, surfspots: Surfspot[]): Promise<Surfspot[]> {
+  public calculateDistanceFromOriginToSpots(origin: GoogleCoordinates, surfspots: Surfspot[]): Observable<Surfspot[]>{
     const chunkSize = 25;
-    let chunkedServicePremises: Promise<Surfspot[]>[] = []
+    let chunkedServiceObservables: Observable<Surfspot[]>[] = []
     for (let i = 0; i < surfspots.length; i += chunkSize) {
       const chunk = surfspots.slice(i, i + chunkSize);
-      chunkedServicePremises.push(this._calculateDistanceFromOriginToSpots(origin, chunk))
+      chunkedServiceObservables.push(from(this._calculateDistanceFromOriginToSpots(origin, chunk)));
     }
-    return Promise.all(chunkedServicePremises).then(result => [].concat(...result));
+    return concat(...chunkedServiceObservables)
   }
 
-  private _calculateDistanceFromOriginToSpots(origin: LatLngLiteral | LatLng, surfspots: Surfspot[]) {
-    let request = this._buildRequestForSurfspots(origin, surfspots)
-    let promise = this.service.getDistanceMatrix(request)
-    return promise.then(response =>
-      response.rows[0].elements.map(
-        (element, eIdx) => {
-          surfspots[eIdx].distanceToCurrentLocation = element.distance.text;
-          return surfspots[eIdx]
-        }))
+  private async _calculateDistanceFromOriginToSpots(origin: GoogleCoordinates, surfspots: Surfspot[]) {
+    let request = DistanceMatrixService._buildRequestForSurfspots(origin, surfspots)
+    let response = await this.service.getDistanceMatrix(request)
+    console.warn("Performed Request: "+ JSON.stringify(request))
+    console.warn("Received response: "+ JSON.stringify(response))
+
+    return this._enrichSurfspotsWithDistanceFromResponse(surfspots, response)
   }
 
-  private _buildRequestForSurfspots(origin: LatLngLiteral | LatLng, surfspots: Surfspot[]): any {
-    let request = {
+  private _enrichSurfspotsWithDistanceFromResponse(surfspots: Surfspot[], distanceResponse: google.maps.DistanceMatrixResponse){
+    const distances = distanceResponse.rows[0].elements.map(element => element?.distance?.text ?? "")
+    return surfspots.map((surfspot, id) => ({...surfspot, distanceToCurrentLocation: distances[id]}))
+  }
+
+  private static _buildRequestForSurfspots(origin: GoogleCoordinates, surfspots: Surfspot[]): google.maps.DistanceMatrixRequest {
+    return {
       origins: [origin],
-      destinations: new Array<LatLngLiteral | LatLng>(),
+      destinations: surfspots.map(value => value.coords),
       travelMode: google.maps.TravelMode.DRIVING,
       unitSystem: google.maps.UnitSystem.METRIC,
       avoidHighways: false,
       avoidTolls: false,
     }
-    surfspots.forEach((it, idx) => request.destinations[idx] = it.coords)
-    return request
   }
 
 }

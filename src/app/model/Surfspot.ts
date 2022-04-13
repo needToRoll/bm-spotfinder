@@ -1,9 +1,11 @@
+import {GoogleCoordinates} from "./Types";
+
 export interface Surfspot {
   placeId: string;
   title: string;
   address1: string;
   address2: string;
-  coords: google.maps.LatLng|google.maps.LatLngLiteral;
+  coords: GoogleCoordinates;
   bmSpotInfo: BmSpotInfo;
   distanceToCurrentLocation?: string
 }
