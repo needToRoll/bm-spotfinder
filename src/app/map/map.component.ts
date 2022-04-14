@@ -54,11 +54,14 @@ export class MapComponent implements OnInit {
       withLatestFrom(this.spotsToMark)
     ).subscribe(([coords, spots]) => {
       this.distanceMatrixService.calculateDistanceFromOriginToSpots(coords, spots)
-        .subscribe(enrichedSpots =>
-          this.spotsToMark.next(enrichedSpots)
+        .subscribe(enrichedSpots => {
+            this.spotsToMark.next(enrichedSpots)
+            this._tryUpdateMapBounds(coords, enrichedSpots)
+          }
         )
 
     })
+    this.spotsToMark.subscribe(console.debug)
   }
 
   //region event handlers
@@ -119,6 +122,20 @@ export class MapComponent implements OnInit {
     } else {
       console.log("Timeout of 5 seconds reached")
       return undefined;
+    }
+  }
+
+  private _tryUpdateMapBounds(origin: LatLngLiteral, spots: Surfspot[]) {
+    let spotsWithDistance = spots.filter(spot => spot.distanceToCurrentLocation != undefined);
+    if (spotsWithDistance.length > 0) {
+      let bounds = new google.maps.LatLngBounds();
+      bounds.extend(origin)
+      let cutOfDistance = spotsWithDistance[0].distanceToCurrentLocation.value * 2;
+      cutOfDistance = cutOfDistance < 50000 ? 50000 : cutOfDistance
+      spotsWithDistance.filter(spot => spot.distanceToCurrentLocation.value < cutOfDistance).forEach(
+        spot => bounds.extend(spot.coords)
+      )
+      this.googleMapComponent.fitBounds(bounds)
     }
   }
 

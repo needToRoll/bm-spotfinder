@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Surfspot} from "../model/Surfspot";
 import {GoogleCoordinates} from "../model/Types";
-import {concat, from, Observable} from "rxjs";
+import {concat, from, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,28 +16,37 @@ export class DistanceMatrixService {
   constructor() {
     this.service = new google.maps.DistanceMatrixService()
   }
+  private spotDistance = (spot: Surfspot) => spot.distanceToCurrentLocation?.value ?? Number.MAX_SAFE_INTEGER;
 
-  public calculateDistanceFromOriginToSpots(origin: GoogleCoordinates, surfspots: Surfspot[]): Observable<Surfspot[]>{
+  /**
+   * Enriches the passed surf spots with the distance to the origin.
+   * The returned surfspots are sorted in descending order by distance to the origin
+   * @param origin
+   * @param surfspots
+   */
+  public calculateDistanceFromOriginToSpots(origin: GoogleCoordinates, surfspots: Surfspot[]): Observable<Surfspot[]> {
     const chunkSize = 25;
     let chunkedServiceObservables: Observable<Surfspot[]>[] = []
     for (let i = 0; i < surfspots.length; i += chunkSize) {
       const chunk = surfspots.slice(i, i + chunkSize);
       chunkedServiceObservables.push(from(this._calculateDistanceFromOriginToSpots(origin, chunk)));
     }
-    return concat(...chunkedServiceObservables)
+    return concat(...chunkedServiceObservables).pipe(
+      map(listOfSpots => listOfSpots.sort((one, other) => this.spotDistance(one) - this.spotDistance(other)))
+    )
   }
 
   private async _calculateDistanceFromOriginToSpots(origin: GoogleCoordinates, surfspots: Surfspot[]) {
     let request = DistanceMatrixService._buildRequestForSurfspots(origin, surfspots)
     let response = await this.service.getDistanceMatrix(request)
-    console.warn("Performed Request: "+ JSON.stringify(request))
-    console.warn("Received response: "+ JSON.stringify(response))
+    console.warn("Performed Request: " + JSON.stringify(request))
+    console.warn("Received response: " + JSON.stringify(response))
 
     return this._enrichSurfspotsWithDistanceFromResponse(surfspots, response)
   }
 
-  private _enrichSurfspotsWithDistanceFromResponse(surfspots: Surfspot[], distanceResponse: google.maps.DistanceMatrixResponse){
-    const distances = distanceResponse.rows[0].elements.map(element => element?.distance?.text ?? "")
+  private _enrichSurfspotsWithDistanceFromResponse(surfspots: Surfspot[], distanceResponse: google.maps.DistanceMatrixResponse) {
+    const distances = distanceResponse.rows[0].elements.map(element => element?.distance ?? undefined)
     return surfspots.map((surfspot, id) => ({...surfspot, distanceToCurrentLocation: distances[id]}))
   }
 

@@ -7,8 +7,9 @@ export interface Surfspot {
   address2: string;
   coords: GoogleCoordinates;
   bmSpotInfo: BmSpotInfo;
-  distanceToCurrentLocation?: string
+  distanceToCurrentLocation?: google.maps.Distance
 }
+
 
 export interface BmSpotInfo {
   webLink: string;
