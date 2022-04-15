@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lithe-bazaar-341817": {
+      "hosting": {
+        "angular-pwa": [
+          "bm-spotfinder-dev"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lithe-bazaar-341817"
+  }
+}

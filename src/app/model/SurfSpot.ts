@@ -1,6 +1,6 @@
 import {GoogleCoordinates} from "./Types";
 
-export interface Surfspot {
+export interface SurfSpot {
   placeId: string;
   title: string;
   address1: string;
@@ -14,7 +14,7 @@ export interface Surfspot {
 export interface BmSpotInfo {
   webLink: string;
   difficulty: number;
-  ropeLength: number;
+  ropeLength: number[];
   minimalWaterLevel: number;
   waterLevelSource: string;
   dangers: string[];

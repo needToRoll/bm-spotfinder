@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SurfSpotService } from './surf-spot.service';
+import { SpotImporterService } from './spot-importer.service';
 
-describe('SurfSpotService', () => {
-  let service: SurfSpotService;
+describe('SpotImporterService', () => {
+  let service: SpotImporterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SurfSpotService);
+    service = TestBed.inject(SpotImporterService);
   });
 
   it('should be created', () => {

@@ -8,10 +8,6 @@
                 [position]="spot.coords"></map-marker>
     <map-marker [icon]="userSelectedLocationMarkerIcon"
                 [position]="userSelectedLocation | async"></map-marker>
-<!--    <button class="mdc-fab" aria-label="Favorite" (click)="clicked()">-->
-<!--      <div class="mdc-fab__ripple"></div>-->
-<!--      <span class="mdc-fab__icon material-icons">favorite</span>-->
-<!--    </button>-->
   </google-map>
-
+  <app-surfspot-list [surfspots]="spotsToMark"></app-surfspot-list>
 </div>

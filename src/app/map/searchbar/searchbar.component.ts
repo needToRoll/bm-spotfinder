@@ -2,10 +2,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AVAILABLE_ROPE_LENGTHS, RopeLength} from "../../model/RopeLength";
 import {SPOT_DIFFICULTIES, SpotDifficultyLevel} from "../../model/SpotDifficultyLevel";
 import {FormControl, FormGroup} from "@angular/forms";
-import {map, Observable, of, startWith} from "rxjs";
 import {SpotFilter} from "../../model/SpotFilter";
 import {Options} from "ngx-google-places-autocomplete/objects/options/options";
-import {PlaceSearchResult} from "../../service/PlaceSearchResult";
+import {PlaceSearchResult} from "../../model/PlaceSearchResult";
 
 @Component({
   selector: 'map-searchbar',

@@ -1,15 +1,15 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SurfSpotService} from "../service/surf-spot.service";
-import {Surfspot} from "../model/Surfspot";
+import {SurfSpot} from "../model/SurfSpot";
 import {GeolocationService} from "../service/geolocation.service";
 import {GoogleMap} from "@angular/google-maps";
 import {SpotFilter} from "../model/SpotFilter";
-import {BehaviorSubject, Subject, withLatestFrom} from "rxjs";
+import {BehaviorSubject, Subject, Subscription, withLatestFrom} from "rxjs";
 import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
-import {PlaceSearchResult} from "../service/PlaceSearchResult";
+import {PlaceSearchResult} from "../model/PlaceSearchResult";
 import {GoogleCoordinates, GoogleMapsMarkerElement} from "../model/Types";
 import {DistanceMatrixService} from "../service/distance-matrix.service";
+import {FirebaseSurfSpotService} from "../service/surfspot/firebase-surf-spot.service";
 
 @Component({
   selector: 'app-map',
@@ -20,10 +20,11 @@ export class MapComponent implements OnInit {
 
   public readonly DEFAULT_ZOOM = 13
   private readonly DEFAULT_MAP_CENTER: LatLngLiteral = {lng: 46.948367, lat: 7.456186}
+  private serviceSubscription: Subscription
 
   private accessAttemptCount = 0
 
-  public spotsToMark: Subject<Surfspot[]>
+  public spotsToMark: Subject<SurfSpot[]>
   public userSelectedLocation: Subject<LatLngLiteral>
 
   mapOptions: google.maps.MapOptions
@@ -33,18 +34,17 @@ export class MapComponent implements OnInit {
   @ViewChild(GoogleMap) googleMapComponent: GoogleMap
 
   constructor(private httpClient: HttpClient,
-              private surfspotService: SurfSpotService,
+              private surfspotService: FirebaseSurfSpotService,
               private geolocationService: GeolocationService,
               private distanceMatrixService: DistanceMatrixService) {
     this.mapOptions = MapComponent._getMapOptions()
     this.surfspotMarkerIcon = MapComponent._getSpotMarkerIcon()
     this.userSelectedLocationMarkerIcon = MapComponent._getSelectedLocationMarkerIcon()
     this.userSelectedLocation = new Subject();
-    this.spotsToMark = new BehaviorSubject(this.surfspotService.getAllSurfspots());
-    this.userSelectedLocation.subscribe(it => {
-        this._trySetCenterMapComponent(it)
-      }
-    )
+    this.spotsToMark = new BehaviorSubject([]);
+    this.serviceSubscription = this.surfspotService.getAllSurfSpots().subscribe(value =>
+      this.spotsToMark.next(value))
+
   }
 
 
@@ -67,9 +67,15 @@ export class MapComponent implements OnInit {
   //region event handlers
 
   onFilterValueChanged(spotFilter: SpotFilter): void {
-    let filteredSpots = this.surfspotService.getSurfSpotsMatchingFilter(spotFilter)
-    this.spotsToMark.next(filteredSpots)
-    console.warn("Filter matched: " + filteredSpots.length + " spots!")
+    if (!this.serviceSubscription.closed) {
+      this.serviceSubscription.unsubscribe()
+    }
+    this.serviceSubscription = this.surfspotService.getSurfSpotsMatchingFilter(spotFilter)
+      .subscribe(value => {
+          this.spotsToMark.next(value)
+          console.warn("Filter matched: " + value.length + " spots!")
+        }
+      )
   }
 
   onGeolocationFound(location: GeolocationPosition) {
@@ -99,10 +105,6 @@ export class MapComponent implements OnInit {
     }
   }
 
-  getSurfSpotsToDisplay(): Surfspot[] {
-    return this.surfspotService.getAllSurfspots()
-  }
-
   //endregion
 
   private _trySetCenterMapComponent(coords: LatLngLiteral) {
@@ -125,7 +127,7 @@ export class MapComponent implements OnInit {
     }
   }
 
-  private _tryUpdateMapBounds(origin: LatLngLiteral, spots: Surfspot[]) {
+  private _tryUpdateMapBounds(origin: LatLngLiteral, spots: SurfSpot[]) {
     let spotsWithDistance = spots.filter(spot => spot.distanceToCurrentLocation != undefined);
     if (spotsWithDistance.length > 0) {
       let bounds = new google.maps.LatLngBounds();
@@ -135,7 +137,10 @@ export class MapComponent implements OnInit {
       spotsWithDistance.filter(spot => spot.distanceToCurrentLocation.value < cutOfDistance).forEach(
         spot => bounds.extend(spot.coords)
       )
+      this.googleMapComponent.center = origin
       this.googleMapComponent.fitBounds(bounds)
+    } else {
+      this._trySetCenterMapComponent(origin)
     }
   }
 

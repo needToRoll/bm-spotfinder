@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {SwUpdate, VersionReadyEvent} from "@angular/service-worker";
 import {filter, pipe} from "rxjs";
 
@@ -7,8 +7,12 @@ import {filter, pipe} from "rxjs";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+//TODO: Remove admin comments before prod release
 export class AppComponent {
-  constructor(private readonly updates: SwUpdate) {
+  title = 'Spotfinder';
+
+  constructor(private readonly updates: SwUpdate, /*private importService: SpotImporterService*/) {
     this.updates.versionUpdates.subscribe(event =>
       pipe(
         filter((evt: VersionReadyEvent): evt is VersionReadyEvent => evt.type === 'VERSION_READY'),
@@ -17,11 +21,14 @@ export class AppComponent {
     );
   }
 
-
   onUpdateAvailable() {
     console.warn("New version is ready: Reloading")
     this.updates.activateUpdate().then(() => document.location.reload());
   }
-
-  title = 'Spotfinder';
+  /*
+    import($event: MouseEvent) {
+      this.importService.importSpotDataToFirestore()
+      console.log("Done importing data")
+    }
+   */
 }
