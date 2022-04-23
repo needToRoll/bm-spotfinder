@@ -1,0 +1,5 @@
+#sidebar-spot-list {
+  overflow-y: auto;
+  height: fit-content;
+  min-width: 350px;
+}

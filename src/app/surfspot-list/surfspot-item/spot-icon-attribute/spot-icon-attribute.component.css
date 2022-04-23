@@ -1,0 +1,14 @@
+.spot-list-item-attr-icon {
+  max-width: 20%;
+  padding-right: 30px;
+}
+.spot-list-item-attr-value {
+  max-width: 85%;
+}
+
+.spot-list-item-attr-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}

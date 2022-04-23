@@ -1,13 +1,18 @@
+<map-searchbar (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
 <div id="map-container-parent">
   <!--
     [center]="mapOptions.center" [zoom]="mapOptions.zoom" -->
-  <map-searchbar (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
-  <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" width="100%" height="76vh">
-    <map-marker *ngFor="let spot of spotsToMark | async"
-                [icon]="surfspotMarkerIcon"
-                [position]="spot.coords"></map-marker>
-    <map-marker [icon]="userSelectedLocationMarkerIcon"
-                [position]="userSelectedLocation | async"></map-marker>
-  </google-map>
-  <app-surfspot-list [surfspots]="spotsToMark"></app-surfspot-list>
+  <div id="map-container">
+    <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" height="76vh" width="100%">
+      <map-marker *ngFor="let spot of spotsToMark | async"
+                  [icon]="surfspotMarkerIcon"
+                  [position]="spot.coords"
+                  (mapClick)="selectedSurfspot.next(spot)"></map-marker>
+      <map-marker [icon]="userSelectedLocationMarkerIcon"
+                  [position]="userSelectedLocation | async"></map-marker>
+    </google-map>
+  </div>
+  <div id="spot-list-container">
+    <app-surfspot-list [surfspots]="spotsToMark" [selectedSurfspot]="selectedSurfspot"></app-surfspot-list>
+  </div>
 </div>

@@ -14,6 +14,8 @@ export const environment = {
     measurementId: 'G-0NDJP13RYL',
   },
   spotCollectionName: "bm-surfspots",
+  ropeLengthUnit: "m",
+  waterLevelUnit: "m^3",
   production: false
 };
 

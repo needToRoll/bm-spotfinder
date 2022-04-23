@@ -1,8 +1,4 @@
-<div>
+<div id="sidebar-spot-list">
   <h3>Recommended Surfspots</h3>
-  <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let spot of surfspots | async">
-      <app-surfspot-item [surfspot]="spot"></app-surfspot-item>
-    </mat-list-item>
-  </mat-list>
+      <app-surfspot-item *ngFor="let spot of surfspots | async" [surfspot]="spot"></app-surfspot-item>
 </div>

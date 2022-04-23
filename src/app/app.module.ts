@@ -25,6 +25,8 @@ import {SurfspotItemComponent} from './surfspot-list/surfspot-item/surfspot-item
 import {MatListModule} from "@angular/material/list";
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {AngularFireModule} from "@angular/fire/compat";
+import {MatExpansionModule} from "@angular/material/expansion";
+import { SpotIconAttributeComponent } from './surfspot-list/surfspot-item/spot-icon-attribute/spot-icon-attribute.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {AngularFireModule} from "@angular/fire/compat";
     MapComponent,
     SearchbarComponent,
     SurfspotListComponent,
-    SurfspotItemComponent
+    SurfspotItemComponent,
+    SpotIconAttributeComponent
   ],
   imports: [
     CommonModule,
@@ -60,6 +63,7 @@ import {AngularFireModule} from "@angular/fire/compat";
     MatListModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirestore(() => getFirestore()),
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

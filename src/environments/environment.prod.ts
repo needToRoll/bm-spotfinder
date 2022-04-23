@@ -10,5 +10,7 @@ export const environment = {
     messagingSenderId: '555596215902',
     measurementId: 'G-0NDJP13RYL',
   },
-  spotCollectionName: "bm-surfspots"
+  spotCollectionName: "bm-surfspots",
+  ropeLengthUnit: "m",
+  waterLevelUnit: "m^3",
 };

@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from "rxjs";
 import {SurfSpot} from "../model/SurfSpot";
+import {SurfspotItemComponent} from "./surfspot-item/surfspot-item.component";
 
 @Component({
   selector: 'app-surfspot-list',
@@ -10,10 +11,17 @@ import {SurfSpot} from "../model/SurfSpot";
 export class SurfspotListComponent implements OnInit {
 
   @Input() surfspots: Observable<SurfSpot[]>
+  @Input() selectedSurfspot: Observable<SurfSpot>
+  @ViewChildren(SurfspotItemComponent) items: QueryList<SurfspotItemComponent>
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.selectedSurfspot.subscribe(selected => {
+        this.items.forEach(item => item.panelOpenState = item.surfspot.placeId == selected.placeId)
+      }
+    )
   }
 
 }

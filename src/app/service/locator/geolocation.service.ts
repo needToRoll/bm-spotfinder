@@ -1,15 +1,9 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocationService {
-
-  // positionDetectedEmitter: EventEmitter<GeolocationPosition>
-  //
-  // constructor() {
-  //   this.positionDetectedEmitter = new EventEmitter();
-  // }
 
   getUserLocation(): Promise<GeolocationPosition> {
     if (navigator.geolocation) {
