@@ -8,9 +8,9 @@ export class DeviceClassificationService {
 
   constructor(private deviceService: DeviceDetectorService) { }
 
-  public shouldUseBottomSheet(): boolean {
+  public shouldBeThreadedAsTouchDevice(): boolean {
     console.log(window.innerWidth)
-    return (!this.deviceService.isDesktop() && this.isTouchDevice()) || window.innerWidth < 1750
+    return (!this.deviceService.isDesktop() && this.isTouchDevice())
   }
 
   public isTouchDevice() {

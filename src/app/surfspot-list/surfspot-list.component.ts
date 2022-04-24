@@ -13,6 +13,7 @@ export class SurfspotListComponent implements OnInit {
 
   @Input() surfspots: Observable<SurfSpot[]>
   @Input() selectedSurfspot: Observable<SurfSpot>
+  @Input() parentUsesBottomSheetFunction: () => boolean
   @ViewChildren(SurfspotItemComponent) items: QueryList<SurfspotItemComponent>
 
   constructor(private _deviceService: DeviceClassificationService) {
@@ -20,7 +21,7 @@ export class SurfspotListComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedSurfspot.subscribe(selected => {
-        if (!this._deviceService.shouldUseBottomSheet()) {
+        if (!this.parentUsesBottomSheetFunction()) {
           this.items.forEach(item => item.panelOpenState = item.surfspot.placeId == selected.placeId)
         }
       }

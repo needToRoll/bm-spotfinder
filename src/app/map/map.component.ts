@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SurfSpot} from "../model/SurfSpot";
 import {GeolocationService} from "../service/locator/geolocation.service";
@@ -26,6 +26,7 @@ export class MapComponent implements OnInit {
   private serviceSubscription: Subscription
 
   private accessAttemptCount = 0
+  private numberOfCurrentSpots = -1
 
   public spotsToMark: Subject<SurfSpot[]>
   public userSelectedLocation: Subject<LatLngLiteral>
@@ -34,6 +35,10 @@ export class MapComponent implements OnInit {
   mapOptions: google.maps.MapOptions
   userSelectedLocationMarkerIcon: GoogleMapsMarkerElement
   surfspotMarkerIcon: GoogleMapsMarkerElement
+
+
+  @ViewChild("mapContainerRef") mapContainerElementRef: ElementRef
+  @ViewChild("spotListRef") spotListContainer: ElementRef
 
   @ViewChild(GoogleMap) googleMapComponent: GoogleMap
 
@@ -46,15 +51,10 @@ export class MapComponent implements OnInit {
     this.mapOptions = MapComponent._getMapOptions()
     this.surfspotMarkerIcon = MapComponent._getSpotMarkerIcon()
     this.userSelectedLocationMarkerIcon = MapComponent._getSelectedLocationMarkerIcon()
-    this.userSelectedLocation = new Subject();
+    this.userSelectedLocation = new BehaviorSubject(undefined);
     this.spotsToMark = new BehaviorSubject([]);
     this.serviceSubscription = this.surfspotService.getAllSurfSpots()
       .subscribe(value => this.spotsToMark.next(value))
-
-  }
-
-
-  public isMobileCapable() {
 
   }
 
@@ -80,14 +80,20 @@ export class MapComponent implements OnInit {
       this.serviceSubscription.unsubscribe()
     }
     this.serviceSubscription = this.surfspotService.getSurfSpotsMatchingFilter(spotFilter)
-      .subscribe(value => {
-          this.spotsToMark.next(value)
-          console.warn("Filter matched: " + value.length + " spots!")
+      .pipe(withLatestFrom(this.userSelectedLocation)).subscribe(([spots, coords]) => {
+          console.warn("Filter matched: " + spots.length + " spots!")
+          if (coords != undefined) {
+            this.distanceMatrixService.calculateDistanceFromOriginToSpots(coords, spots).subscribe(swd => {
+              this.spotsToMark.next(swd)
+              this._tryUpdateMapBounds(coords, swd)
+            })
+          }
         }
       )
   }
 
   onGeolocationFound(location: GeolocationPosition) {
+
     console.log("Location found")
     let coords: google.maps.LatLngLiteral = {lng: location.coords.longitude, lat: location.coords.latitude}
     this._handleLocationChange(coords)
@@ -97,10 +103,6 @@ export class MapComponent implements OnInit {
     let pos = placeSearchResult.geometry.location
     let coords = {lat: pos.lat(), lng: pos.lng()}
     this._handleLocationChange(coords)
-  }
-
-  private _handleLocationChange(newLocationCoordinates: LatLngLiteral) {
-    this.userSelectedLocation.next(newLocationCoordinates)
   }
 
   //endregion
@@ -114,6 +116,23 @@ export class MapComponent implements OnInit {
     }
   }
 
+  tryReadGeoLocation() {
+    this.geolocationService.getUserLocation()
+      .then((position) => this.onGeolocationFound(position))
+      .catch(reason => "Failed to read geo location: " + reason)
+  }
+
+  handleMarkerClicked(spot: SurfSpot) {
+    this.selectedSurfspot.next(spot)
+    if (this._shouldUseBottomSheet()) {
+      this._bottomSheet.open(MobileSpotInfoSheetComponent, {data: {spot: spot}})
+    }
+  }
+
+  shouldUseBottomSheet() {
+    return this._shouldUseBottomSheet.bind(this)
+  }
+
   //endregion
 
   private _trySetCenterMapComponent(coords: LatLngLiteral) {
@@ -121,6 +140,9 @@ export class MapComponent implements OnInit {
     console.log("Center set")
   }
 
+  private _handleLocationChange(newLocationCoordinates: LatLngLiteral) {
+    this.userSelectedLocation.next(newLocationCoordinates)
+  }
 
   // @ts-ignore
   private _getGoogleMapObject(): google.maps.Map | undefined {
@@ -147,7 +169,7 @@ export class MapComponent implements OnInit {
         spot => bounds.extend(spot.coords)
       )
       this.googleMapComponent.center = origin
-      this.googleMapComponent.fitBounds(bounds)
+      this.googleMapComponent.fitBounds(bounds, 80)
     } else {
       this._trySetCenterMapComponent(origin)
     }
@@ -174,7 +196,6 @@ export class MapComponent implements OnInit {
     }
   }
 
-
   private static _getSelectedLocationMarkerIcon(): GoogleMapsMarkerElement {
     return {
       path: google.maps.SymbolPath.CIRCLE,
@@ -185,20 +206,10 @@ export class MapComponent implements OnInit {
     }
   }
 
-  doNothing() {
-    return
+  private _shouldUseBottomSheet(): boolean {
+    let isListWrappedToNewRow = this.spotListContainer.nativeElement.offsetTop > this.mapContainerElementRef.nativeElement.offsetTop
+    console.debug(isListWrappedToNewRow)
+    return this.deviceService.shouldBeThreadedAsTouchDevice() || isListWrappedToNewRow;
   }
 
-  tryReadGeoLocation() {
-    this.geolocationService.getUserLocation()
-      .then((position) => this.onGeolocationFound(position))
-      .catch(reason => "Failed to read geo location: " + reason)
-  }
-
-  handleMarkerClicked(spot: SurfSpot) {
-    this.selectedSurfspot.next(spot)
-    if (this.deviceService.shouldUseBottomSheet()) {
-      this._bottomSheet.open(MobileSpotInfoSheetComponent, { data: {spot: spot} })
-    }
-  }
 }

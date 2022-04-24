@@ -11,4 +11,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
