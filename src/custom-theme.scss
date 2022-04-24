@@ -1,9 +1,7 @@
-
 @use '@angular/material' as mat;
 @use "@material/fab";
 
 @include fab.core-styles;
-@include mat.core();
 
 @import '~@angular/material/theming';
 
@@ -137,7 +135,6 @@ $bm-text-regular: mat-typography-level(
 );
 
 
-
 $bm-typography: mat-typography-config(
   $font-family: $brandon-font,
   $display-4: $bm-heading1,
@@ -174,6 +171,7 @@ $angular-pwa-theme: mat.define-light-theme((
 ));
 //endregion
 
+@include mat.core($bm-typography);
 @include mat.all-component-themes($angular-pwa-theme);
 
 .mat-toolbar h2 {
