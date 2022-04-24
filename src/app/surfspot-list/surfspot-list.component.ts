@@ -1,7 +1,8 @@
 import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from "rxjs";
 import {SurfSpot} from "../model/SurfSpot";
-import {SurfspotItemComponent} from "./surfspot-item/surfspot-item.component";
+import {SurfspotItemComponent} from "../surfspot-item/surfspot-item.component";
+import {DeviceClassificationService} from "../service/device-classification.service";
 
 @Component({
   selector: 'app-surfspot-list',
@@ -14,12 +15,14 @@ export class SurfspotListComponent implements OnInit {
   @Input() selectedSurfspot: Observable<SurfSpot>
   @ViewChildren(SurfspotItemComponent) items: QueryList<SurfspotItemComponent>
 
-  constructor() {
+  constructor(private _deviceService: DeviceClassificationService) {
   }
 
   ngOnInit(): void {
     this.selectedSurfspot.subscribe(selected => {
-        this.items.forEach(item => item.panelOpenState = item.surfspot.placeId == selected.placeId)
+        if (!this._deviceService.shouldUseBottomSheet()) {
+          this.items.forEach(item => item.panelOpenState = item.surfspot.placeId == selected.placeId)
+        }
       }
     )
   }

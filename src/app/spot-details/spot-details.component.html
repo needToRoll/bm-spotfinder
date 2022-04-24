@@ -1,0 +1,47 @@
+<div class="spot-list-item-body">
+  <app-spot-icon-attribute
+    [values]="getAddressPartsList()"
+    matIcon="explore"
+    title="Address">
+  </app-spot-icon-attribute>
+  <mat-divider></mat-divider>
+  <app-spot-icon-attribute
+    *ngIf="surfspot.bmSpotInfo.dangers.length > 0"
+    [values]="surfspot.bmSpotInfo.dangers"
+    matIcon="error"
+    title="Dangers">
+  </app-spot-icon-attribute>
+  <mat-divider
+    *ngIf="surfspot.bmSpotInfo.dangers.length > 0"></mat-divider>
+  <app-spot-icon-attribute
+    *ngIf="surfspot.bmSpotInfo.additionalInfo.length > 0"
+    [values]="surfspot.bmSpotInfo.additionalInfo"
+    matIcon="lightbulb_circle"
+
+    title="Information">
+  </app-spot-icon-attribute>
+  <mat-divider
+    *ngIf="surfspot.bmSpotInfo.additionalInfo.length > 0">
+  </mat-divider>
+  <app-spot-icon-attribute
+    [values]="surfspot.bmSpotInfo.entries"
+    matIcon="login"
+    title="Entries">
+  </app-spot-icon-attribute>
+  <mat-divider></mat-divider>
+  <app-spot-icon-attribute
+    [values]="surfspot.bmSpotInfo.exits"
+    matIcon="logout"
+    title="Exits">
+  </app-spot-icon-attribute>
+  <mat-divider></mat-divider>
+  <app-spot-icon-attribute [values]="getRopeLengthsWithUnit()"
+                           matIcon="straighten"
+                           title="Rope length">
+  </app-spot-icon-attribute>
+
+  <a mat-flat-button
+     color="primary"
+     target="_blank"
+     [href]="surfspot.bmSpotInfo.webLink">See on Maps</a>
+</div>

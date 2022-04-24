@@ -2,10 +2,11 @@
   "name": "Bungeesurf spotfinder by Bungeemonkey",
   "short_name": "Spotfinder",
   "description": "A map to help you find the perfect surfspot for you! Made by Bungeemonkey",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme-color": "#ffffff",
+  "background-color": "#ffffff",
   "display": "fullscreen",
   "scope": "./",
+  "orientation": "portrait",
   "start_url": "./",
   "icons": [
     {

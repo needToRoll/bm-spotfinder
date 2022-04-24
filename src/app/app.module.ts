@@ -21,12 +21,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 import {SurfspotListComponent} from './surfspot-list/surfspot-list.component';
-import {SurfspotItemComponent} from './surfspot-list/surfspot-item/surfspot-item.component';
 import {MatListModule} from "@angular/material/list";
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {AngularFireModule} from "@angular/fire/compat";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { SpotIconAttributeComponent } from './surfspot-list/surfspot-item/spot-icon-attribute/spot-icon-attribute.component';
+import {SurfspotItemComponent} from "./surfspot-item/surfspot-item.component";
+import {SpotIconAttributeComponent} from "./surfspot-item/spot-icon-attribute/spot-icon-attribute.component";
+import { SpotDetailsComponent } from './spot-details/spot-details.component';
+import { MobileSpotInfoSheetComponent } from './mobile-spot-info-sheet/mobile-spot-info-sheet.component';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from "@angular/material/bottom-sheet";
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { SpotIconAttributeComponent } from './surfspot-list/surfspot-item/spot-i
     SearchbarComponent,
     SurfspotListComponent,
     SurfspotItemComponent,
-    SpotIconAttributeComponent
+    SpotIconAttributeComponent,
+    SpotDetailsComponent,
+    MobileSpotInfoSheetComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +70,10 @@ import { SpotIconAttributeComponent } from './surfspot-list/surfspot-item/spot-i
     provideFirestore(() => getFirestore()),
     MatExpansionModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MatBottomSheet },
+    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

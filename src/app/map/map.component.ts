@@ -10,6 +10,9 @@ import {PlaceSearchResult} from "../model/PlaceSearchResult";
 import {GoogleCoordinates, GoogleMapsMarkerElement} from "../model/Types";
 import {DistanceMatrixService} from "../service/distance/distance-matrix.service";
 import {FirebaseSurfSpotService} from "../service/surfspot/firebase-surf-spot.service";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {DeviceClassificationService} from "../service/device-classification.service";
+import {MobileSpotInfoSheetComponent} from "../mobile-spot-info-sheet/mobile-spot-info-sheet.component";
 
 @Component({
   selector: 'app-map',
@@ -36,21 +39,27 @@ export class MapComponent implements OnInit {
 
   constructor(private httpClient: HttpClient,
               private surfspotService: FirebaseSurfSpotService,
+              private deviceService: DeviceClassificationService,
               private geolocationService: GeolocationService,
-              private distanceMatrixService: DistanceMatrixService) {
+              private distanceMatrixService: DistanceMatrixService,
+              private _bottomSheet: MatBottomSheet) {
     this.mapOptions = MapComponent._getMapOptions()
     this.surfspotMarkerIcon = MapComponent._getSpotMarkerIcon()
     this.userSelectedLocationMarkerIcon = MapComponent._getSelectedLocationMarkerIcon()
     this.userSelectedLocation = new Subject();
     this.spotsToMark = new BehaviorSubject([]);
-    this.serviceSubscription = this.surfspotService.getAllSurfSpots().subscribe(value =>
-      this.spotsToMark.next(value))
+    this.serviceSubscription = this.surfspotService.getAllSurfSpots()
+      .subscribe(value => this.spotsToMark.next(value))
 
   }
 
 
+  public isMobileCapable() {
+
+  }
+
   ngOnInit(): void {
-    this.geolocationService.getUserLocation().then((position) => this.onGeolocationFound(position))
+    this.tryReadGeoLocation()
     this.userSelectedLocation.pipe(
       withLatestFrom(this.spotsToMark)
     ).subscribe(([coords, spots]) => {
@@ -62,7 +71,6 @@ export class MapComponent implements OnInit {
         )
 
     })
-    this.spotsToMark.subscribe(console.debug)
   }
 
   //region event handlers
@@ -151,6 +159,7 @@ export class MapComponent implements OnInit {
       fullscreenControl: true,
       mapTypeControl: false,
       streetViewControl: false,
+      clickableIcons: false,
       zoom: 13,
       zoomControl: true,
       maxZoom: 17,
@@ -176,8 +185,20 @@ export class MapComponent implements OnInit {
     }
   }
 
-  clicked() {
-    this.geolocationService.getUserLocation().then((position) => this.onGeolocationFound(position))
+  doNothing() {
+    return
+  }
 
+  tryReadGeoLocation() {
+    this.geolocationService.getUserLocation()
+      .then((position) => this.onGeolocationFound(position))
+      .catch(reason => "Failed to read geo location: " + reason)
+  }
+
+  handleMarkerClicked(spot: SurfSpot) {
+    this.selectedSurfspot.next(spot)
+    if (this.deviceService.shouldUseBottomSheet()) {
+      this._bottomSheet.open(MobileSpotInfoSheetComponent, { data: {spot: spot} })
+    }
   }
 }

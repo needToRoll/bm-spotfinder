@@ -3,14 +3,21 @@
   <!--
     [center]="mapOptions.center" [zoom]="mapOptions.zoom" -->
   <div id="map-container">
-    <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" height="76vh" width="100%">
+    <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" height="75vh" width="100%">
       <map-marker *ngFor="let spot of spotsToMark | async"
                   [icon]="surfspotMarkerIcon"
                   [position]="spot.coords"
-                  (mapClick)="selectedSurfspot.next(spot)"></map-marker>
+                  (mapClick)="handleMarkerClicked(spot)"></map-marker>
       <map-marker [icon]="userSelectedLocationMarkerIcon"
                   [position]="userSelectedLocation | async"></map-marker>
     </google-map>
+  </div>
+  <div hidden="true">
+    <button (click)="tryReadGeoLocation()">
+      <span class="material-symbols-outlined">
+        my_location
+      </span>
+    </button>
   </div>
   <div id="spot-list-container">
     <app-surfspot-list [surfspots]="spotsToMark" [selectedSurfspot]="selectedSurfspot"></app-surfspot-list>

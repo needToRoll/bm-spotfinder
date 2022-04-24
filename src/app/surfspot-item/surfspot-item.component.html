@@ -1,0 +1,14 @@
+<div class="surf-spot-list-item-container">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false"
+                       [expanded]="panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ surfspot.title }}
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-spot-details [surfspot]=surfspot></app-spot-details>
+  </mat-expansion-panel>
+</div>

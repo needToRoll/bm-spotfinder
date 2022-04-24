@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SurfSpot} from "../../model/SurfSpot";
-import {environment} from "../../../environments/environment";
+import {SurfSpot} from "../model/SurfSpot";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-surfspot-item',
@@ -25,11 +25,4 @@ export class SurfspotItemComponent implements OnInit {
     this.panelOpenState = false
   }
 
-  getAddressPartsList(): string[] {
-    return [this.surfspot.address1, this.surfspot.address2]
-  }
-
-  getRopeLengthsWithUnit(): string[] {
-    return this.surfspot.bmSpotInfo.ropeLength.sort().map(value => value + " " + environment.ropeLengthUnit);
-  }
 }
