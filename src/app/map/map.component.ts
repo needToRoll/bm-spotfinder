@@ -26,7 +26,6 @@ export class MapComponent implements OnInit {
   private serviceSubscription: Subscription
 
   private accessAttemptCount = 0
-  private numberOfCurrentSpots = -1
 
   public spotsToMark: Subject<SurfSpot[]>
   public userSelectedLocation: Subject<LatLngLiteral>
@@ -87,6 +86,8 @@ export class MapComponent implements OnInit {
               this.spotsToMark.next(swd)
               this._tryUpdateMapBounds(coords, swd)
             })
+          } else {
+            this.spotsToMark.next(spots)
           }
         }
       )
