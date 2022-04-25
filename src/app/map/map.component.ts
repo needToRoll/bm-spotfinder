@@ -13,6 +13,7 @@ import {FirebaseSurfSpotService} from "../service/surfspot/firebase-surf-spot.se
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {DeviceClassificationService} from "../service/device-classification.service";
 import {MobileSpotInfoSheetComponent} from "../mobile-spot-info-sheet/mobile-spot-info-sheet.component";
+import {GoogleMapsConfiguration} from "../config/GoogleMapsConfiguration";
 
 @Component({
   selector: 'app-map',
@@ -21,8 +22,7 @@ import {MobileSpotInfoSheetComponent} from "../mobile-spot-info-sheet/mobile-spo
 })
 export class MapComponent implements OnInit {
 
-  public readonly DEFAULT_ZOOM = 13
-  private readonly DEFAULT_MAP_CENTER: LatLngLiteral = {lng: 46.948367, lat: 7.456186}
+  public readonly DEFAULT_ZOOM = GoogleMapsConfiguration.DEFAULT_ZOOM
   private serviceSubscription: Subscription
 
   private accessAttemptCount = 0
@@ -47,9 +47,9 @@ export class MapComponent implements OnInit {
               private geolocationService: GeolocationService,
               private distanceMatrixService: DistanceMatrixService,
               private _bottomSheet: MatBottomSheet) {
-    this.mapOptions = MapComponent._getMapOptions()
-    this.surfspotMarkerIcon = MapComponent._getSpotMarkerIcon()
-    this.userSelectedLocationMarkerIcon = MapComponent._getSelectedLocationMarkerIcon()
+    this.mapOptions = GoogleMapsConfiguration.getMapOptions()
+    this.surfspotMarkerIcon = GoogleMapsConfiguration.getSpotMarkerIcon()
+    this.userSelectedLocationMarkerIcon = GoogleMapsConfiguration.getSelectedLocationMarkerIcon()
     this.userSelectedLocation = new BehaviorSubject(undefined);
     this.spotsToMark = new BehaviorSubject([]);
     this.serviceSubscription = this.surfspotService.getAllSurfSpots()
@@ -94,8 +94,6 @@ export class MapComponent implements OnInit {
   }
 
   onGeolocationFound(location: GeolocationPosition) {
-
-    console.log("Location found")
     let coords: google.maps.LatLngLiteral = {lng: location.coords.longitude, lat: location.coords.latitude}
     this._handleLocationChange(coords)
   }
@@ -111,7 +109,7 @@ export class MapComponent implements OnInit {
   //region function used in html bindings
   getCenter(): GoogleCoordinates {
     if (this.mapOptions.center == null) {
-      return this.DEFAULT_MAP_CENTER
+      return GoogleMapsConfiguration.DEFAULT_MAP_CENTER
     } else {
       return this.mapOptions.center
     }
@@ -176,40 +174,8 @@ export class MapComponent implements OnInit {
     }
   }
 
-  private static _getMapOptions(): google.maps.MapOptions {
-    return {
-      center: {lat: 46.948367, lng: 7.456186},
-      fullscreenControl: true,
-      mapTypeControl: false,
-      streetViewControl: false,
-      clickableIcons: false,
-      zoom: 13,
-      zoomControl: true,
-      maxZoom: 17,
-      mapId: "ca16d2171c271f81"
-    };
-  }
-
-  private static _getSpotMarkerIcon(): google.maps.Icon {
-    return {
-      url: './assets/icons/pin-white.svg',
-      anchor: new google.maps.Point(20, 60),
-    }
-  }
-
-  private static _getSelectedLocationMarkerIcon(): GoogleMapsMarkerElement {
-    return {
-      path: google.maps.SymbolPath.CIRCLE,
-      scale: 12,
-      fillColor: "#228848",
-      fillOpacity: 0.8,
-      strokeOpacity: 0,
-    }
-  }
-
   private _shouldUseBottomSheet(): boolean {
     let isListWrappedToNewRow = this.spotListContainer.nativeElement.offsetTop > this.mapContainerElementRef.nativeElement.offsetTop
-    console.debug(isListWrappedToNewRow)
     return this.deviceService.shouldBeThreadedAsTouchDevice() || isListWrappedToNewRow;
   }
 

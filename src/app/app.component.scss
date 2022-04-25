@@ -11,6 +11,10 @@ mat-toolbar img {
   display: none;
 }
 
+svg path {
+  shape-rendering: crispEdges;
+}
+
 @media only screen and (max-width: 500px) {
 
   #bm-logo-minimal {
