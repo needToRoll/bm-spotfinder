@@ -40,6 +40,9 @@
                            title="Rope length">
   </app-spot-icon-attribute>
   <mat-divider></mat-divider>
+  <app-water-level-attribute [hydroDetails]="spotWithHydroDetails() | async" [surfSpot]="surfspot">
+  </app-water-level-attribute>
+  <mat-divider></mat-divider>
   <a class="spot-action-button" mat-flat-button
      color="primary"
      target="_blank"

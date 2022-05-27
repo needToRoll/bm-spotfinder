@@ -24,6 +24,7 @@
     "@angular/router": "~13.3.0",
     "@angular/service-worker": "~13.3.0",
     "@material/fab": "^13.0.0",
+    "mathjax-angular": "^1.4.2",
     "ngx-device-detector": "^3.0.0",
     "ngx-google-places-autocomplete": "^2.0.5",
     "rxjs": "~7.5.0",

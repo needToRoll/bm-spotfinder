@@ -30,6 +30,8 @@ import {SpotIconAttributeComponent} from "./surfspot-item/spot-icon-attribute/sp
 import { SpotDetailsComponent } from './spot-details/spot-details.component';
 import { MobileSpotInfoSheetComponent } from './mobile-spot-info-sheet/mobile-spot-info-sheet.component';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from "@angular/material/bottom-sheet";
+import { WaterLevelAttributeComponent } from './surfspot-item/water-level-attribute/water-level-attribute.component';
+import {MathjaxModule} from "mathjax-angular";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from "@angular/material/bottom-sh
     SurfspotItemComponent,
     SpotIconAttributeComponent,
     SpotDetailsComponent,
-    MobileSpotInfoSheetComponent
+    MobileSpotInfoSheetComponent,
+    WaterLevelAttributeComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +58,7 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from "@angular/material/bottom-sh
     HttpClientJsonpModule,
     BrowserModule,
     MatToolbarModule,
+    MathjaxModule.forRoot({ config: {loader: {load: ["input/tex", "output/chtml"]}}}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

@@ -1,0 +1,57 @@
+.water-attr-icon {
+  max-width: 20%;
+  padding-right: 30px;
+}
+.water-attr-value {
+  width: 50%;
+  padding-right: 30px;
+}
+
+.water-attr-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.water-attr-value h5 {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.water-attr-group {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.attr-width-indicator {
+  display: inline-block;
+  width: fit-content
+}
+
+.value-width-indicator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.water-flow-indicator {
+  height: 9px;
+  width: 9px;
+  background-color: grey;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 9px;
+}
+
+.water-flow-indicator.ok {
+  background-color: #146b30;
+}
+
+.water-flow-indicator.nok {
+  background-color: #AB1E2E;
+}

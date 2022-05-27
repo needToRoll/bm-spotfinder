@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SurfSpot} from "../model/SurfSpot";
 import {environment} from "../../environments/environment";
+import {HydroDataProviderService} from "../service/hydro/hydro-data-provider.service";
+import {Observable} from "rxjs";
+import {HydroDetails} from "../model/HydroDetails";
 
 @Component({
   selector: 'app-spot-details',
@@ -11,7 +14,7 @@ export class SpotDetailsComponent implements OnInit {
 
   @Input() surfspot: SurfSpot
 
-  constructor() { }
+  constructor(private  _hydoDataProvider: HydroDataProviderService) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +27,7 @@ export class SpotDetailsComponent implements OnInit {
     return this.surfspot.bmSpotInfo.ropeLength.sort().map(value => value + " " + environment.ropeLengthUnit);
   }
 
+  spotWithHydroDetails(): Observable<HydroDetails> {
+    return this._hydoDataProvider.readHydroDataForSpot(this.surfspot)
+  }
 }

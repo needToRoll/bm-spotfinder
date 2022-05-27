@@ -14,6 +14,8 @@ import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {DeviceClassificationService} from "../service/device-classification.service";
 import {MobileSpotInfoSheetComponent} from "../mobile-spot-info-sheet/mobile-spot-info-sheet.component";
 import {GoogleMapsConfiguration} from "../config/GoogleMapsConfiguration";
+import {WaterLevelMeasurement} from "../model/WaterLevelMeasurement";
+import {HydroDataSource} from "../model/HydroDataSource";
 
 @Component({
   selector: 'app-map',
@@ -28,6 +30,8 @@ export class MapComponent implements OnInit {
   private accessAttemptCount = 0
 
   public spotsToMark: Subject<SurfSpot[]>
+  public waterLevelValues: Subject<WaterLevelMeasurement[]>
+  public hydroSources: Subject<HydroDataSource[]>
   public userSelectedLocation: Subject<LatLngLiteral>
   public selectedSurfspot: Subject<SurfSpot> = new Subject<SurfSpot>();
 
@@ -147,6 +151,7 @@ export class MapComponent implements OnInit {
   private _getGoogleMapObject(): google.maps.Map | undefined {
     this.accessAttemptCount += 1;
     if (this.googleMapComponent != null && this.googleMapComponent.googleMap) {
+      this.accessAttemptCount = 0;
       return this.googleMapComponent.googleMap
     }
     if (this.accessAttemptCount < 10) {

@@ -1,0 +1,41 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {SurfSpot} from "../../model/SurfSpot";
+import {HydroDetails} from "../../model/HydroDetails";
+
+@Component({
+  selector: 'app-water-level-attribute',
+  templateUrl: './water-level-attribute.component.html',
+  styleUrls: ['./water-level-attribute.component.css']
+})
+export class WaterLevelAttributeComponent implements OnInit {
+
+  private readonly WATER_INDICATOR_BASE_CLASS = "water-flow-indicator"
+  private readonly WATER_INDICATOR_OK_CLASS = "ok"
+  private readonly WATER_INDICATOR_NOK_CLASS = "nok"
+
+  @Input() surfSpot: SurfSpot
+  @Input() hydroDetails: HydroDetails
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
+
+  //TODO: Replace with actual logic
+  getIndicatorCssClasses(): string[] {
+    let classesToAdd = [this.WATER_INDICATOR_BASE_CLASS]
+    if(this.hydroDetails.value != -1) {
+      if(this.surfSpot.bmSpotInfo.minimalWaterLevel <= this.hydroDetails.value){
+        classesToAdd.push(this.WATER_INDICATOR_OK_CLASS)
+      } else {
+        classesToAdd.push(this.WATER_INDICATOR_NOK_CLASS)
+      }
+    }
+    return classesToAdd;
+  }
+
+  buildFlowLevelStringFromNumber(numericalFlowValue: number) {
+    return numericalFlowValue == -1 ? "$\\text{unknown}$" : `\$ ${numericalFlowValue}\\text{ }m^3/s\$`
+  }
+}

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DeviceClassificationService } from './device-classification.service';
 
-describe('DeviceClassificationServiceService', () => {
+describe('DeviceClassificationService', () => {
   let service: DeviceClassificationService;
 
   beforeEach(() => {
