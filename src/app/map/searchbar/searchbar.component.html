@@ -2,7 +2,11 @@
   <mat-toolbar-row>
     <div class="row-form-container">
       <mat-form-field id="locationSearchField">
-        <input ngx-google-places-autocomplete [options]="npxPlaceSearchAutocompleteOptions" #placesRef="ngx-places" (onAddressChange)="onPlaceFoundBasedOnSearch($event)"
+        <input i18n-placeholder="searchbar-placeholder"
+               ngx-google-places-autocomplete
+               [options]="npxPlaceSearchAutocompleteOptions"
+               #placesRef="ngx-places"
+               (onAddressChange)="onPlaceFoundBasedOnSearch($event)"
                aria-label="Place search"
                matInput
                placeholder="Search for a location (address, zip, etc)"
@@ -15,7 +19,7 @@
     <div class="row-form-container">
       <form [formGroup]="surfSpotFilterControl">
         <mat-form-field appearance="fill" class="filter-select">
-          <mat-label>Rope length</mat-label>
+          <mat-label i18n>Rope length</mat-label>
           <mat-select formControlName="ropeLength">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let ropeLengthOption of ropeLengthOptions" [value]="ropeLengthOption.value">
@@ -25,7 +29,7 @@
         </mat-form-field>
         <div class="row-form-spacer"></div>
         <mat-form-field appearance="fill" class="filter-select">
-          <mat-label>Difficulty / Level</mat-label>
+          <mat-label i18n>Difficulty / Level</mat-label>
           <mat-select formControlName="difficulty">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let difficultyOption of difficultyOptions" [value]="difficultyOption.value">

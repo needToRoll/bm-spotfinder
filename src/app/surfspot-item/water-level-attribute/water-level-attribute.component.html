@@ -2,20 +2,29 @@
   <div class="water-attr-icon">
     <mat-icon aria-hidden="false" aria-label="icon">water</mat-icon>
   </div>
-  <div class="water-attr-group">
-    <div class="water-attr-value">
-      <h5>Minimal water flow:</h5>
-      <span [mathjax]="buildFlowLevelStringFromNumber(surfSpot.bmSpotInfo.minimalWaterLevel)"></span>
-    </div>
-    <div class="water-attr-value">
-      <div class="attr-width-indicator">
-        <h5>Current water flow:</h5>
-        <div class="value-width-indicator">
-          <span [mathjax]="buildFlowLevelStringFromNumber(hydroDetails.value)"></span>
-          <div [ngClass]="getIndicatorCssClasses()"></div>
+  <div class="water-rows">
+    <div class="water-row">
+      <div class="water-attr-group">
+        <div class="water-attr-value">
+          <h4 i18n>Minimal water flow:</h4>
+          <span [mathjax]="buildFlowLevelStringFromNumber(surfSpot.bmSpotInfo.minimalWaterLevel)"></span>
+        </div>
+        <div class="water-attr-value">
+          <div class="attr-width-indicator">
+            <h4 i18n>Current water flow:</h4>
+            <div class="value-width-indicator">
+              <span [mathjax]="buildFlowLevelStringFromNumber(hydroDetails.value)"></span>
+              <div [ngClass]="getIndicatorCssClasses()"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="water-row">
+      <span *ngIf="hydroDetails.value != -1" class="water-source">
+        <ng-container i18n>Measured at {{ hydroDetails.measuredAt | date: 'short' }} by </ng-container>
+        <a [href]="hydroDetails.sourceLink">{{hydroDetails.sourceName}}</a>
+      </span>
+    </div>
   </div>
-  <span>Measured at {{ hydroDetails.measuredAt | date: 'short' }} recorded by <a [href]="hydroDetails.sourceLink">{{hydroDetails.sourceName}}</a></span>
 </div>

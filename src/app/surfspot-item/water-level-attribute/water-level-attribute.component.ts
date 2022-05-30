@@ -25,7 +25,10 @@ export class WaterLevelAttributeComponent implements OnInit {
   //TODO: Replace with actual logic
   getIndicatorCssClasses(): string[] {
     let classesToAdd = [this.WATER_INDICATOR_BASE_CLASS]
-    if(this.hydroDetails.value != -1) {
+    let now = new Date()
+    let lastValidMeasurementTime = new Date()
+    lastValidMeasurementTime.setHours(now.getHours()-1)
+    if(this.hydroDetails.value != -1 && new Date(this.hydroDetails.measuredAt) >= lastValidMeasurementTime) {
       if(this.surfSpot.bmSpotInfo.minimalWaterLevel <= this.hydroDetails.value){
         classesToAdd.push(this.WATER_INDICATOR_OK_CLASS)
       } else {

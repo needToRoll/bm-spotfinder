@@ -1,4 +1,9 @@
 <div id="bottom-sheet-container">
-  <h4>{{ getSpotTitleText(data.spot) }}</h4>
+
+  <div class="title-container">
+    <h4>{{data.spot.title}}</h4>
+    <span class="spacer"></span>
+    <h4 class="distance" *ngIf="data.spot.distanceToCurrentLocation">{{data.spot.distanceToCurrentLocation.text}}</h4>
+  </div>
   <app-spot-details [surfspot]="data.spot"></app-spot-details>
 </div>

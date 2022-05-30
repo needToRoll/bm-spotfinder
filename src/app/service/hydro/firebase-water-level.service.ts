@@ -13,7 +13,7 @@ export class FirebaseWaterLevelService implements WaterLevelService{
   constructor(private fireStore: AngularFirestore) { }
 
   getAllCurrentWaterLevels(): Observable<WaterLevelMeasurement[]> {
-    return this.fireStore.collection<WaterLevelMeasurement>("bm-water-levels").valueChanges()
+    return this.fireStore.collection<WaterLevelMeasurement>("bm-water-levels").valueChanges({idField: 'id'})
   }
 
   getAllHydroDataSources(): Observable<HydroDataSource[]> {

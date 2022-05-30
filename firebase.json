@@ -1,10 +1,13 @@
 {
   "hosting": {
     "target": "angular-pwa",
-    "public": "dist/angular-pwa",
+    "public": "dist/bm-spotfinder",
     "ignore": [
       "**/.*"
     ],
+    "i18n":{
+      "root": "/"
+    },
     "headers": [
       {
         "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",

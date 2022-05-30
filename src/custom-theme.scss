@@ -82,29 +82,25 @@ $brandon-black: "BrandonText-Black";
 $brandon-font: "Brandon Text";
 
 $bm-heading1: mat-typography-level(
-  $font-family: $brandon-font,
-  $font-weight: bolder,
+  $font-family: $brandon-black,
   $font-size: 44px,
   $letter-spacing: 5px,
   $line-height: 48px
 );
 $bm-heading2: mat-typography-level(
-  $font-family: $brandon-font,
-  $font-weight: bolder,
+  $font-family: $brandon-black,
   $font-size: 22px,
   $letter-spacing: 3px,
   $line-height: 39px
 );
 $bm-heading3: mat-typography-level(
-  $font-family: $brandon-font,
-  $font-weight: normal,
+  $font-family: $brandon-bold,
   $font-size: 22px,
   $letter-spacing: normal,
   $line-height: 30px
 );
 $bm-heading4: mat-typography-level(
-  $font-family: $brandon-font,
-  $font-weight: bold,
+  $font-family: $brandon-bold,
   $font-size: 14px,
   $letter-spacing: normal,
   $line-height: 20px
@@ -114,7 +110,6 @@ $bm-input: mat-typography-level(
   $font-family: $brandon-font,
   $font-weight: bold,
   $font-size: 16px,
-  $letter-spacing: normal,
   $line-height: 1.4375em
 );
 

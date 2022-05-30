@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1974849136726453059" datatype="html">
+        <source>Search for a location (address, zip, etc)</source>
+        <target>Suche nach einem Ort (Adresse, Postleitzahl, etc.)</target>
+        <note priority="1" from="description">searchbar-placeholder</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/map/searchbar/searchbar.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2853790489768628311" datatype="html">
+        <source>Rope length</source>
+        <target>Seillänge</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/map/searchbar/searchbar.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="875679471765018459" datatype="html">
+        <source>Difficulty / Level</source>
+        <target>Schwierigkeit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/map/searchbar/searchbar.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8840967950419981635" datatype="html">
+        <source>Beginner</source>
+        <target>Einsteiger</target>
+        <note priority="1" from="description">One word slug used for filtering</note>
+        <note priority="1" from="meaning">Surfer with little experience</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/model/SpotDifficultyLevel.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7820108666077995464" datatype="html">
+        <source>Intermediate</source>
+        <target>Erfahren</target>
+        <note priority="1" from="description">One word slug used for filtering</note>
+        <note priority="1" from="meaning">Surfer with intermediate experience</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/model/SpotDifficultyLevel.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8956700298724139500" datatype="html">
+        <source>Pro</source>
+        <target>Experte</target>
+        <note priority="1" from="description">One word slug used for filtering</note>
+        <note priority="1" from="meaning">Surfer with high experience</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/model/SpotDifficultyLevel.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6121366698515553362" datatype="html">
+        <source>Show on Maps</source>
+        <target>Zur Karte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spot-details/spot-details.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8952892136598801869" datatype="html">
+        <source>Minimal water flow:</source>
+        <target>Minimaler Wasserdurchfluss</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/surfspot-item/water-level-attribute/water-level-attribute.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1072544921066154344" datatype="html">
+        <source>Current water flow:</source>
+        <target>Derzeitige Wasserführung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/surfspot-item/water-level-attribute/water-level-attribute.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4288174134238422345" datatype="html">
+        <source>Measured at <x id="INTERPOLATION" equiv-text="{{ hydroDetails.measuredAt | date: 'short' }}"/> by </source>
+        <target>Gemessen am <x id="INTERPOLATION" equiv-text="{{ hydroDetails.measuredAt | date: 'short' }}"/> von </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/surfspot-item/water-level-attribute/water-level-attribute.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5700215129843656274" datatype="html">
+        <source>Recommended Surfspots</source>
+        <target>Empfohlene Surfspots</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">src/app/surfspot-list/surfspot-list.component.html</context>
+            <context context-type="linenumber">2,3</context>
+          </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

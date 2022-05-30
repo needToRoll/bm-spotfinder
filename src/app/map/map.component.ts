@@ -59,10 +59,6 @@ export class MapComponent implements OnInit {
     this.serviceSubscription = this.surfspotService.getAllSurfSpots()
       .subscribe(value => this.spotsToMark.next(value))
 
-  }
-
-  ngOnInit(): void {
-    this.tryReadGeoLocation()
     this.userSelectedLocation.pipe(
       withLatestFrom(this.spotsToMark)
     ).subscribe(([coords, spots]) => {
@@ -74,6 +70,11 @@ export class MapComponent implements OnInit {
         )
 
     })
+  }
+
+  ngOnInit(): void {
+    let readUserLocationRef = this.tryReadGeoLocation.bind(this)
+    setTimeout(readUserLocationRef, 700);
   }
 
   //region event handlers

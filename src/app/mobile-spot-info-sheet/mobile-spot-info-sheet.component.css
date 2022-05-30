@@ -1,3 +1,12 @@
 #bottom-sheet-container {
   padding-bottom: 10px;
 }
+.title-container {
+  display: flex;
+}
+.spacer {
+  flex-grow: 1;
+}
+.distance {
+  color: grey;
+}

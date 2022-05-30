@@ -6,7 +6,16 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-pwa": {
+    "bm-spotfinder": {
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "de": {
+            "translation": "src/locale/messages.de.xlf",
+            "baseHref": "de"
+          }
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +29,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-pwa",
+            "outputPath": "dist/bm-spotfinder",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,12 +37,14 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/language-meta-redirect.html"
             ],
             "styles": [
               "src/custom-theme.scss",
               "src/styles.scss"
             ],
+            "localize": true,
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
@@ -75,10 +86,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-pwa:build:production"
+              "browserTarget": "bm-spotfinder:build:production"
             },
             "development": {
-              "browserTarget": "angular-pwa:build:development"
+              "browserTarget": "bm-spotfinder:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +97,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-pwa:build"
+            "browserTarget": "bm-spotfinder:build"
           }
         },
         "test": {
@@ -112,7 +123,7 @@
           "options": {
             "prerender": false,
             "ssr": false,
-            "browserTarget": "angular-pwa:build:production",
+            "browserTarget": "bm-spotfinder:build:production",
             "firebaseProject": "lithe-bazaar-341817",
             "firebaseHostingSite": "bm-spotfinder-dev"
           }
@@ -120,5 +131,5 @@
       }
     }
   },
-  "defaultProject": "angular-pwa"
+  "defaultProject": "bm-spotfinder"
 }
