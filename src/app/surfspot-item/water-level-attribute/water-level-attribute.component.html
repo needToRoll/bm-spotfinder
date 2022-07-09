@@ -6,14 +6,18 @@
     <div class="water-row">
       <div class="water-attr-group">
         <div class="water-attr-value">
-          <h4 i18n>Minimal water flow:</h4>
-          <span [mathjax]="buildFlowLevelStringFromNumber(surfSpot.bmSpotInfo.minimalWaterLevel)"></span>
+          <h4>{{'i18n.spot.attributes.water.minimal' | translate}}</h4>
+          <span>{{surfSpot.bmSpotInfo.minimalWaterLevel}}<span>m<sup>3</sup>/s</span></span>
         </div>
         <div class="water-attr-value">
           <div class="attr-width-indicator">
-            <h4 i18n>Current water flow:</h4>
+            <h4>{{'i18n.spot.attributes.water.current' | translate}}</h4>
             <div class="value-width-indicator">
-              <span [mathjax]="buildFlowLevelStringFromNumber(hydroDetails.value)"></span>
+              <span *ngIf="hydroDetails.value != -1; else elseBlock">
+                {{hydroDetails.value}}
+                <span>m<sup>3</sup>/s</span>
+              </span>
+              <ng-template #elseBlock><i>{{'i18n.spot.attributes.water.unknown' | translate}}</i></ng-template>
               <div [ngClass]="getIndicatorCssClasses()"></div>
             </div>
           </div>
@@ -22,7 +26,7 @@
     </div>
     <div class="water-row">
       <span *ngIf="hydroDetails.value != -1" class="water-source">
-        <ng-container i18n>Measured at {{ hydroDetails.measuredAt | date: 'short' }} by </ng-container>
+        <ng-container>{{'i18n.spot.attributes.water.attribution' | translate: {datetime: hydroDetails.measuredAt | date: 'short'} }}</ng-container>
         <a [href]="hydroDetails.sourceLink">{{hydroDetails.sourceName}}</a>
       </span>
     </div>

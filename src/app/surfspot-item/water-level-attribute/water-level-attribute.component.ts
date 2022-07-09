@@ -22,7 +22,6 @@ export class WaterLevelAttributeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TODO: Replace with actual logic
   getIndicatorCssClasses(): string[] {
     let classesToAdd = [this.WATER_INDICATOR_BASE_CLASS]
     let now = new Date()
@@ -36,9 +35,5 @@ export class WaterLevelAttributeComponent implements OnInit {
       }
     }
     return classesToAdd;
-  }
-
-  buildFlowLevelStringFromNumber(numericalFlowValue: number) {
-    return numericalFlowValue == -1 ? "$\\text{unknown}$" : `\$ ${numericalFlowValue}\\text{ }m^3/s\$`
   }
 }

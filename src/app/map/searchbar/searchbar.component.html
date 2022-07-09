@@ -2,14 +2,14 @@
   <mat-toolbar-row>
     <div class="row-form-container">
       <mat-form-field id="locationSearchField">
-        <input i18n-placeholder="searchbar-placeholder"
+        <input
                ngx-google-places-autocomplete
                [options]="npxPlaceSearchAutocompleteOptions"
                #placesRef="ngx-places"
                (onAddressChange)="onPlaceFoundBasedOnSearch($event)"
                aria-label="Place search"
                matInput
-               placeholder="Search for a location (address, zip, etc)"
+               [placeholder]="'i18n.spot-search.places-placeholder' | translate"
                type="text"/>
       </mat-form-field>
     </div>
@@ -18,22 +18,22 @@
   <mat-toolbar-row>
     <div class="row-form-container">
       <form [formGroup]="surfSpotFilterControl">
-        <mat-form-field appearance="fill" class="filter-select">
-          <mat-label i18n>Rope length</mat-label>
+        <mat-form-field appearance="outline" class="filter-select">
+          <mat-label>{{'i18n.spot-search.rope-length' | translate}}</mat-label>
           <mat-select formControlName="ropeLength">
-            <mat-option>None</mat-option>
+            <mat-option>{{'i18n.misc.all' | translate}}</mat-option>
             <mat-option *ngFor="let ropeLengthOption of ropeLengthOptions" [value]="ropeLengthOption.value">
               {{ropeLengthOption.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <div class="row-form-spacer"></div>
-        <mat-form-field appearance="fill" class="filter-select">
-          <mat-label i18n>Difficulty / Level</mat-label>
+        <mat-form-field appearance="outline" class="filter-select">
+          <mat-label>{{'i18n.spot-search.difficulty' | translate}}</mat-label>
           <mat-select formControlName="difficulty">
-            <mat-option>None</mat-option>
+            <mat-option>{{'i18n.misc.all' | translate}}</mat-option>
             <mat-option *ngFor="let difficultyOption of difficultyOptions" [value]="difficultyOption.value">
-              {{difficultyOption.name}}
+              {{difficultyOption.name | translate}}
             </mat-option>
           </mat-select>
         </mat-form-field>

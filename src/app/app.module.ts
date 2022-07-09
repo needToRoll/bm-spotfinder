@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {MapComponent} from './map/map.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {GoogleMapsModule} from "@angular/google-maps";
 import {CommonModule} from "@angular/common";
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -31,7 +31,8 @@ import { SpotDetailsComponent } from './spot-details/spot-details.component';
 import { MobileSpotInfoSheetComponent } from './mobile-spot-info-sheet/mobile-spot-info-sheet.component';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from "@angular/material/bottom-sheet";
 import { WaterLevelAttributeComponent } from './surfspot-item/water-level-attribute/water-level-attribute.component';
-import {MathjaxModule} from "mathjax-angular";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 @NgModule({
   declarations: [
@@ -58,12 +59,18 @@ import {MathjaxModule} from "mathjax-angular";
     HttpClientJsonpModule,
     BrowserModule,
     MatToolbarModule,
-    MathjaxModule.forRoot({ config: {loader: {load: ["input/tex", "output/chtml"]}}}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:20000'
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
     }),
     NoopAnimationsModule,
     MatButtonModule,
@@ -81,4 +88,8 @@ import {MathjaxModule} from "mathjax-angular";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+}
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

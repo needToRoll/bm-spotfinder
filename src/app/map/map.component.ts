@@ -155,7 +155,7 @@ export class MapComponent implements OnInit {
       this.accessAttemptCount = 0;
       return this.googleMapComponent.googleMap
     }
-    if (this.accessAttemptCount < 10) {
+    if (this.accessAttemptCount < 2) {
       setTimeout(this._getGoogleMapObject, 500);
     } else {
       console.log("Timeout of 5 seconds reached")

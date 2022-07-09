@@ -1,4 +1,4 @@
 <div id="sidebar-spot-list">
-  <h2 i18n>Recommended Surfspots</h2>
+  <h2>{{'i18n.headings.spots' | translate}}</h2>
       <app-surfspot-item *ngFor="let spot of surfspots | async" [surfspot]="spot"></app-surfspot-item>
 </div>

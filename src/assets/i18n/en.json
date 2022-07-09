@@ -1,0 +1,33 @@
+{
+  "i18n": {
+    "spot-search": {
+      "places-placeholder": "Search for a location (address, zip, etc)",
+      "rope-length": "Rope length",
+      "difficulty": "Difficulty level"
+    },
+    "headings": {
+      "spots": "Recommended Surfspots"
+    },
+    "misc": {
+      "all": "All"
+    },
+    "difficulties": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "expert": "Expert"
+    },
+    "spot": {
+      "attributes": {
+        "water": {
+          "minimal": "Minimal water flow",
+          "current": "Current water flow:",
+          "unknown": "unknown",
+          "attribution": "Measured at {{datetime}} by "
+        }
+      },
+      "actions": {
+        "map": "Show on Maps"
+      }
+    }
+  }
+}
