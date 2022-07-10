@@ -20,7 +20,7 @@
       "attributes": {
         "water": {
           "minimal": "Minimal water flow",
-          "current": "Current water flow:",
+          "current": "Current water flow",
           "unknown": "unknown",
           "attribution": "Measured at {{datetime}} by "
         }
