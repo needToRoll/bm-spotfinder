@@ -17,6 +17,14 @@ mat-toolbar img {
 
 }
 
+::ng-deep .mat-focused .mat-form-field-label {
+  color: black !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: black !important;
+}
+
 #bm-logo-minimal {
   display: none;
 }
@@ -26,10 +34,23 @@ svg path {
 }
 
 #lang-select-form {
-  padding-right: 15px;
+  padding-right: 36px;
+}
+
+#shop-button {
+  margin-right: 36px;
 }
 
 @media only screen and (max-width: 500px) {
+
+
+  #lang-select-form {
+    padding-right: 6px;
+  }
+
+  #shop-button {
+    margin-right: 6px;
+  }
 
   #bm-logo-minimal {
     display: block;

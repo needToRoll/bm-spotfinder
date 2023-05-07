@@ -13,6 +13,8 @@ import {PlaceSearchResult} from "../../model/PlaceSearchResult";
 })
 export class SearchbarComponent implements OnInit {
 
+  expanded: boolean = true
+
   @Output()
   spotFilterValue: EventEmitter<SpotFilter>
   @Output()

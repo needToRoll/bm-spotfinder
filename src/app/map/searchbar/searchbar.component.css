@@ -13,15 +13,56 @@ mat-toolbar-row form {
 mat-toolbar-row mat-form-field {
   margin-top: 15px;
 }
+h1.intro-heading {
+  margin-bottom: 0;
+}
+.label-container {;
+  flex-shrink: 1;
+}
+#filter-container {
+  display: flex;
+  gap: 15px;
+}
+
+#title-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 360px;
+}
+.input-group {
+  gap: 15px;
+  min-width: 300px;
+  flex-grow: 1;
+  max-width: 375px;
+}
+
+.input-group.colapsed {
+  gap: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#expanded-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 mat-toolbar-row {
   justify-content: center;
 }
 #locationSearchField {
   width: 100%;
 }
-
-mat-toolbar-row {
-  height: 70px;
+#filter-form {
+  display: flex;
+}
+.input-container.colapsed {
+  flex-grow: 1;
+  float: left;
+  max-width: 400px;
 }
 
 @media only screen and (max-width: 700px) {

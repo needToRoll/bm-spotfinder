@@ -1,12 +1,17 @@
 {
   "i18n": {
     "spot-search": {
-      "places-placeholder": "Suche nach einem Ort (Adresse, Postleitzahl, etc)",
+      "places-placeholder": "Suche nach einem Ort",
       "rope-length": "Seillänge",
       "difficulty": "Schwierigkeit"
     },
     "headings": {
-      "spots": "Empfohlene Surfspots"
+      "spots": "Empfohlene Surfspots",
+      "intro": {
+        "row1": "Finde deinen",
+        "row2": "perfekten",
+        "row3": "Bungee Surf Spot"
+      }
     },
     "misc": {
       "all": "Alle"

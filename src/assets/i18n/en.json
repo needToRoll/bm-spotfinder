@@ -6,7 +6,12 @@
       "difficulty": "Difficulty level"
     },
     "headings": {
-      "spots": "Recommended Surfspots"
+      "spots": "Recommended Surfspots",
+      "intro": {
+        "row1": "Find your",
+        "row2": "perfect",
+        "row3": "Bungee Surf Spot"
+      }
     },
     "misc": {
       "all": "All"
