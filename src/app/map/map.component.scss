@@ -19,3 +19,9 @@
   width: 20%;
   flex-grow: 1;
 }
+
+map-searchbar {
+  position: fixed;
+  width: 100% !important;
+  z-index: 900;
+}

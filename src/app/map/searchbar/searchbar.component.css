@@ -43,7 +43,9 @@ h1.intro-heading {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: unset;
 }
+
 
 #expanded-header {
   display: flex;
@@ -65,6 +67,15 @@ mat-toolbar-row {
   max-width: 400px;
 }
 
+mat-card {
+  padding-bottom: 0;
+}
+
+#locationSearchField .mat-form-field-infix {
+  min-width: 80px;
+  width: initial;
+}
+
 @media only screen and (max-width: 700px) {
   .row-form-container {
     max-width: 95vw;
@@ -73,12 +84,18 @@ mat-toolbar-row {
     margin-top: 15px;
   }
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
   .row-form-container {
     max-width: 98vw;
   }
-  mat-form-field.filter-select {
-    max-width: 160px;
+  .colapsed mat-form-field.filter-select {
+    flex-grow: 1;
+    width: 80px;
+    flex-shrink: 1;
+  }
+  mat-card {
+    padding-left: 10px;
+    padding-right: 10px;
   }
   mat-toolbar-row mat-form-field {
     margin-top: 15px;

@@ -1,7 +1,7 @@
-<map-searchbar (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
-<div #mapContainerRef id="map-container-parent" >
+<map-searchbar #searchbarRef (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
+<div #mapContainerRef id="map-container-parent">
 
-  <div id="map-container">
+  <div id="map-container" [style]="'margin-top: '+searchBarOffset+'px'">
     <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" height="77vh" width="100%">
       <map-marker *ngFor="let spot of spotsToMark | async"
                   [icon]="surfspotMarkerIcon"
@@ -19,6 +19,7 @@
     </button>
   </div>
   <div #spotListRef id="spot-list-container">
-    <app-surfspot-list [surfspots]="spotsToMark" [selectedSurfspot]="selectedSurfspot" [parentUsesBottomSheetFunction]="shouldUseBottomSheet()"></app-surfspot-list>
+    <app-surfspot-list [surfspots]="spotsToMark" [selectedSurfspot]="selectedSurfspot"
+                       [parentUsesBottomSheetFunction]="shouldUseBottomSheet()"></app-surfspot-list>
   </div>
 </div>

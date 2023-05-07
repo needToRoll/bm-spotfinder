@@ -25,3 +25,15 @@ html, body {
   border-top-left-radius: 15px !important;
   border-top-right-radius: 15px !important;
 }
+@media (max-width: 450px) {
+  .colapsed .mat-form-field-infix {
+    min-width: 80px !important;
+    width: 80px;
+  }
+}
+
+@media (max-width: 650px) {
+  .colapsed .mat-form-field-infix {
+    max-width: 120px;
+  }
+}

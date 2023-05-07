@@ -1,7 +1,7 @@
 {
   "i18n": {
     "spot-search": {
-      "places-placeholder": "Suche nach einem Ort",
+      "places-placeholder": "Ort",
       "rope-length": "Seillänge",
       "difficulty": "Schwierigkeit"
     },

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {AVAILABLE_ROPE_LENGTHS, RopeLength} from "../../model/RopeLength";
 import {SPOT_DIFFICULTIES, SpotDifficultyLevel} from "../../model/SpotDifficultyLevel";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -14,6 +14,16 @@ import {PlaceSearchResult} from "../../model/PlaceSearchResult";
 export class SearchbarComponent implements OnInit {
 
   expanded: boolean = true
+
+  @HostListener("window:scroll", []) onWindowScroll() {
+    if(this.expanded) {
+      // do some stuff here when the window is scrolled
+      const verticalOffset = window.scrollY
+        || document.documentElement.scrollTop
+        || document.body.scrollTop || 0;
+      this.expanded = verticalOffset == 0;
+    }
+  }
 
   @Output()
   spotFilterValue: EventEmitter<SpotFilter>

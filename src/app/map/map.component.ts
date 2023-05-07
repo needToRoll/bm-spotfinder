@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SurfSpot} from "../model/SurfSpot";
 import {GeolocationService} from "../service/locator/geolocation.service";
@@ -16,22 +16,21 @@ import {MobileSpotInfoSheetComponent} from "../mobile-spot-info-sheet/mobile-spo
 import {GoogleMapsConfiguration} from "../config/GoogleMapsConfiguration";
 import {WaterLevelMeasurement} from "../model/WaterLevelMeasurement";
 import {HydroDataSource} from "../model/HydroDataSource";
+import {SearchbarComponent} from "./searchbar/searchbar.component";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
-
+export class MapComponent implements OnInit, AfterViewInit {
+  public searchBarOffset = 210;
   public readonly DEFAULT_ZOOM = GoogleMapsConfiguration.DEFAULT_ZOOM
   private serviceSubscription: Subscription
 
   private accessAttemptCount = 0
 
   public spotsToMark: Subject<SurfSpot[]>
-  public waterLevelValues: Subject<WaterLevelMeasurement[]>
-  public hydroSources: Subject<HydroDataSource[]>
   public userSelectedLocation: Subject<LatLngLiteral>
   public selectedSurfspot: Subject<SurfSpot> = new Subject<SurfSpot>();
 
@@ -40,6 +39,7 @@ export class MapComponent implements OnInit {
   surfspotMarkerIcon: GoogleMapsMarkerElement
 
 
+  @ViewChild("searchbarRef", {read: ElementRef}) searchBarElementRef: ElementRef
   @ViewChild("mapContainerRef") mapContainerElementRef: ElementRef
   @ViewChild("spotListRef") spotListContainer: ElementRef
 
@@ -70,6 +70,13 @@ export class MapComponent implements OnInit {
         )
 
     })
+  }
+
+  ngAfterViewInit(): void {
+    const observer = new ResizeObserver(entries => {
+      this.searchBarOffset = Math.round(entries[0].contentRect.height)
+    });
+    observer.observe(this.searchBarElementRef.nativeElement)
   }
 
   ngOnInit(): void {
@@ -155,10 +162,9 @@ export class MapComponent implements OnInit {
       this.accessAttemptCount = 0;
       return this.googleMapComponent.googleMap
     }
-    if (this.accessAttemptCount < 2) {
+    if (this.accessAttemptCount < 5) {
       setTimeout(this._getGoogleMapObject, 500);
     } else {
-      console.log("Timeout of 5 seconds reached")
       return undefined;
     }
   }
