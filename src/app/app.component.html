@@ -1,27 +1,39 @@
 <div>
-  <mat-toolbar color="primary" class="sticky-toolbar">
-   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    -->
-    <img id="bm-logo-text" src="../assets/icons/bm-logo-text-white.svg" alt="Bungeemonkey Brand Logo with text">
-    <img id="bm-logo-minimal" src="../assets/icons/bm-logo-minimal-white.svg" alt="Bungeemonkey Brand Logo">
-    <span class="example-spacer"></span>
-    <h2>Spotfinder</h2>
-    <span class="example-spacer"></span>
-    <span class="form-inline" id="lang-select-form">
-      <mat-select (selectionChange)="translate.use($event.value)" [value]="currentLangValue()" >
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="sticky-toolbar">
+        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+           <mat-icon>menu</mat-icon>
+         </button>
+         -->
+        <img id="bm-logo-text" src="/assets/icons/bm-logo-text-white.svg" alt="Bungeemonkey Brand Logo with text">
+        <img id="bm-logo-minimal" src="/assets/icons/bm-logo-minimal-white.svg" alt="Bungeemonkey Brand Logo">
+        <span class="example-spacer"></span>
+        <h2>Spotfinder</h2>
+        <span class="example-spacer"></span>
+        <span class="form-inline" id="lang-select-form">
+      <mat-select (selectionChange)="translate.use($event.value)" [value]="currentLangValue()">
                   <mat-option *ngFor="let language of translate.getLangs()" [value]="language">
                      {{ language | uppercase }}
                   </mat-option>
           </mat-select>
     </span>
-    <a id="shop-button" mat-flat-button color="white" aria-label="Bungeemokey Web Link" href="https://bungeemonkey.ch/">
-      <span id="header-button-text">SHOP</span>
-      <mat-icon id="header-button-icon">arrow_right_alt</mat-icon>
-    </a>
-  </mat-toolbar>
-  <div class="content" role="main">
-    <app-map></app-map>
-  </div>
+        <a id="shop-button" mat-flat-button color="white" aria-label="Bungeemokey Web Link"
+           href="https://bungeemonkey.ch/">
+          <span id="header-button-text">SHOP</span>
+          <mat-icon id="header-button-icon">arrow_right_alt</mat-icon>
+        </a>
+        <a mat-button color="light" (click)="sidenav.toggle()">
+          <mat-icon color="light">menu</mat-icon>
+        </a>
+      </mat-toolbar>
+      <div class="content" role="main">
+        <app-map></app-map>
+      </div>
+    </mat-sidenav-content>
+    <mat-sidenav #sidenav position="end" mode="over">
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+  </mat-sidenav-container>
+
 </div>

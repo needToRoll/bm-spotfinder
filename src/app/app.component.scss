@@ -6,8 +6,7 @@ mat-toolbar-row {
   justify-content: center;
 }
 .sticky-toolbar {
-  position: sticky;
-  position: -webkit-sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
 }
@@ -16,7 +15,6 @@ mat-toolbar img {
   margin-left: 20px;
 
 }
-::ng-deep .mat
 
 ::ng-deep .mat-focused .mat-form-field-label {
   color: black !important;

@@ -34,6 +34,9 @@ import { WaterLevelAttributeComponent } from './surfspot-item/water-level-attrib
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {MatCardModule} from "@angular/material/card";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { SidenavComponent } from './sidenav/sidenav.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -45,44 +48,47 @@ import {MatCardModule} from "@angular/material/card";
     SpotIconAttributeComponent,
     SpotDetailsComponent,
     MobileSpotInfoSheetComponent,
-    WaterLevelAttributeComponent
+    WaterLevelAttributeComponent,
+    SidenavComponent,
   ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        GooglePlaceModule,
-        MatSelectModule,
-        MatOptionModule,
-        GoogleMapsModule,
-        HttpClientModule,
-        HttpClientJsonpModule,
-        BrowserModule,
-        MatToolbarModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: environment.production,
-            // Register the ServiceWorker as soon as the application is stable
-            // or after 30 seconds (whichever comes first).
-            registrationStrategy: 'registerWhenStable:20000'
-        }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: httpTranslateLoader,
-                deps: [HttpClient]
-            }
-        }),
-        NoopAnimationsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        provideFirestore(() => getFirestore()),
-        MatExpansionModule,
-        MatCardModule,
-    ],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    GooglePlaceModule,
+    MatSelectModule,
+    MatOptionModule,
+    GoogleMapsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+    BrowserModule,
+    MatToolbarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:20000'
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirestore(() => getFirestore()),
+    MatExpansionModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatMenuModule,
+  ],
   providers: [
     { provide: MatBottomSheet },
     { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} },

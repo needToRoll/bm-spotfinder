@@ -71,6 +71,19 @@ $bm-banana: (
   )
 );
 
+
+$bm-white: (
+  main: $white,
+  lighter: $white,
+  darker: lightgray,
+  text: $black,
+  200: lightgray,
+  contrast : (
+    main: $black,
+    lighter: $black,
+    darker: $black,
+  )
+);
 // endregion
 
 // region typography
@@ -152,13 +165,14 @@ $angular-pwa-primary: mat.define-palette($bm_primary, main, lighter, darker, tex
 $angular-pwa-accent: mat.define-palette($bm-skyBlue, main, lighter, darker, text);
 
 $angular-pwa-warn: mat.define-palette($bm-banana, main, lighter, darker, text);
-
+$angular-pwa-white: mat.define-palette($bm-white, main, lighter, darker, text);
 
 $angular-pwa-theme: mat.define-light-theme((
   color: (
     primary: $angular-pwa-primary,
     accent: $angular-pwa-accent,
     warn: $angular-pwa-warn,
+    light: $angular-pwa-white
   ),
   typography: $bm-typography
 ));

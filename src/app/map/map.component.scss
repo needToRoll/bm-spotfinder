@@ -10,10 +10,12 @@
   -webkit-flex-wrap: wrap;
 
 }
+
 #map-container {
   width: 80%;
   flex-grow: 1;
 }
+
 #spot-list-container {
   min-width: 350px;
   width: 20%;
@@ -23,5 +25,12 @@
 map-searchbar {
   position: fixed;
   width: 100% !important;
+  top: 64px;
   z-index: 900;
+}
+
+@media (max-width: 599px) {
+  map-searchbar {
+    top: 56px;
+  }
 }

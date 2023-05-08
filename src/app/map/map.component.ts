@@ -14,9 +14,6 @@ import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {DeviceClassificationService} from "../service/device-classification.service";
 import {MobileSpotInfoSheetComponent} from "../mobile-spot-info-sheet/mobile-spot-info-sheet.component";
 import {GoogleMapsConfiguration} from "../config/GoogleMapsConfiguration";
-import {WaterLevelMeasurement} from "../model/WaterLevelMeasurement";
-import {HydroDataSource} from "../model/HydroDataSource";
-import {SearchbarComponent} from "./searchbar/searchbar.component";
 
 @Component({
   selector: 'app-map',
@@ -24,7 +21,7 @@ import {SearchbarComponent} from "./searchbar/searchbar.component";
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  public searchBarOffset = 210;
+  public searchBarOffset = 215;
   public readonly DEFAULT_ZOOM = GoogleMapsConfiguration.DEFAULT_ZOOM
   private serviceSubscription: Subscription
 
@@ -74,9 +71,16 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const observer = new ResizeObserver(entries => {
-      this.searchBarOffset = Math.round(entries[0].contentRect.height)
+      let contentRect = entries[0].contentRect
+      this.adjustOffsetBasedOnSearchbar(contentRect.height);
     });
     observer.observe(this.searchBarElementRef.nativeElement)
+  }
+
+  private adjustOffsetBasedOnSearchbar(elementHeight: number) {
+    let toolbarOffset = window.innerWidth > 599 ? 64 : 56
+    this.searchBarOffset = Math.round(elementHeight + toolbarOffset)
+    console.log("Adjust offset to : "+ this.searchBarOffset)
   }
 
   ngOnInit(): void {

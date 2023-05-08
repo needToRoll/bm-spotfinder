@@ -14,7 +14,8 @@
       }
     },
     "misc": {
-      "all": "Alle"
+      "all": "Alle",
+      "language": "Sprache"
     },
     "difficulties": {
       "beginner": "Einsteiger",
