@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SurfSpot} from "../../model/SurfSpot";
+import {SurfSpot} from "../../../model/SurfSpot";
 import {SPOTS} from "./static.surfspots";
 import {Observable, of} from "rxjs";
 import {ClientSideFilteringSpotService} from "./client-side-filtering-spot.service";

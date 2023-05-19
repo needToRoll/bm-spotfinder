@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
-import {SurfSpot} from "../model/SurfSpot";
+import {SurfSpot} from "../../model/SurfSpot";
 import {DistanceMatrixService} from "../service/distance/distance-matrix.service";
 
 @Component({

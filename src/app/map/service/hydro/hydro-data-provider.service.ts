@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {FirebaseWaterLevelService} from "./firebase-water-level.service";
 import {BehaviorSubject, map, Observable, Subject, withLatestFrom} from "rxjs";
-import {WaterLevelMeasurement} from "../../model/WaterLevelMeasurement";
-import {HydroDataSource} from "../../model/HydroDataSource";
-import {SurfSpot} from "../../model/SurfSpot";
-import {HydroDetails} from "../../model/HydroDetails";
+import {WaterLevelMeasurement} from "../../../model/WaterLevelMeasurement";
+import {HydroDataSource} from "../../../model/HydroDataSource";
+import {SurfSpot} from "../../../model/SurfSpot";
+import {HydroDetails} from "../../../model/HydroDetails";
 
 @Injectable({
   providedIn: 'root'

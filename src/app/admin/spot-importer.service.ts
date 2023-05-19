@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {SPOTS} from "../service/surfspot/static.surfspots";
+import {SPOTS} from "../shared/service/surfspot/static.surfspots";
 import {environment} from "../../environments/environment";
 
 @Injectable({

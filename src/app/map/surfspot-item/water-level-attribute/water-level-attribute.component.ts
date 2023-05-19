@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SurfSpot} from "../../model/SurfSpot";
-import {HydroDetails} from "../../model/HydroDetails";
+import {SurfSpot} from "../../../model/SurfSpot";
+import {HydroDetails} from "../../../model/HydroDetails";
 
 @Component({
   selector: 'app-water-level-attribute',

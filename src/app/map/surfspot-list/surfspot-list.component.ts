@@ -1,8 +1,8 @@
 import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Observable} from "rxjs";
-import {SurfSpot} from "../model/SurfSpot";
+import {SurfSpot} from "../../model/SurfSpot";
 import {SurfspotItemComponent} from "../surfspot-item/surfspot-item.component";
-import {DeviceClassificationService} from "../service/device-classification.service";
+import {DeviceClassificationService} from "../../shared/service/device-classification.service";
 
 @Component({
   selector: 'app-surfspot-list',

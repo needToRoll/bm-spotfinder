@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {WaterLevelService} from "./water-level-service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {WaterLevelMeasurement} from "../../model/WaterLevelMeasurement";
+import {WaterLevelMeasurement} from "../../../model/WaterLevelMeasurement";
 import {Observable} from "rxjs";
-import {HydroDataSource} from "../../model/HydroDataSource";
+import {HydroDataSource} from "../../../model/HydroDataSource";
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SurfSpot} from "../model/SurfSpot";
-import {environment} from "../../environments/environment";
+import {SurfSpot} from "../../model/SurfSpot";
+import {environment} from "../../../environments/environment";
 import {HydroDataProviderService} from "../service/hydro/hydro-data-provider.service";
 import {Observable} from "rxjs";
-import {HydroDetails} from "../model/HydroDetails";
+import {HydroDetails} from "../../model/HydroDetails";
 
 @Component({
   selector: 'app-spot-details',
