@@ -26,7 +26,7 @@
     </div>
     <div class="water-row">
       <span *ngIf="hydroDetails.value != -1" class="water-source">
-        <ng-container>{{'i18n.spot.attributes.water.attribution' | translate: {datetime: hydroDetails.measuredAt | date: 'short'} }}</ng-container>
+        <ng-container>{{'i18n.spot.attributes.water.attribution' | translate: {datetime: hydroDetails.measuredAt | localizedDate: 'short'} }}</ng-container>
         <a [href]="hydroDetails.sourceLink">{{hydroDetails.sourceName}}</a>
       </span>
     </div>

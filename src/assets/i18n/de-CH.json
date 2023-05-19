@@ -1,0 +1,45 @@
+{
+  "i18n": {
+    "difficulties": {
+      "beginner": "Einsteiger",
+      "expert": "Experte",
+      "intermediate": "Erfahren"
+    },
+    "headings": {
+      "intro": {
+        "row1": "Finde deinen",
+        "row2": "perfekten",
+        "row3": "Bungee Surf Spot"
+      },
+      "spots": "Empfohlene Surfspots"
+    },
+    "misc": {
+      "all": "Alle",
+      "language": "Sprache"
+    },
+    "navigation": {
+      "imprint": "Impressum",
+      "language": "Sprache",
+      "newSpot": "Spot empfehlen",
+      "shop": "Zum Shop"
+    },
+    "spot": {
+      "actions": {
+        "map": "Zur Karte"
+      },
+      "attributes": {
+        "water": {
+          "attribution": "Gemessen am {{datetime}} von ",
+          "current": "Derzeitige Wasserführung",
+          "minimal": "Minimaler Wasserdurchfluss",
+          "unknown": "Unbekannt"
+        }
+      }
+    },
+    "spot-search": {
+      "difficulty": "Schwierigkeit",
+      "places-placeholder": "Ort",
+      "rope-length": "Seillänge"
+    }
+  }
+}

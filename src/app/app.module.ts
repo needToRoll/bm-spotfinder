@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -37,6 +37,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatMenuModule} from "@angular/material/menu";
+import '@angular/common/locales/global/de-CH';
+import { LocalizedDatePipe } from './pipe/localized-date.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import {MatMenuModule} from "@angular/material/menu";
     MobileSpotInfoSheetComponent,
     WaterLevelAttributeComponent,
     SidenavComponent,
+    LocalizedDatePipe,
   ],
   imports: [
     CommonModule,
@@ -93,6 +96,7 @@ import {MatMenuModule} from "@angular/material/menu";
     { provide: MatBottomSheet },
     { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} },
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
