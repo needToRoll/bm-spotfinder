@@ -78,9 +78,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   private adjustOffsetBasedOnSearchbar(elementHeight: number) {
-    let toolbarOffset = window.innerWidth > 599 ? 64 : 56
-    this.searchBarOffset = Math.round(elementHeight + toolbarOffset)
-    console.log("Adjust offset to : "+ this.searchBarOffset)
+    this.searchBarOffset = Math.round(elementHeight)
   }
 
   ngOnInit(): void {
