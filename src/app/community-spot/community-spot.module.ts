@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ImprintComponent } from './imprint.component';
+import { CommunitySpotComponent } from './community-spot.component';
 import {SharedModule} from "../shared/shared.module";
 
 
 
 @NgModule({
   declarations: [
-    ImprintComponent
+    CommunitySpotComponent
   ],
   imports: [
-    CommonModule,
-    SharedModule
+    SharedModule,
+    CommonModule
   ],
   exports: [
-    ImprintComponent
+    CommunitySpotComponent
   ]
 })
-export class ImprintModule { }
+export class CommunitySpotModule { }

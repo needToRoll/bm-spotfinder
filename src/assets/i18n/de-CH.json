@@ -1,5 +1,33 @@
 {
   "i18n": {
+    "contact": {
+      "address": {
+        "l1": "Jonas Bürgi",
+        "l2": "Bungeemonkey GmbH",
+        "l3": "Schäflisbergstrasse 13",
+        "l4": "9000 St. Gallen"
+      },
+      "email": "info@bungeemonkey.ch",
+      "heading": "Kontakt und Impressum",
+      "into": "Für Fragen und Anregungen sind wir gerne für dich da",
+      "sources": {
+        "flow": {
+          "l1": "Die Daten zur Wasserführung stammen von Drittanbietern.",
+          "l2": "Die Quelle des Wasserdurchflusses ist (falls vorhanden) direkt verlinkt."
+        },
+        "heading": "Quellen",
+        "review": "Nachdem ein neuer Surf spot gemeldet wird, werden wir die Angaben überprüfen, bevor wir sie hier zu verfügung stellen.",
+        "spots":  {
+          "p1": "Falls du einen Surfspot kennst und gerne mit uns und der Community teilen möchtest, kannst du ihn ",
+          "p2": "hier",
+          "p3": " eintragen. Danke!"
+        },
+        "subheading": {
+          "flow": "Wasserführung",
+          "spots": "Surfspots"
+        }
+      }
+    },
     "difficulties": {
       "beginner": "Einsteiger",
       "expert": "Experte",
@@ -18,7 +46,7 @@
       "language": "Sprache"
     },
     "navigation": {
-      "imprint": "Impressum",
+      "contact": "Kontakt",
       "language": "Sprache",
       "map": "Karte",
       "newSpot": "Spot empfehlen",

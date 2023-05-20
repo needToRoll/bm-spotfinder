@@ -2,10 +2,6 @@
   <mat-sidenav-container>
     <mat-sidenav-content>
       <mat-toolbar color="primary" class="sticky-toolbar">
-        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-           <mat-icon>menu</mat-icon>
-         </button>
-         -->
         <img id="bm-logo-text" src="/assets/icons/bm-logo-text-white.svg" alt="Bungeemonkey Brand Logo with text">
         <img id="bm-logo-minimal" src="/assets/icons/bm-logo-minimal-white.svg" alt="Bungeemonkey Brand Logo">
         <span class="example-spacer"></span>
@@ -19,9 +15,8 @@
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
-    <mat-sidenav #sidenav position="end" mode="over">
+    <mat-sidenav #sidenav position="end" mode="over" fixedInViewport="true">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
   </mat-sidenav-container>
-
 </div>

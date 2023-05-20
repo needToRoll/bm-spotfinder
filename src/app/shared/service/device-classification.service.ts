@@ -6,10 +6,9 @@ import {DeviceDetectorService} from "ngx-device-detector";
 })
 export class DeviceClassificationService {
 
-  constructor(private deviceService: DeviceDetectorService) { }
+  constructor(private deviceService: DeviceDetectorService) {}
 
   public shouldBeThreadedAsTouchDevice(): boolean {
-    console.log(window.innerWidth)
     return (!this.deviceService.isDesktop() && this.isTouchDevice())
   }
 

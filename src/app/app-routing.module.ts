@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {MapComponent} from "./map/map.component";
 import {CommunitySpotComponent} from "./community-spot/community-spot.component";
-import {ImprintComponent} from "./imprint/imprint.component";
+import {ContactComponent} from "./contact/contact.component";
 import {MapModule} from "./map/map.module";
 
 
 const routes: Routes = [
   { path: 'map', component: MapComponent },
   { path: 'recommend', component: CommunitySpotComponent},
-  { path: 'imprint', component: ImprintComponent},
+  { path: 'contact', component: ContactComponent},
   { path: '', redirectTo: 'map', pathMatch: 'full' }
 ];
 

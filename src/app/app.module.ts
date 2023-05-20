@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -10,13 +10,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {MatOptionModule} from "@angular/material/core";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
-import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 import {MatListModule} from "@angular/material/list";
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {AngularFireModule} from "@angular/fire/compat";
@@ -29,11 +24,9 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatMenuModule} from "@angular/material/menu";
 import '@angular/common/locales/global/de-CH';
-import { LocalizedDatePipe } from './shared/pipe/localized-date.pipe';
 import { AppRoutingModule } from './app-routing.module';
-import { MapModule } from './map/map.module';
-import {MapComponent} from "./map/map.component";
 import {RouterModule} from "@angular/router";
+import {ContactModule} from "./contact/contact.module";
 
 @NgModule({
   declarations: [
@@ -72,7 +65,8 @@ import {RouterModule} from "@angular/router";
     MatSidenavModule,
     MatMenuModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    ContactModule
   ],
   providers: [
     {provide: MatBottomSheet},
