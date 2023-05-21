@@ -1,7 +1,7 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {AVAILABLE_ROPE_LENGTHS, RopeLength} from "../../shared/model/RopeLength";
 import {SPOT_DIFFICULTIES, SpotDifficultyLevel} from "../../shared/model/SpotDifficultyLevel";
-import {FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {SpotFilter} from "../../shared/model/SpotFilter";
 import {Options} from "ngx-google-places-autocomplete/objects/options/options";
 import {PlaceSearchResult} from "../../shared/model/PlaceSearchResult";
@@ -37,16 +37,16 @@ export class SearchbarComponent implements OnInit {
     fields: ['place_id', 'formatted_address', 'geometry.location']
   });
 
-  mapPlaceSearchControl: FormControl
-  surfSpotFilterControl: FormGroup
+  mapPlaceSearchControl: UntypedFormControl
+  surfSpotFilterControl: UntypedFormGroup
 
   constructor() {
     this.spotFilterValue = new EventEmitter<SpotFilter>()
     this.placeFound = new EventEmitter<PlaceSearchResult>();
-    this.mapPlaceSearchControl = new FormControl()
-    this.surfSpotFilterControl = new FormGroup({
-      ropeLength: new FormControl(),
-      difficulty: new FormControl()
+    this.mapPlaceSearchControl = new UntypedFormControl()
+    this.surfSpotFilterControl = new UntypedFormGroup({
+      ropeLength: new UntypedFormControl(),
+      difficulty: new UntypedFormControl()
     })
   }
 
