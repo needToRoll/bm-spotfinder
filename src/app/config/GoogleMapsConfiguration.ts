@@ -1,4 +1,4 @@
-import {GoogleMapsMarkerElement} from "../model/Types";
+import {GoogleMapsMarkerElement} from "../shared/model/Types";
 import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
 
 export class GoogleMapsConfiguration {

@@ -13,19 +13,27 @@ mat-toolbar-row {
 mat-toolbar img {
   max-height: 40px !important;
   margin-left: 20px;
+}
 
+.background-primary {
+  background-color: var(--primary-main-color);
+  color: var(--primary-text-color);
 }
 
 .mat-sidenav-container {
   min-height: 100vh;
 }
 
+.mat-drawer-opened {
+  min-width: 20vw;
+}
+
 ::ng-deep .mat-focused .mat-form-field-label {
-  color: black !important;
+  color: var(--primary-main-color) !important;
 }
 
 ::ng-deep.mat-form-field-ripple {
-  background-color: black !important;
+  background-color: var(--primary-main-color) !important;
 }
 
 #bm-logo-minimal {

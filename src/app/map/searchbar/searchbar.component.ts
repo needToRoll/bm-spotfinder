@@ -1,10 +1,10 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
-import {AVAILABLE_ROPE_LENGTHS, RopeLength} from "../../model/RopeLength";
-import {SPOT_DIFFICULTIES, SpotDifficultyLevel} from "../../model/SpotDifficultyLevel";
+import {AVAILABLE_ROPE_LENGTHS, RopeLength} from "../../shared/model/RopeLength";
+import {SPOT_DIFFICULTIES, SpotDifficultyLevel} from "../../shared/model/SpotDifficultyLevel";
 import {FormControl, FormGroup} from "@angular/forms";
-import {SpotFilter} from "../../model/SpotFilter";
+import {SpotFilter} from "../../shared/model/SpotFilter";
 import {Options} from "ngx-google-places-autocomplete/objects/options/options";
-import {PlaceSearchResult} from "../../model/PlaceSearchResult";
+import {PlaceSearchResult} from "../../shared/model/PlaceSearchResult";
 
 @Component({
   selector: 'map-searchbar',
@@ -32,10 +32,9 @@ export class SearchbarComponent implements OnInit {
 
   ropeLengthOptions: RopeLength[] = AVAILABLE_ROPE_LENGTHS
   difficultyOptions: SpotDifficultyLevel[] = SPOT_DIFFICULTIES
-  npxPlaceSearchAutocompleteOptions = new Options({
+  readonly npxPlaceSearchAutocompleteOptions = new Options({
     types: ['geocode'],
     fields: ['place_id', 'formatted_address', 'geometry.location']
-
   });
 
   mapPlaceSearchControl: FormControl

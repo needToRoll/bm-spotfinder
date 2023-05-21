@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SurfSpot} from "../model/SurfSpot";
+import {SurfSpot} from "../shared/model/SurfSpot";
 import {GeolocationService} from "./service/locator/geolocation.service";
 import {GoogleMap} from "@angular/google-maps";
-import {SpotFilter} from "../model/SpotFilter";
+import {SpotFilter} from "../shared/model/SpotFilter";
 import {BehaviorSubject, Subject, Subscription, withLatestFrom} from "rxjs";
 import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
-import {PlaceSearchResult} from "../model/PlaceSearchResult";
-import {GoogleCoordinates, GoogleMapsMarkerElement} from "../model/Types";
+import {PlaceSearchResult} from "../shared/model/PlaceSearchResult";
+import {GoogleCoordinates, GoogleMapsMarkerElement} from "../shared/model/Types";
 import {DistanceMatrixService} from "./service/distance/distance-matrix.service";
 import {FirebaseSurfSpotService} from "../shared/service/surfspot/firebase-surf-spot.service";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";

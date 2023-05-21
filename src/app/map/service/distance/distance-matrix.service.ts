@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {SurfSpot} from "../../../model/SurfSpot";
-import {GoogleCoordinates} from "../../../model/Types";
+import {SurfSpot} from "../../../shared/model/SurfSpot";
+import {GoogleCoordinates} from "../../../shared/model/Types";
 import {concat, from, map, Observable, of, tap} from "rxjs";
 
 

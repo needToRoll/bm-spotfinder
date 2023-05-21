@@ -15,7 +15,6 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 import {TranslateModule} from "@ngx-translate/core";
-import {AppModule} from "../app.module";
 import {MatOptionModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
@@ -23,7 +22,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
-import {LocalizedDatePipe} from "../shared/pipe/localized-date.pipe";
 import {SharedModule} from "../shared/shared.module";
 
 

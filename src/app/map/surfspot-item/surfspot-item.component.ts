@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SurfSpot} from "../../model/SurfSpot";
+import {SurfSpot} from "../../shared/model/SurfSpot";
 import {DistanceMatrixService} from "../service/distance/distance-matrix.service";
 
 @Component({

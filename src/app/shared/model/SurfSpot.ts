@@ -1,5 +1,4 @@
 import {GoogleCoordinates} from "./Types";
-import {HydroDetails} from "./HydroDetails";
 
 export interface SurfSpot {
   placeId: string;

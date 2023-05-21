@@ -1,0 +1,11 @@
+
+@use '@angular/material' as mat;
+@use 'custom-theme' as theme;
+
+@include mat.core();
+
+:root {
+  --primary-main-color: mat.get-color-from-palette(theme.$angular-pwa-primary, 'main');
+  --primary-text-color: mat.get-color-from-palette(theme.$angular-pwa-primary, 'text');
+  --subheading-1-font-family: mat.font-family(theme.$bm-typography, 'subheading-1');
+}
