@@ -3,7 +3,6 @@ import {AVAILABLE_ROPE_LENGTHS, RopeLength} from "../../shared/model/RopeLength"
 import {SPOT_DIFFICULTIES, SpotDifficultyLevel} from "../../shared/model/SpotDifficultyLevel";
 import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {SpotFilter} from "../../shared/model/SpotFilter";
-import {Options} from "ngx-google-places-autocomplete/objects/options/options";
 import {PlaceSearchResult} from "../../shared/model/PlaceSearchResult";
 
 @Component({
@@ -32,10 +31,10 @@ export class SearchbarComponent implements OnInit {
 
   ropeLengthOptions: RopeLength[] = AVAILABLE_ROPE_LENGTHS
   difficultyOptions: SpotDifficultyLevel[] = SPOT_DIFFICULTIES
-  readonly npxPlaceSearchAutocompleteOptions = new Options({
-    types: ['geocode'],
-    fields: ['place_id', 'formatted_address', 'geometry.location']
-  });
+  // readonly npxPlaceSearchAutocompleteOptions: Options = new Options({
+  //   types: ['geocode'],
+  //   fields: ['place_id', 'formatted_address', 'geometry.location']
+  // });
 
   mapPlaceSearchControl: UntypedFormControl
   surfSpotFilterControl: UntypedFormGroup

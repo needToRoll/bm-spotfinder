@@ -1,5 +1,5 @@
 import {GoogleMapsMarkerElement} from "../shared/model/Types";
-import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
+import {LatLngLiteral} from "ngx-google-places-autocomplete-esb/lib/objects/latLng";
 
 export class GoogleMapsConfiguration {
 

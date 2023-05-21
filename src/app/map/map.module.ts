@@ -10,18 +10,18 @@ import {WaterLevelAttributeComponent} from "./surfspot-item/water-level-attribut
 import {GoogleMapsModule} from "@angular/google-maps";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {SpotDetailsComponent} from "./spot-details/spot-details.component";
-import {MatButtonModule} from "@angular/material/button";
+import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import {MatIconModule} from "@angular/material/icon";
-import {MatInputModule} from "@angular/material/input";
-import {MatListModule} from "@angular/material/list";
+import {MatLegacyInputModule as MatInputModule} from "@angular/material/legacy-input";
+import {MatLegacyListModule as MatListModule} from "@angular/material/legacy-list";
 import {TranslateModule} from "@ngx-translate/core";
-import {MatOptionModule} from "@angular/material/core";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatLegacyOptionModule as MatOptionModule} from "@angular/material/legacy-core";
+import {MatLegacyFormFieldModule as MatFormFieldModule} from "@angular/material/legacy-form-field";
+import {MatLegacyAutocompleteModule as MatAutocompleteModule} from "@angular/material/legacy-autocomplete";
 import {ReactiveFormsModule} from "@angular/forms";
-import {GooglePlaceModule} from "ngx-google-places-autocomplete";
-import {MatSelectModule} from "@angular/material/select";
-import {MatCardModule} from "@angular/material/card";
+import {GooglePlaceModule} from "ngx-google-places-autocomplete-esb";
+import {MatLegacySelectModule as MatSelectModule} from "@angular/material/legacy-select";
+import {MatLegacyCardModule as MatCardModule} from "@angular/material/legacy-card";
 import {SharedModule} from "../shared/shared.module";
 
 

@@ -8,26 +8,26 @@ import {HttpClient, HttpClientJsonpModule, HttpClientModule} from '@angular/comm
 import {CommonModule} from "@angular/common";
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatButtonModule} from "@angular/material/button";
+import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import {MatIconModule} from "@angular/material/icon";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {MatInputModule} from "@angular/material/input";
-import {MatListModule} from "@angular/material/list";
+import {MatLegacyAutocompleteModule as MatAutocompleteModule} from "@angular/material/legacy-autocomplete";
+import {MatLegacyInputModule as MatInputModule} from "@angular/material/legacy-input";
+import {MatLegacyListModule as MatListModule} from "@angular/material/legacy-list";
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {AngularFireModule} from "@angular/fire/compat";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from "@angular/material/bottom-sheet";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {MatCardModule} from "@angular/material/card";
+import {MatLegacyCardModule as MatCardModule} from "@angular/material/legacy-card";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { SidenavComponent } from './sidenav/sidenav.component';
-import {MatMenuModule} from "@angular/material/menu";
+import {MatLegacyMenuModule as MatMenuModule} from "@angular/material/legacy-menu";
 import '@angular/common/locales/global/de-CH';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import {ContactModule} from "./contact/contact.module";
-import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatLegacyDialogModule as MatDialogModule, MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
 
 @NgModule({
   declarations: [

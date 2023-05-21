@@ -5,7 +5,6 @@ import {GeolocationService} from "./service/locator/geolocation.service";
 import {GoogleMap} from "@angular/google-maps";
 import {SpotFilter} from "../shared/model/SpotFilter";
 import {BehaviorSubject, Subject, Subscription, withLatestFrom} from "rxjs";
-import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
 import {PlaceSearchResult} from "../shared/model/PlaceSearchResult";
 import {GoogleCoordinates, GoogleMapsMarkerElement} from "../shared/model/Types";
 import {DistanceMatrixService} from "./service/distance/distance-matrix.service";
@@ -14,6 +13,7 @@ import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {DeviceClassificationService} from "../shared/service/device-classification.service";
 import {MobileSpotInfoSheetComponent} from "./mobile-spot-info-sheet/mobile-spot-info-sheet.component";
 import {GoogleMapsConfiguration} from "../config/GoogleMapsConfiguration";
+import {LatLngLiteral} from "ngx-google-places-autocomplete-esb/lib/objects/latLng";
 
 @Component({
   selector: 'app-map',

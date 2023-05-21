@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommunitySpotComponent } from './community-spot.component';
 import {SharedModule} from "../shared/shared.module";
-import {GooglePlaceModule} from "ngx-google-places-autocomplete";
+import {GooglePlaceModule} from "ngx-google-places-autocomplete-esb";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
