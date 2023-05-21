@@ -27,6 +27,7 @@ import '@angular/common/locales/global/de-CH';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import {ContactModule} from "./contact/contact.module";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -66,10 +67,11 @@ import {ContactModule} from "./contact/contact.module";
     MatMenuModule,
     AppRoutingModule,
     RouterModule,
-    ContactModule
+    MatDialogModule
   ],
   providers: [
     {provide: MatBottomSheet},
+    { provide: MatDialogRef, useValue: {} },
     {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
   ],
   bootstrap: [AppComponent]

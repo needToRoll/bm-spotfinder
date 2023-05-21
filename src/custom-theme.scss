@@ -1,7 +1,18 @@
 @use '@angular/material' as mat;
 
-
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
+@font-face {
+  font-family: 'BrandonText-Black';
+  src: url("assets/fonts/BrandonTextWebBlack.woff2");
+}
+@font-face {
+  font-family: 'BrandonText-Bold';
+  src: url("assets/fonts/BrandonTextWebBold.woff2");
+}
+@font-face {
+  font-family: 'Brandon Text';
+  src: url("assets/fonts/BrandonTextWebRegular.woff2");
+}
 
 // region colors
 $black: #000000;
@@ -92,39 +103,39 @@ $brandon-bold: "BrandonText-Bold";
 $brandon-black: "BrandonText-Black";
 $brandon-font: "Brandon Text";
 
-$bm-heading1: mat-typography-level(
+$bm-heading1: mat.define-typography-level(
   $font-family: $brandon-black,
   $font-size: 44px,
   $letter-spacing: 2px,
   $line-height: 48px
 );
-$bm-heading2: mat-typography-level(
+$bm-heading2: mat.define-typography-level(
   $font-family: $brandon-black,
   $font-size: 22px,
   $letter-spacing: 3px,
   $line-height: 39px
 );
-$bm-heading3: mat-typography-level(
+$bm-heading3: mat.define-typography-level(
   $font-family: $brandon-bold,
   $font-size: 22px,
   $letter-spacing: normal,
   $line-height: 30px
 );
-$bm-heading4: mat-typography-level(
+$bm-heading4: mat.define-typography-level(
   $font-family: $brandon-bold,
   $font-size: 14px,
   $letter-spacing: normal,
   $line-height: 20px
 );
 
-$bm-input: mat-typography-level(
+$bm-input: mat.define-typography-level(
   $font-family: $brandon-font,
   $font-weight: bold,
   $font-size: 16px,
   $line-height: 1.4375em
 );
 
-$bm-caption: mat-typography-level(
+$bm-caption: mat.define-typography-level(
   $font-family: $brandon-font,
   $font-weight: normal,
   $font-size: 11px,
@@ -132,7 +143,7 @@ $bm-caption: mat-typography-level(
   $line-height: 16px
 );
 
-$bm-text-regular: mat-typography-level(
+$bm-text-regular: mat.define-typography-level(
   $font-family: $brandon-font,
   $font-weight: normal,
   $font-size: 14px,
@@ -141,8 +152,7 @@ $bm-text-regular: mat-typography-level(
 );
 
 
-$bm-typography: mat-typography-config(
-  $font-family: $brandon-font,
+$bm-typography:  mat.define-typography-config(
   $display-4: $bm-heading1,
   $display-3: $bm-heading2,
   $display-2: $bm-heading3,
@@ -178,9 +188,6 @@ $angular-pwa-theme: mat.define-light-theme((
 ));
 //endregion
 
-@include mat.core($bm-typography);
 @include mat.all-component-themes($angular-pwa-theme);
-
-.mat-toolbar h2 {
-  @include mat-typography-level-to-styles($bm-typography, headline); // where headline maps to h1
-}
+@include mat.typography-hierarchy($bm-typography);
+@include mat.core();
