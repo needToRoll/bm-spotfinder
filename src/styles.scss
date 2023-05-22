@@ -1,4 +1,6 @@
-@use 'mixins.scss';
+@use '@angular/material' as mat;
+@import "custom-theme";
+
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: 'BrandonText-Black';

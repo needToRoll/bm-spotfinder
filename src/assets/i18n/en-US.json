@@ -67,7 +67,7 @@
     },
     "spot-search": {
       "difficulty": "Difficulty level",
-      "places-placeholder": "Search for a location (address, zip, etc)",
+      "places-placeholder": "Search for a location",
       "rope-length": "Rope length"
     }
   }

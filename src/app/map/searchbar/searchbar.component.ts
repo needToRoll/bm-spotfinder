@@ -8,7 +8,7 @@ import {PlaceSearchResult} from "../../shared/model/PlaceSearchResult";
 @Component({
   selector: 'map-searchbar',
   templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.css']
+  styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
 

@@ -8,7 +8,7 @@ import {HydroDetails} from "../../shared/model/HydroDetails";
 @Component({
   selector: 'app-spot-details',
   templateUrl: './spot-details.component.html',
-  styleUrls: ['./spot-details.component.css']
+  styleUrls: ['./spot-details.component.scss']
 })
 export class SpotDetailsComponent implements OnInit {
 

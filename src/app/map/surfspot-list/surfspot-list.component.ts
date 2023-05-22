@@ -7,7 +7,7 @@ import {DeviceClassificationService} from "../../shared/service/device-classific
 @Component({
   selector: 'app-surfspot-list',
   templateUrl: './surfspot-list.component.html',
-  styleUrls: ['./surfspot-list.component.css']
+  styleUrls: ['./surfspot-list.component.scss']
 })
 export class SurfspotListComponent implements OnInit {
 

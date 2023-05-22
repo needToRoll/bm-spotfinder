@@ -5,7 +5,7 @@ import {HydroDetails} from "../../../shared/model/HydroDetails";
 @Component({
   selector: 'app-water-level-attribute',
   templateUrl: './water-level-attribute.component.html',
-  styleUrls: ['./water-level-attribute.component.css']
+  styleUrls: ['./water-level-attribute.component.scss']
 })
 export class WaterLevelAttributeComponent implements OnInit {
 

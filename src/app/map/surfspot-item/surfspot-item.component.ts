@@ -5,7 +5,7 @@ import {DistanceMatrixService} from "../service/distance/distance-matrix.service
 @Component({
   selector: 'app-surfspot-item',
   templateUrl: './surfspot-item.component.html',
-  styleUrls: ['./surfspot-item.component.css']
+  styleUrls: ['./surfspot-item.component.scss']
 })
 export class SurfspotItemComponent implements OnInit {
 

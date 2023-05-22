@@ -5,7 +5,8 @@ import {MapComponent} from "./map/map.component";
 import {CommunitySpotComponent} from "./community-spot/community-spot.component";
 import {ContactComponent} from "./contact/contact.component";
 import {MapModule} from "./map/map.module";
-
+import {ContactModule} from "./contact/contact.module";
+import {CommunitySpotModule} from "./community-spot/community-spot.module";
 
 const routes: Routes = [
   { path: 'map', component: MapComponent },
@@ -19,7 +20,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     CommonModule,
-    MapModule
+    MapModule,
+    CommunitySpotModule,
+    ContactModule,
   ]
 })
 export class AppRoutingModule { }

@@ -1,3 +1,5 @@
+$sidenav-bg-color: black;
+$sidenav-text-color: white;
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -15,9 +17,19 @@ mat-toolbar img {
   margin-left: 20px;
 }
 
-.background-primary {
-  background-color: var(--primary-main-color);
-  color: var(--primary-text-color);
+.mat-drawer {
+  background-color: $sidenav-bg-color !important;
+  color: $sidenav-text-color !important;
+  font-family: var(--subheading-1-font-family) !important;
+}
+
+.mat-expansion-panel {
+  background-color: $sidenav-bg-color;
+  color: $sidenav-text-color;
+}
+
+:host ::ng-deep .mdc-list-item__primary-text {
+  color: $sidenav-text-color !important;
 }
 
 .mat-sidenav-container {
@@ -28,12 +40,15 @@ mat-toolbar img {
   min-width: 20vw;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-  color: var(--primary-main-color) !important;
+:host ::ng-deep .mdc-text-field-label {
+  background-color: $sidenav-bg-color !important;
 }
 
-::ng-deep.mat-form-field-ripple {
-  background-color: var(--primary-main-color) !important;
+:host ::ng-deep .mdc-text-field {
+  background-color: $sidenav-text-color !important;
+}
+:host ::ng-deep .mdc-text-field-ripple {
+  background-color: $sidenav-text-color !important;
 }
 
 #bm-logo-minimal {
@@ -81,4 +96,14 @@ mat-sidenav-content {
     display: none;
   }
 
+  @media only screen and (max-width: 680px) {
+    .mat-drawer-opened {
+      min-width: 50vw;
+    };
+  }
+  @media only screen and (max-width: 680px) {
+    .mat-drawer-opened {
+      min-width: 100vw;
+    };
+  }
 }

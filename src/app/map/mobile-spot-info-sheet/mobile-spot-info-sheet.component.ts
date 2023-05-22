@@ -6,7 +6,7 @@ import {DistanceMatrixService} from "../service/distance/distance-matrix.service
 @Component({
   selector: 'app-mobile-spot-info-sheet',
   templateUrl: './mobile-spot-info-sheet.component.html',
-  styleUrls: ['./mobile-spot-info-sheet.component.css']
+  styleUrls: ['./mobile-spot-info-sheet.component.scss']
 })
 export class MobileSpotInfoSheetComponent implements OnInit {
 

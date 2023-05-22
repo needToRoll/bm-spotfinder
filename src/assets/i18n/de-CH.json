@@ -67,7 +67,7 @@
     },
     "spot-search": {
       "difficulty": "Schwierigkeit",
-      "places-placeholder": "Ort",
+      "places-placeholder": "Suche einen Ort",
       "rope-length": "Seillänge"
     }
   }
