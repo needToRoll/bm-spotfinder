@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-sidenav',
@@ -8,6 +9,8 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class SidenavComponent implements OnInit {
 
+  @Input()
+  public parentSideNav: MatSidenav
   constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {

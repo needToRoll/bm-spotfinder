@@ -1,5 +1,8 @@
 {
   "i18n": {
+    "app": {
+      "name": "Spotfinder"
+    },
     "contact": {
       "address": {
         "l1": "Jonas Bürgi",

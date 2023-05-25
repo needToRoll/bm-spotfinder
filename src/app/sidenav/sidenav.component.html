@@ -1,11 +1,16 @@
-<mat-toolbar color="primary">Menu</mat-toolbar>
+<mat-toolbar color="primary">
+  <div class="spacer"></div>
+  <a mat-button color="light" (click)="parentSideNav.close()">
+    <mat-icon aria-hidden="false" aria-label="Menu Close Icon" fontIcon="close"></mat-icon>
+  </a>
+</mat-toolbar>
 <mat-nav-list>
   <a mat-list-item routerLink="map">{{'i18n.navigation.map' | translate | uppercase}}</a>
   <a mat-list-item routerLink="recommend">{{'i18n.navigation.newSpot' | translate | uppercase}}</a>
   <a mat-list-item routerLink="contact">{{'i18n.navigation.contact' | translate | uppercase}}</a>
   <a mat-list-item href="https://www.bungeemonkey.ch">{{'i18n.navigation.shop' | translate | uppercase}}</a>
 </mat-nav-list>
-<mat-expansion-panel (opened)="true" expanded="true" hideToggle="true">
+<mat-expansion-panel expanded="true" hideToggle="true">
   <mat-expansion-panel-header>
     {{'i18n.misc.language' | translate | uppercase}}
   </mat-expansion-panel-header>

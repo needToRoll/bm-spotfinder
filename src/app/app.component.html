@@ -4,9 +4,9 @@
       <mat-toolbar color="primary" class="sticky-toolbar">
         <img id="bm-logo-text" src="/assets/icons/bm-logo-text-white.svg" alt="Bungeemonkey Brand Logo with text">
         <img id="bm-logo-minimal" src="/assets/icons/bm-logo-minimal-white.svg" alt="Bungeemonkey Brand Logo">
-        <span class="example-spacer"></span>
-        <h2>Spotfinder</h2>
-        <span class="example-spacer"></span>
+        <span class="spacer"></span>
+        <h2>{{'i18n.app.name' | translate | uppercase}}</h2>
+        <span class="spacer"></span>
         <a mat-button color="light" (click)="sidenav.toggle()">
           <mat-icon color="light">menu</mat-icon>
         </a>
@@ -16,7 +16,7 @@
       </div>
     </mat-sidenav-content>
     <mat-sidenav #sidenav position="end" mode="over" fixedInViewport="true" >
-      <app-sidenav></app-sidenav>
+      <app-sidenav [parentSideNav]="sidenav"></app-sidenav>
     </mat-sidenav>
   </mat-sidenav-container>
 </div>

@@ -1,23 +1,26 @@
+$sidenav-bg-color: black;
+$sidenav-text-color: white;
 .mat-drawer-container {
   min-height: 100vh;
 }
 .mdc-list-item__primary-text {
-  color: white !important;
+  color: $sidenav-text-color !important;
 }
 
 .mat-expansion-panel {
-    background-color: black;
-    color: white;
+    background-color: $sidenav-bg-color;
+    color: $sidenav-text-color;
 }
-.background-primary {
-  background-color: black;
-  color: white;
-}
+
 .mat-expansion-panel-header {
   height: 48px !important;
   padding: 0 16px;
 }
 
 .mat-mdc-list-item-unscoped-content  {
-  color: white !important;
+  color: $sidenav-text-color !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
