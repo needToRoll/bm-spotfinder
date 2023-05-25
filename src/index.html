@@ -1,17 +1,21 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+  <script>
+    function mapsLoadedCallback(){
+      console.log("Google maps api loaded")
+    }
+  </script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADr7miskZx-9lpQDmJ2g702tTu1HlcH7A&libraries=places,geometry&callback=mapsLoadedCallback"></script>
   <meta charset="utf-8">
   <title>Spotfinder by Bungeemonkey</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=0">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <meta name="theme-color" content="#888888">
   <link rel="apple-touch-icon" href="assets/icons/ios-icon-120.png" sizes="120x120">
   <link rel="apple-touch-icon" href="assets/icons/ios-icon-60.png" sizes="60x60">
   <link rel="apple-touch-icon" href="assets/icons/ios-icon-180.png" sizes="180x180">
   <link rel="manifest" href="manifest.webmanifest">
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADr7miskZx-9lpQDmJ2g702tTu1HlcH7A&libraries=places,geometry"></script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="description" content="">
   <meta name="mobile-web-app-capable" content="yes">
