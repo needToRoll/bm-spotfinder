@@ -71,7 +71,7 @@ export class DistanceMatrixService {
         potentiallyObsoleteKeys.push(localStorageKey)
       }
     }
-    if(potentiallyObsoleteKeys.length != 0 && potentiallyObsoleteKeys.length > maxNumberOfLocationToCache - keysToPreserve.length) {
+    if (potentiallyObsoleteKeys.length != 0 && potentiallyObsoleteKeys.length > maxNumberOfLocationToCache - keysToPreserve.length) {
       potentiallyObsoleteKeys.forEach(key => localStorage.removeItem(key))
     }
   }

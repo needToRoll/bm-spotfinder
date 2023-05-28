@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {SurfspotListComponent} from './surfspot-list/surfspot-list.component';
 import {MapComponent} from "./map.component";
 import {MobileSpotInfoSheetComponent} from "./mobile-spot-info-sheet/mobile-spot-info-sheet.component";
@@ -14,7 +14,6 @@ import {MatButtonModule as MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule as MatInputModule} from "@angular/material/input";
 import {MatListModule as MatListModule} from "@angular/material/list";
-import {TranslateModule} from "@ngx-translate/core";
 import {MatOptionModule as MatOptionModule} from "@angular/material/core";
 import {MatFormFieldModule as MatFormFieldModule} from "@angular/material/form-field";
 import {MatAutocompleteModule as MatAutocompleteModule} from "@angular/material/autocomplete";
@@ -24,6 +23,7 @@ import {MatSelectModule as MatSelectModule} from "@angular/material/select";
 import {MatCardModule as MatCardModule} from "@angular/material/card";
 import {SharedModule} from "../shared/shared.module";
 
+import {MapRoutingModule} from "./map-routing.module";
 
 
 @NgModule({
@@ -53,10 +53,11 @@ import {SharedModule} from "../shared/shared.module";
     MatIconModule,
     MatInputModule,
     MatListModule,
-    TranslateModule,
+    MapRoutingModule,
     MatOptionModule,
     MatCardModule,
     SharedModule
   ]
 })
-export class MapModule { }
+export class MapModule {
+}

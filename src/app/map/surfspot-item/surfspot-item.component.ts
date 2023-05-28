@@ -12,7 +12,8 @@ export class SurfspotItemComponent implements OnInit {
   @Input() surfspot: SurfSpot
   public panelOpenState: boolean
 
-  constructor(private distanceService: DistanceMatrixService) { }
+  constructor(private distanceService: DistanceMatrixService) {
+  }
 
   ngOnInit(): void {
   }

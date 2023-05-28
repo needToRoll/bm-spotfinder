@@ -3,15 +3,18 @@ $sidenav-text-color: white;
 .spacer {
   flex: 1 1 auto;
 }
+
 mat-toolbar-row {
   justify-items: center;
   justify-content: center;
 }
+
 .sticky-toolbar {
   position: fixed;
   top: 0;
   z-index: 1000;
 }
+
 mat-toolbar img {
   max-height: 40px !important;
   margin-left: 20px;
@@ -47,6 +50,7 @@ mat-toolbar img {
 :host ::ng-deep .mdc-text-field {
   background-color: $sidenav-text-color !important;
 }
+
 :host ::ng-deep .mdc-text-field-ripple {
   background-color: $sidenav-text-color !important;
 }
@@ -99,11 +103,13 @@ mat-sidenav-content {
   @media only screen and (max-width: 680px) {
     .mat-drawer-opened {
       min-width: 50vw;
-    };
+    }
+  ;
   }
   @media only screen and (max-width: 680px) {
     .mat-drawer-opened {
       min-width: 100vw;
-    };
+    }
+  ;
   }
 }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SurfspotListComponent } from './surfspot-list.component';
+import {SurfspotListComponent} from './surfspot-list.component';
 
 describe('SurfspotListComponent', () => {
   let component: SurfspotListComponent;
@@ -8,9 +8,9 @@ describe('SurfspotListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SurfspotListComponent ]
+      declarations: [SurfspotListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AVAILABLE_ROPE_LENGTHS} from "../shared/model/RopeLength";
 import {SPOT_DIFFICULTIES} from "../shared/model/SpotDifficultyLevel";
 import {UntypedFormGroup} from "@angular/forms";
@@ -11,7 +11,8 @@ import {PlaceSearchResult} from "../shared/model/PlaceSearchResult";
 })
 export class CommunitySpotComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

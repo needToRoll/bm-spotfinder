@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {FirebaseWaterLevelService} from "./firebase-water-level.service";
 import {BehaviorSubject, map, Observable, Subject, withLatestFrom} from "rxjs";
 import {WaterLevelMeasurement} from "../../../shared/model/WaterLevelMeasurement";
@@ -12,6 +12,7 @@ import {HydroDetails} from "../../../shared/model/HydroDetails";
 export class HydroDataProviderService {
   private walterLevels: Subject<WaterLevelMeasurement[]>
   private hydroSources: Subject<HydroDataSource[]>
+
   constructor(private _wls: FirebaseWaterLevelService) {
     this.walterLevels = new BehaviorSubject([])
     this.hydroSources = new BehaviorSubject([])

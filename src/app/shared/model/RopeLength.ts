@@ -2,6 +2,7 @@ export interface RopeLength {
   name: string
   value: number
 }
+
 export const AVAILABLE_ROPE_LENGTHS: RopeLength[] = [
   {name: "16m", value: 16},
   {name: "20m", value: 20},

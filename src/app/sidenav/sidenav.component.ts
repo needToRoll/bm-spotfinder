@@ -11,7 +11,9 @@ export class SidenavComponent implements OnInit {
 
   @Input()
   public parentSideNav: MatSidenav
-  constructor(public translate: TranslateService) { }
+
+  constructor(public translate: TranslateService) {
+  }
 
   ngOnInit(): void {
   }

@@ -6,10 +6,12 @@
   font-family: 'BrandonText-Black';
   src: url("assets/fonts/BrandonTextWebBlack.woff2");
 }
+
 @font-face {
   font-family: 'BrandonText-Bold';
   src: url("assets/fonts/BrandonTextWebBold.woff2");
 }
+
 @font-face {
   font-family: 'Brandon Text';
   src: url("assets/fonts/BrandonTextWebRegular.woff2");
@@ -20,6 +22,7 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 .mat-button-base, h1, h2, h3 {
   text-transform: uppercase !important;
 }
@@ -29,6 +32,7 @@ html, body {
   border-top-left-radius: 15px !important;
   border-top-right-radius: 15px !important;
 }
+
 @media (max-width: 450px) {
   .colapsed .mat-form-field-infix {
     min-width: 80px !important;

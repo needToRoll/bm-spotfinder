@@ -7,10 +7,12 @@
   font-family: 'BrandonText-Black';
   src: url("assets/fonts/BrandonTextWebBlack.woff2");
 }
+
 @font-face {
   font-family: 'BrandonText-Bold';
   src: url("assets/fonts/BrandonTextWebBold.woff2");
 }
+
 @font-face {
   font-family: 'Brandon Text';
   src: url("assets/fonts/BrandonTextWebRegular.woff2");
@@ -174,7 +176,7 @@ $bm-text-regular: mat.define-typography-level(
 );
 
 
-$bm-typography:  mat.define-legacy-typography-config(
+$bm-typography: mat.define-legacy-typography-config(
   $display-4: $bm-heading1,
   $display-3: $bm-heading2,
   $display-2: $bm-heading3,

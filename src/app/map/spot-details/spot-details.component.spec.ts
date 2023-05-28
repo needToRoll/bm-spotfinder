@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SpotDetailsComponent } from './spot-details.component';
+import {SpotDetailsComponent} from './spot-details.component';
 
 describe('SpotDetailsComponent', () => {
   let component: SpotDetailsComponent;
@@ -8,9 +8,9 @@ describe('SpotDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpotDetailsComponent ]
+      declarations: [SpotDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -4,5 +4,6 @@ import {SurfSpot} from "../../model/SurfSpot";
 
 export interface SurfSpotService {
   getAllSurfSpots(): Observable<SurfSpot[]>
+
   getSurfSpotsMatchingFilter(spotFilter: SpotFilter): Observable<SurfSpot[]>
 }

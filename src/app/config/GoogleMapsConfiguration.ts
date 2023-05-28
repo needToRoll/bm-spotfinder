@@ -25,7 +25,7 @@ export class GoogleMapsConfiguration {
     return {
       url: './assets/icons/pin-white.svg',
       anchor: new google.maps.Point(20, 55),
-      size: new google.maps.Size(40,55,"px", "px")
+      size: new google.maps.Size(40, 55, "px", "px")
     }
   }
 

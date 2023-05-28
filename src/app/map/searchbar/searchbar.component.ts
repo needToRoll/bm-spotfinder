@@ -15,7 +15,7 @@ export class SearchbarComponent implements OnInit {
   expanded: boolean = true
 
   @HostListener("window:scroll", []) onWindowScroll() {
-    if(this.expanded) {
+    if (this.expanded) {
       // do some stuff here when the window is scrolled
       const verticalOffset = window.scrollY
         || document.documentElement.scrollTop

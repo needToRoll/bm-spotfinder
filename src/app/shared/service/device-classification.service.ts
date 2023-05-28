@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DeviceDetectorService} from "ngx-device-detector";
 
 @Injectable({
@@ -6,7 +6,8 @@ import {DeviceDetectorService} from "ngx-device-detector";
 })
 export class DeviceClassificationService {
 
-  constructor(private deviceService: DeviceDetectorService) {}
+  constructor(private deviceService: DeviceDetectorService) {
+  }
 
   public shouldBeThreadedAsTouchDevice(): boolean {
     return (!this.deviceService.isDesktop() && this.isTouchDevice())

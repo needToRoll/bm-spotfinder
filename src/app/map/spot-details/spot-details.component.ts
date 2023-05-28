@@ -14,7 +14,8 @@ export class SpotDetailsComponent implements OnInit {
 
   @Input() surfspot: SurfSpot
 
-  constructor(private  _hydoDataProvider: HydroDataProviderService) { }
+  constructor(private _hydoDataProvider: HydroDataProviderService) {
+  }
 
   ngOnInit(): void {
   }

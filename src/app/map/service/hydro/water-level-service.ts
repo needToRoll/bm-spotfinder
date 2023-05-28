@@ -4,5 +4,6 @@ import {HydroDataSource} from "../../../shared/model/HydroDataSource";
 
 export interface WaterLevelService {
   getAllCurrentWaterLevels(): Observable<WaterLevelMeasurement[]>
+
   getAllHydroDataSources(): Observable<HydroDataSource[]>
 }

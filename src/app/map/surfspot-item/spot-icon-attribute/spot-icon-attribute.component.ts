@@ -12,7 +12,8 @@ export class SpotIconAttributeComponent implements OnInit {
   @Input() matIcon: any
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,6 @@
+import {TestBed} from '@angular/core/testing';
 
-import { TestBed } from '@angular/core/testing';
-
-import { StaticSurfSpotService } from './static-surf-spot.service';
+import {StaticSurfSpotService} from './static-surf-spot.service';
 
 describe('SurfSpotService', () => {
   let service: StaticSurfSpotService;

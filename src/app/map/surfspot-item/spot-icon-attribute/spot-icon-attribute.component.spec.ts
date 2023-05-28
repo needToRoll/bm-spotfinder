@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SpotIconAttributeComponent } from './spot-icon-attribute.component';
+import {SpotIconAttributeComponent} from './spot-icon-attribute.component';
 
 describe('SpotIconAttributeComponent', () => {
   let component: SpotIconAttributeComponent;
@@ -8,9 +8,9 @@ describe('SpotIconAttributeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpotIconAttributeComponent ]
+      declarations: [SpotIconAttributeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

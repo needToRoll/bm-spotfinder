@@ -90,7 +90,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJR5LHjrtLjkcR6e-vqbAe3Ec",
       "difficulty": 3,
-      "ropeLength": [24,30],
+      "ropeLength": [24, 30],
       "minimalWaterLevel": 80,
       "waterLevelSource": "https://aare.guru/#bern",
       "dangers": [
@@ -159,8 +159,7 @@ export const SPOTS = [
       "exits": [
         "Flussabwärts beidseitig"
       ],
-      "additionalInfo": [
-      ]
+      "additionalInfo": []
     }
   },
   {
@@ -172,7 +171,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJt8A7afVrkEcRxZ4jHwlRYz8",
       "difficulty": 2,
-      "ropeLength": [20,24,30],
+      "ropeLength": [20, 24, 30],
       "minimalWaterLevel": 120,
       "waterLevelSource": "",
       "dangers": [
@@ -184,8 +183,7 @@ export const SPOTS = [
       "exits": [
         "Mehrere Treppen flussabwärts rechts"
       ],
-      "additionalInfo": [
-      ]
+      "additionalInfo": []
     }
   },
   {
@@ -197,7 +195,7 @@ export const SPOTS = [
     "bmSpotInfo": {
       "webLink": "https://www.google.com/maps/place/?q=place_id:ChIJvwjzHK2dcVMRp3A8FZuyuY4",
       "difficulty": 3,
-      "ropeLength": [16,20,24,30],
+      "ropeLength": [16, 20, 24, 30],
       "minimalWaterLevel": -1,
       "waterLevelSource": "",
       "dangers": ["Depends on the exact spot you choose"],

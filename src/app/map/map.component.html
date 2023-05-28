@@ -1,4 +1,5 @@
-<map-searchbar #searchbarRef (spotFilterValue)="onFilterValueChanged($event)" (placeFound)="onPlaceFound($event)"></map-searchbar>
+<map-searchbar #searchbarRef (spotFilterValue)="onFilterValueChanged($event)"
+               (placeFound)="onPlaceFound($event)"></map-searchbar>
 <div #mapContainerRef id="map-container-parent" [style]="'margin-top: '+searchBarOffset+'px'">
   <div id="map-container">
     <google-map [options]="mapOptions" [zoom]="DEFAULT_ZOOM" [center]="getCenter()" height="77vh" width="100%">

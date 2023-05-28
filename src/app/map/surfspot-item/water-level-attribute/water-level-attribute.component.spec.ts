@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WaterLevelAttributeComponent } from './water-level-attribute.component';
+import {WaterLevelAttributeComponent} from './water-level-attribute.component';
 
 describe('WaterLevelAttributeComponent', () => {
   let component: WaterLevelAttributeComponent;
@@ -8,9 +8,9 @@ describe('WaterLevelAttributeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WaterLevelAttributeComponent ]
+      declarations: [WaterLevelAttributeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
