@@ -1,24 +1,16 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {LocalizedDatePipe} from "./pipe/localized-date.pipe";
-import {TranslateModule} from "@ngx-translate/core";
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LocalizedDatePipe } from './pipe/localized-date.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [
-    LocalizedDatePipe
-  ],
+  declarations: [LocalizedDatePipe],
   imports: [
     CommonModule,
     TranslateModule.forChild({
-      extend: true
-    })
+      extend: true,
+    }),
   ],
-  exports:
-    [
-      LocalizedDatePipe,
-      TranslateModule
-    ]
+  exports: [LocalizedDatePipe, TranslateModule],
 })
-export class SharedModule {
-}
+export class SharedModule {}

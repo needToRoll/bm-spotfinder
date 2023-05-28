@@ -1,6 +1,6 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {FirebaseWaterLevelService} from './firebase-water-level.service';
+import { FirebaseWaterLevelService } from './firebase-water-level.service';
 
 describe('FirebaseWaterLevelService', () => {
   let service: FirebaseWaterLevelService;

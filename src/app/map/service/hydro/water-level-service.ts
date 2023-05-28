@@ -1,9 +1,9 @@
-import {Observable} from "rxjs";
-import {WaterLevelMeasurement} from "../../../shared/model/WaterLevelMeasurement";
-import {HydroDataSource} from "../../../shared/model/HydroDataSource";
+import { Observable } from 'rxjs';
+import { WaterLevelMeasurement } from '../../../shared/model/WaterLevelMeasurement';
+import { HydroDataSource } from '../../../shared/model/HydroDataSource';
 
 export interface WaterLevelService {
-  getAllCurrentWaterLevels(): Observable<WaterLevelMeasurement[]>
+  getAllCurrentWaterLevels(): Observable<WaterLevelMeasurement[]>;
 
-  getAllHydroDataSources(): Observable<HydroDataSource[]>
+  getAllHydroDataSources(): Observable<HydroDataSource[]>;
 }

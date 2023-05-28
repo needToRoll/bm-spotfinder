@@ -1,6 +1,6 @@
 export interface HydroDetails {
-  value: number
-  measuredAt: string
-  sourceName: string
-  sourceLink: string
+  value: number;
+  measuredAt: string;
+  sourceName: string;
+  sourceLink: string;
 }

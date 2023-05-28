@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {CommunitySpotComponent} from './community-spot.component';
+import { CommunitySpotComponent } from './community-spot.component';
 
 describe('CommunitySpotComponent', () => {
   let component: CommunitySpotComponent;
@@ -8,9 +8,8 @@ describe('CommunitySpotComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CommunitySpotComponent]
-    })
-      .compileComponents();
+      declarations: [CommunitySpotComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

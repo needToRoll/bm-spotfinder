@@ -1,6 +1,6 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {DistanceMatrixService} from './distance-matrix.service';
+import { DistanceMatrixService } from './distance-matrix.service';
 
 describe('DistanceMatrixService', () => {
   let service: DistanceMatrixService;

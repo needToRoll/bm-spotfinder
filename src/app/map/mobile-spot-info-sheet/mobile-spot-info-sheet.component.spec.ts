@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {MobileSpotInfoSheetComponent} from './mobile-spot-info-sheet.component';
+import { MobileSpotInfoSheetComponent } from './mobile-spot-info-sheet.component';
 
 describe('MobileSpotInfoSheetComponent', () => {
   let component: MobileSpotInfoSheetComponent;
@@ -8,9 +8,8 @@ describe('MobileSpotInfoSheetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MobileSpotInfoSheetComponent]
-    })
-      .compileComponents();
+      declarations: [MobileSpotInfoSheetComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

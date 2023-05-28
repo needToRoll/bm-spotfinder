@@ -31,8 +31,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              "src/language-meta-redirect.html"
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/custom-theme.scss",

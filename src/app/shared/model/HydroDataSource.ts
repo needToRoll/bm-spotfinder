@@ -1,4 +1,4 @@
 export class HydroDataSource {
-  name: string
-  webLink: string
+  name: string;
+  webLink: string;
 }

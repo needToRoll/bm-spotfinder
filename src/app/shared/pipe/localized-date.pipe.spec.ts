@@ -1,4 +1,4 @@
-import {LocalizedDatePipe} from './localized-date.pipe';
+import { LocalizedDatePipe } from './localized-date.pipe';
 
 describe('LocalizedDatePipePipe', () => {
   it('create an instance', () => {
