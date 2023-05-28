@@ -1,5 +1,8 @@
 {
   "i18n": {
+    "app": {
+      "name": "Spotfinder"
+    },
     "contact": {
       "address": {
         "l1": "Jonas Bürgi",
@@ -17,7 +20,7 @@
         },
         "heading": "Sources",
         "review": "After a new surf spot is submitted, we will verify the information before we make it available here.",
-        "spots":  {
+        "spots": {
           "p1": "If you know a surf spot and would like to share it with us and the community, you can submit it ",
           "p2": "here",
           "p3": ". Thank you!"
@@ -67,7 +70,7 @@
     },
     "spot-search": {
       "difficulty": "Difficulty level",
-      "places-placeholder": "Search for a location (address, zip, etc)",
+      "places-placeholder": "Search for a location",
       "rope-length": "Rope length"
     }
   }

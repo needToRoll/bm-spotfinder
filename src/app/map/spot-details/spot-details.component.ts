@@ -1,33 +1,33 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {SurfSpot} from "../../model/SurfSpot";
-import {environment} from "../../../environments/environment";
-import {HydroDataProviderService} from "../service/hydro/hydro-data-provider.service";
-import {Observable} from "rxjs";
-import {HydroDetails} from "../../model/HydroDetails";
+import { Component, Input, OnInit } from '@angular/core';
+import { SurfSpot } from '../../shared/model/SurfSpot';
+import { environment } from '../../../environments/environment';
+import { HydroDataProviderService } from '../service/hydro/hydro-data-provider.service';
+import { Observable } from 'rxjs';
+import { HydroDetails } from '../../shared/model/HydroDetails';
 
 @Component({
   selector: 'app-spot-details',
   templateUrl: './spot-details.component.html',
-  styleUrls: ['./spot-details.component.css']
+  styleUrls: ['./spot-details.component.scss'],
 })
 export class SpotDetailsComponent implements OnInit {
+  @Input() surfspot: SurfSpot;
 
-  @Input() surfspot: SurfSpot
+  constructor(private _hydoDataProvider: HydroDataProviderService) {}
 
-  constructor(private  _hydoDataProvider: HydroDataProviderService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getAddressPartsList(): string[] {
-    return [this.surfspot.address1, this.surfspot.address2]
+    return [this.surfspot.address1, this.surfspot.address2];
   }
 
   getRopeLengthsWithUnit(): string[] {
-    return this.surfspot.bmSpotInfo.ropeLength.sort().map(value => value + " " + environment.ropeLengthUnit);
+    return this.surfspot.bmSpotInfo.ropeLength
+      .sort()
+      .map((value) => value + ' ' + environment.ropeLengthUnit);
   }
 
   spotWithHydroDetails(): Observable<HydroDetails> {
-    return this._hydoDataProvider.readHydroDataForSpot(this.surfspot)
+    return this._hydoDataProvider.readHydroDataForSpot(this.surfspot);
   }
 }

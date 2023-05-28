@@ -8,9 +8,8 @@ describe('SpotIconAttributeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpotIconAttributeComponent ]
-    })
-    .compileComponents();
+      declarations: [SpotIconAttributeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

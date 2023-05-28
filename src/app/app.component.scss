@@ -1,31 +1,58 @@
-.example-spacer {
+$sidenav-bg-color: black;
+$sidenav-text-color: white;
+.spacer {
   flex: 1 1 auto;
 }
+
 mat-toolbar-row {
   justify-items: center;
   justify-content: center;
 }
+
 .sticky-toolbar {
   position: fixed;
   top: 0;
   z-index: 1000;
 }
+
 mat-toolbar img {
   max-height: 40px !important;
   margin-left: 20px;
+}
 
+.mat-drawer {
+  background-color: $sidenav-bg-color !important;
+  color: $sidenav-text-color !important;
+  font-family: var(--subheading-1-font-family) !important;
+}
+
+.mat-expansion-panel {
+  background-color: $sidenav-bg-color;
+  color: $sidenav-text-color;
+}
+
+:host ::ng-deep .mdc-list-item__primary-text {
+  color: $sidenav-text-color !important;
 }
 
 .mat-sidenav-container {
   min-height: 100vh;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-  color: black !important;
+.mat-drawer-opened {
+  min-width: 20vw;
 }
 
-::ng-deep.mat-form-field-ripple {
-  background-color: black !important;
+:host ::ng-deep .mdc-text-field-label {
+  background-color: $sidenav-bg-color !important;
+}
+
+:host ::ng-deep .mdc-text-field {
+  background-color: $sidenav-text-color !important;
+}
+
+:host ::ng-deep .mdc-text-field-ripple {
+  background-color: $sidenav-text-color !important;
 }
 
 #bm-logo-minimal {
@@ -73,4 +100,16 @@ mat-sidenav-content {
     display: none;
   }
 
+  @media only screen and (max-width: 680px) {
+    .mat-drawer-opened {
+      min-width: 50vw;
+    }
+  ;
+  }
+  @media only screen and (max-width: 680px) {
+    .mat-drawer-opened {
+      min-width: 100vw;
+    }
+  ;
+  }
 }

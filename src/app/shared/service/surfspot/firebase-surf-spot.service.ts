@@ -1,20 +1,23 @@
-import {Injectable} from '@angular/core';
-import {SurfSpot} from "../../../model/SurfSpot";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {Observable} from "rxjs";
-import {ClientSideFilteringSpotService} from "./client-side-filtering-spot.service";
+import { Injectable } from '@angular/core';
+import { SurfSpot } from '../../model/SurfSpot';
+import {
+  collection,
+  collectionData,
+  Firestore,
+} from '@angular/fire/firestore/lite';
+import { Observable } from 'rxjs';
+import { ClientSideFilteringSpotService } from './client-side-filtering-spot.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseSurfSpotService extends ClientSideFilteringSpotService {
-
-  constructor(private fireStore: AngularFirestore) {
+  constructor(private fireStore: Firestore) {
     super();
   }
 
   getAllSurfSpots(): Observable<SurfSpot[]> {
-    return this.fireStore.collection<SurfSpot>("bm-surfspots").valueChanges()
+    let surfSpotCollectionRef = collection(this.fireStore, 'bm-surfspots');
+    return collectionData(surfSpotCollectionRef) as Observable<SurfSpot[]>;
   }
-
 }

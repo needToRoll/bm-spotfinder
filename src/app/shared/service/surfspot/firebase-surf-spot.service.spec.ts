@@ -1,5 +1,5 @@
-import {TestBed} from '@angular/core/testing';
-import {FirebaseSurfSpotService} from "./firebase-surf-spot.service";
+import { TestBed } from '@angular/core/testing';
+import { FirebaseSurfSpotService } from './firebase-surf-spot.service';
 
 describe('SurfSpotService', () => {
   let service: FirebaseSurfSpotService;

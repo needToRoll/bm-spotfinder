@@ -8,9 +8,8 @@ describe('MobileSpotInfoSheetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MobileSpotInfoSheetComponent ]
-    })
-    .compileComponents();
+      declarations: [MobileSpotInfoSheetComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

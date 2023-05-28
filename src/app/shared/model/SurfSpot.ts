@@ -1,5 +1,4 @@
-import {GoogleCoordinates} from "./Types";
-import {HydroDetails} from "./HydroDetails";
+import { GoogleCoordinates } from './Types';
 
 export interface SurfSpot {
   placeId: string;
@@ -8,9 +7,8 @@ export interface SurfSpot {
   address2: string;
   coords: GoogleCoordinates;
   bmSpotInfo: BmSpotInfo;
-  distanceToCurrentLocation?: google.maps.Distance
+  distanceToCurrentLocation?: google.maps.Distance;
 }
-
 
 export interface BmSpotInfo {
   webLink: string;

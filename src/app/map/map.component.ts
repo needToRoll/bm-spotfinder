@@ -1,88 +1,100 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {SurfSpot} from "../model/SurfSpot";
-import {GeolocationService} from "./service/locator/geolocation.service";
-import {GoogleMap} from "@angular/google-maps";
-import {SpotFilter} from "../model/SpotFilter";
-import {BehaviorSubject, Subject, Subscription, withLatestFrom} from "rxjs";
-import {LatLngLiteral} from "ngx-google-places-autocomplete/objects/latLng";
-import {PlaceSearchResult} from "../model/PlaceSearchResult";
-import {GoogleCoordinates, GoogleMapsMarkerElement} from "../model/Types";
-import {DistanceMatrixService} from "./service/distance/distance-matrix.service";
-import {FirebaseSurfSpotService} from "../shared/service/surfspot/firebase-surf-spot.service";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
-import {DeviceClassificationService} from "../shared/service/device-classification.service";
-import {MobileSpotInfoSheetComponent} from "./mobile-spot-info-sheet/mobile-spot-info-sheet.component";
-import {GoogleMapsConfiguration} from "../config/GoogleMapsConfiguration";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { SurfSpot } from '../shared/model/SurfSpot';
+import { GeolocationService } from './service/locator/geolocation.service';
+import { GoogleMap } from '@angular/google-maps';
+import { SpotFilter } from '../shared/model/SpotFilter';
+import { BehaviorSubject, Subject, Subscription, withLatestFrom } from 'rxjs';
+import { PlaceSearchResult } from '../shared/model/PlaceSearchResult';
+import {
+  GoogleCoordinates,
+  GoogleMapsMarkerElement,
+} from '../shared/model/Types';
+import { DistanceMatrixService } from './service/distance/distance-matrix.service';
+import { FirebaseSurfSpotService } from '../shared/service/surfspot/firebase-surf-spot.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DeviceClassificationService } from '../shared/service/device-classification.service';
+import { MobileSpotInfoSheetComponent } from './mobile-spot-info-sheet/mobile-spot-info-sheet.component';
+import { GoogleMapsConfiguration } from '../config/GoogleMapsConfiguration';
+import { LatLngLiteral } from 'ngx-google-places-autocomplete-esb/lib/objects/latLng';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
   public searchBarOffset = 215;
-  public readonly DEFAULT_ZOOM = GoogleMapsConfiguration.DEFAULT_ZOOM
-  private serviceSubscription: Subscription
+  public readonly DEFAULT_ZOOM = GoogleMapsConfiguration.DEFAULT_ZOOM;
+  private serviceSubscription: Subscription;
 
-  private accessAttemptCount = 0
+  private accessAttemptCount = 0;
 
-  public spotsToMark: Subject<SurfSpot[]>
-  public userSelectedLocation: Subject<LatLngLiteral>
+  public spotsToMark: Subject<SurfSpot[]>;
+  public userSelectedLocation: Subject<LatLngLiteral>;
   public selectedSurfspot: Subject<SurfSpot> = new Subject<SurfSpot>();
 
-  mapOptions: google.maps.MapOptions
-  userSelectedLocationMarkerIcon: GoogleMapsMarkerElement
-  surfspotMarkerIcon: GoogleMapsMarkerElement
+  mapOptions: google.maps.MapOptions;
+  userSelectedLocationMarkerIcon: GoogleMapsMarkerElement;
+  surfspotMarkerIcon: GoogleMapsMarkerElement;
 
+  @ViewChild('searchbarRef', { read: ElementRef })
+  searchBarElementRef: ElementRef;
+  @ViewChild('mapContainerRef') mapContainerElementRef: ElementRef;
+  @ViewChild('spotListRef') spotListContainer: ElementRef;
 
-  @ViewChild("searchbarRef", {read: ElementRef}) searchBarElementRef: ElementRef
-  @ViewChild("mapContainerRef") mapContainerElementRef: ElementRef
-  @ViewChild("spotListRef") spotListContainer: ElementRef
+  @ViewChild(GoogleMap) googleMapComponent: GoogleMap;
 
-  @ViewChild(GoogleMap) googleMapComponent: GoogleMap
-
-  constructor(private httpClient: HttpClient,
-              private surfspotService: FirebaseSurfSpotService,
-              private deviceService: DeviceClassificationService,
-              private geolocationService: GeolocationService,
-              private distanceMatrixService: DistanceMatrixService,
-              private _bottomSheet: MatBottomSheet) {
-    this.mapOptions = GoogleMapsConfiguration.getMapOptions()
-    this.surfspotMarkerIcon = GoogleMapsConfiguration.getSpotMarkerIcon()
-    this.userSelectedLocationMarkerIcon = GoogleMapsConfiguration.getSelectedLocationMarkerIcon()
+  constructor(
+    private httpClient: HttpClient,
+    private surfspotService: FirebaseSurfSpotService,
+    private deviceService: DeviceClassificationService,
+    private geolocationService: GeolocationService,
+    private distanceMatrixService: DistanceMatrixService,
+    private _bottomSheet: MatBottomSheet
+  ) {
+    this.mapOptions = GoogleMapsConfiguration.getMapOptions();
+    this.surfspotMarkerIcon = GoogleMapsConfiguration.getSpotMarkerIcon();
+    this.userSelectedLocationMarkerIcon =
+      GoogleMapsConfiguration.getSelectedLocationMarkerIcon();
     this.userSelectedLocation = new BehaviorSubject(undefined);
     this.spotsToMark = new BehaviorSubject([]);
-    this.serviceSubscription = this.surfspotService.getAllSurfSpots()
-      .subscribe(value => this.spotsToMark.next(value))
+    this.serviceSubscription = this.surfspotService
+      .getAllSurfSpots()
+      .subscribe((value) => this.spotsToMark.next(value));
 
-    this.userSelectedLocation.pipe(
-      withLatestFrom(this.spotsToMark)
-    ).subscribe(([coords, spots]) => {
-      this.distanceMatrixService.calculateDistanceFromOriginToSpots(coords, spots)
-        .subscribe(enrichedSpots => {
-            this.spotsToMark.next(enrichedSpots)
-            this._tryUpdateMapBounds(coords, enrichedSpots)
-          }
-        )
-
-    })
+    this.userSelectedLocation
+      .pipe(withLatestFrom(this.spotsToMark))
+      .subscribe(([coords, spots]) => {
+        this.distanceMatrixService
+          .calculateDistanceFromOriginToSpots(coords, spots)
+          .subscribe((enrichedSpots) => {
+            this.spotsToMark.next(enrichedSpots);
+            this._tryUpdateMapBounds(coords, enrichedSpots);
+          });
+      });
   }
 
   ngAfterViewInit(): void {
-    const observer = new ResizeObserver(entries => {
-      let contentRect = entries[0].contentRect
+    const observer = new ResizeObserver((entries) => {
+      let contentRect = entries[0].contentRect;
       this.adjustOffsetBasedOnSearchbar(contentRect.height);
     });
-    observer.observe(this.searchBarElementRef.nativeElement)
+    observer.observe(this.searchBarElementRef.nativeElement);
   }
 
   private adjustOffsetBasedOnSearchbar(elementHeight: number) {
-    this.searchBarOffset = Math.round(elementHeight)
+    this.searchBarOffset = Math.round(elementHeight);
   }
 
   ngOnInit(): void {
-    let readUserLocationRef = this.tryReadGeoLocation.bind(this)
+    let readUserLocationRef = this.tryReadGeoLocation.bind(this);
     setTimeout(readUserLocationRef, 700);
   }
 
@@ -90,32 +102,38 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   onFilterValueChanged(spotFilter: SpotFilter): void {
     if (!this.serviceSubscription.closed) {
-      this.serviceSubscription.unsubscribe()
+      this.serviceSubscription.unsubscribe();
     }
-    this.serviceSubscription = this.surfspotService.getSurfSpotsMatchingFilter(spotFilter)
-      .pipe(withLatestFrom(this.userSelectedLocation)).subscribe(([spots, coords]) => {
-          console.warn("Filter matched: " + spots.length + " spots!")
-          if (coords != undefined) {
-            this.distanceMatrixService.calculateDistanceFromOriginToSpots(coords, spots).subscribe(swd => {
-              this.spotsToMark.next(swd)
-              this._tryUpdateMapBounds(coords, swd)
-            })
-          } else {
-            this.spotsToMark.next(spots)
-          }
+    this.serviceSubscription = this.surfspotService
+      .getSurfSpotsMatchingFilter(spotFilter)
+      .pipe(withLatestFrom(this.userSelectedLocation))
+      .subscribe(([spots, coords]) => {
+        console.warn('Filter matched: ' + spots.length + ' spots!');
+        if (coords != undefined) {
+          this.distanceMatrixService
+            .calculateDistanceFromOriginToSpots(coords, spots)
+            .subscribe((swd) => {
+              this.spotsToMark.next(swd);
+              this._tryUpdateMapBounds(coords, swd);
+            });
+        } else {
+          this.spotsToMark.next(spots);
         }
-      )
+      });
   }
 
   onGeolocationFound(location: GeolocationPosition) {
-    let coords: google.maps.LatLngLiteral = {lng: location.coords.longitude, lat: location.coords.latitude}
-    this._handleLocationChange(coords)
+    let coords: google.maps.LatLngLiteral = {
+      lng: location.coords.longitude,
+      lat: location.coords.latitude,
+    };
+    this._handleLocationChange(coords);
   }
 
   onPlaceFound(placeSearchResult: PlaceSearchResult) {
-    let pos = placeSearchResult.geometry.location
-    let coords = {lat: pos.lat(), lng: pos.lng()}
-    this._handleLocationChange(coords)
+    let pos = placeSearchResult.geometry.location;
+    let coords = { lat: pos.lat(), lng: pos.lng() };
+    this._handleLocationChange(coords);
   }
 
   //endregion
@@ -123,38 +141,41 @@ export class MapComponent implements OnInit, AfterViewInit {
   //region function used in html bindings
   getCenter(): GoogleCoordinates {
     if (this.mapOptions.center == null) {
-      return GoogleMapsConfiguration.DEFAULT_MAP_CENTER
+      return GoogleMapsConfiguration.DEFAULT_MAP_CENTER;
     } else {
-      return this.mapOptions.center
+      return this.mapOptions.center;
     }
   }
 
   tryReadGeoLocation() {
-    this.geolocationService.getUserLocation()
+    this.geolocationService
+      .getUserLocation()
       .then((position) => this.onGeolocationFound(position))
-      .catch(reason => "Failed to read geo location: " + reason)
+      .catch((reason) => 'Failed to read geo location: ' + reason);
   }
 
   handleMarkerClicked(spot: SurfSpot) {
-    this.selectedSurfspot.next(spot)
+    this.selectedSurfspot.next(spot);
     if (this._shouldUseBottomSheet()) {
-      this._bottomSheet.open(MobileSpotInfoSheetComponent, {data: {spot: spot}})
+      this._bottomSheet.open(MobileSpotInfoSheetComponent, {
+        data: { spot: spot },
+      });
     }
   }
 
   shouldUseBottomSheet() {
-    return this._shouldUseBottomSheet.bind(this)
+    return this._shouldUseBottomSheet.bind(this);
   }
 
   //endregion
 
   private _trySetCenterMapComponent(coords: LatLngLiteral) {
-    this._getGoogleMapObject()?.setCenter(coords)
-    console.log("Center set")
+    this._getGoogleMapObject()?.setCenter(coords);
+    console.log('Center set');
   }
 
   private _handleLocationChange(newLocationCoordinates: LatLngLiteral) {
-    this.userSelectedLocation.next(newLocationCoordinates)
+    this.userSelectedLocation.next(newLocationCoordinates);
   }
 
   // @ts-ignore
@@ -162,7 +183,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.accessAttemptCount += 1;
     if (this.googleMapComponent != null && this.googleMapComponent.googleMap) {
       this.accessAttemptCount = 0;
-      return this.googleMapComponent.googleMap
+      return this.googleMapComponent.googleMap;
     }
     if (this.accessAttemptCount < 5) {
       setTimeout(this._getGoogleMapObject, 500);
@@ -172,25 +193,32 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   private _tryUpdateMapBounds(origin: LatLngLiteral, spots: SurfSpot[]) {
-    let spotsWithDistance = spots.filter(spot => spot.distanceToCurrentLocation != undefined);
+    let spotsWithDistance = spots.filter(
+      (spot) => spot.distanceToCurrentLocation != undefined
+    );
     if (spotsWithDistance.length > 0) {
       let bounds = new google.maps.LatLngBounds();
-      bounds.extend(origin)
-      let cutOfDistance = spotsWithDistance[0].distanceToCurrentLocation.value * 2;
-      cutOfDistance = cutOfDistance < 50000 ? 50000 : cutOfDistance
-      spotsWithDistance.filter(spot => spot.distanceToCurrentLocation.value < cutOfDistance).forEach(
-        spot => bounds.extend(spot.coords)
-      )
-      this.googleMapComponent.center = origin
-      this.googleMapComponent.fitBounds(bounds, 80)
+      bounds.extend(origin);
+      let cutOfDistance =
+        spotsWithDistance[0].distanceToCurrentLocation.value * 2;
+      cutOfDistance = cutOfDistance < 50000 ? 50000 : cutOfDistance;
+      spotsWithDistance
+        .filter((spot) => spot.distanceToCurrentLocation.value < cutOfDistance)
+        .forEach((spot) => bounds.extend(spot.coords));
+      this.googleMapComponent.center = origin;
+      this.googleMapComponent.fitBounds(bounds, 80);
     } else {
-      this._trySetCenterMapComponent(origin)
+      this._trySetCenterMapComponent(origin);
     }
   }
 
   private _shouldUseBottomSheet(): boolean {
-    let isListWrappedToNewRow = this.spotListContainer.nativeElement.offsetTop > this.mapContainerElementRef.nativeElement.offsetTop
-    return this.deviceService.shouldBeThreadedAsTouchDevice() || isListWrappedToNewRow;
+    let isListWrappedToNewRow =
+      this.spotListContainer.nativeElement.offsetTop >
+      this.mapContainerElementRef.nativeElement.offsetTop;
+    return (
+      this.deviceService.shouldBeThreadedAsTouchDevice() ||
+      isListWrappedToNewRow
+    );
   }
-
 }

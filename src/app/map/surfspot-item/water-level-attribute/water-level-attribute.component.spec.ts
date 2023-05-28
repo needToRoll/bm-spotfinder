@@ -8,9 +8,8 @@ describe('WaterLevelAttributeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WaterLevelAttributeComponent ]
-    })
-    .compileComponents();
+      declarations: [WaterLevelAttributeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

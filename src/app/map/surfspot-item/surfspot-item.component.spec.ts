@@ -8,9 +8,8 @@ describe('SurfspotItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SurfspotItemComponent ]
-    })
-    .compileComponents();
+      declarations: [SurfspotItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

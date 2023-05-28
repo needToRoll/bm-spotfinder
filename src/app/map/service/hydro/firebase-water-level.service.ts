@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
-import {WaterLevelService} from "./water-level-service";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {WaterLevelMeasurement} from "../../../model/WaterLevelMeasurement";
-import {Observable} from "rxjs";
-import {HydroDataSource} from "../../../model/HydroDataSource";
+import { WaterLevelService } from './water-level-service';
+import {
+  collection,
+  collectionData,
+  Firestore,
+} from '@angular/fire/firestore/lite';
+import { WaterLevelMeasurement } from '../../../shared/model/WaterLevelMeasurement';
+import { Observable } from 'rxjs';
+import { HydroDataSource } from '../../../shared/model/HydroDataSource';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class FirebaseWaterLevelService implements WaterLevelService{
-
-  constructor(private fireStore: AngularFirestore) { }
+export class FirebaseWaterLevelService implements WaterLevelService {
+  constructor(private fireStore: Firestore) {}
 
   getAllCurrentWaterLevels(): Observable<WaterLevelMeasurement[]> {
-    return this.fireStore.collection<WaterLevelMeasurement>("bm-water-levels").valueChanges({idField: 'id'})
+    let waterLevelsCollection = collection(this.fireStore, 'bm-water-levels');
+    return collectionData(waterLevelsCollection, {
+      idField: 'id',
+    }) as Observable<WaterLevelMeasurement[]>;
   }
 
   getAllHydroDataSources(): Observable<HydroDataSource[]> {
-    return this.fireStore.collection<HydroDataSource>("bm-hydro-data-sources").valueChanges()
+    let waterLevelsCollection = collection(
+      this.fireStore,
+      'bm-hydro-data-sources'
+    );
+    return collectionData(waterLevelsCollection) as Observable<
+      HydroDataSource[]
+    >;
   }
 }
+
