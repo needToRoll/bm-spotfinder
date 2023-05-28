@@ -3,6 +3,27 @@
     "app": {
       "name": "Spotfinder"
     },
+    "community": {
+      "form": {
+        "action": {
+          "submit": "Submit"
+        },
+        "label": {
+          "additional": "Tell us what there is to know about this spot",
+          "difficulty": "Difficulty",
+          "name": "Name",
+          "rope": "Rope length",
+          "street": "Street",
+          "town": "City",
+          "zip": "Zip"
+        },
+        "placeholder": {
+          "free-text": "Entries, exits, dangers or anything else"
+        }
+      },
+      "heading": "Recommend a spot",
+      "intro": "Thank you for sharing your recommendation with us!"
+    },
     "contact": {
       "address": {
         "l1": "Jonas Bürgi",

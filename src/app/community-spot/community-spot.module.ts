@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CommunitySpotRoutingModule } from './community-spot-routing.module';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [CommunitySpotComponent],
@@ -34,6 +36,8 @@ import { CommunitySpotRoutingModule } from './community-spot-routing.module';
     MatListModule,
     CommunitySpotRoutingModule,
     MatOptionModule,
+    MatRadioModule,
+    MatCheckboxModule,
   ],
   exports: [CommunitySpotComponent],
 })
