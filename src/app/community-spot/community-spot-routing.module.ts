@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommunitySpotModule } from './community-spot.module';
+import { CommunitySpotComponent } from './community-spot.component';
 
-const routes: Routes = [{ path: '', component: CommunitySpotModule }];
+const routes: Routes = [{ path: '', component: CommunitySpotComponent }];
 
 @NgModule({
   declarations: [],
@@ -10,4 +10,3 @@ const routes: Routes = [{ path: '', component: CommunitySpotModule }];
   exports: [RouterModule],
 })
 export class CommunitySpotRoutingModule {}
-
