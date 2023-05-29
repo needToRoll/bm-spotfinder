@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule as MatListModule } from '@angular/material/list';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore/lite';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,7 +20,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatMenuModule as MatMenuModule } from '@angular/material/menu';
 import '@angular/common/locales/global/de-CH';
 import { AppRoutingModule } from './app-routing.module';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAppCheck } from '@angular/fire/app-check';
 
 @NgModule({
   declarations: [AppComponent, SidenavComponent],
@@ -44,6 +46,12 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
     MatButtonModule,
     MatIconModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAppCheck(() =>
+      initializeAppCheck(getApp(), {
+        provider: new ReCaptchaV3Provider(environment.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true,
+      })
+    ),
     provideFirestore(() => {
       return getFirestore();
     }),

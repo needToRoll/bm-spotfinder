@@ -13,10 +13,11 @@ export const environment = {
     messagingSenderId: '555596215902',
     measurementId: 'G-0NDJP13RYL',
   },
-  spotCollectionName: "bm-surfspots",
-  ropeLengthUnit: "m",
-  waterLevelUnit: "m^3",
-  production: false
+  recaptchaSiteKey: '6Lca-0smAAAAAKKBUoFxK3jTXZ4W8Po_h56opjyD',
+  spotCollectionName: 'bm-surfspots',
+  ropeLengthUnit: 'm',
+  waterLevelUnit: 'm^3',
+  production: false,
 };
 
 /*

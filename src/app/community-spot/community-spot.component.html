@@ -2,33 +2,33 @@
   <h1>{{'i18n.community.heading' | translate}}</h1>
   <p>{{'i18n.community.intro' | translate}}</p>
   <div id="spot-form-container">
-    <form>
-      <mat-form-field formControlName="name">
+    <form [formGroup]="communitySpotFrom" (ngSubmit)="submitSpotRecommendation()">
+      <mat-form-field>
         <mat-label>{{'i18n.community.form.label.name' | translate}}</mat-label>
-        <input matInput>
+        <input matInput formControlName="title">
       </mat-form-field>
-      <mat-form-field formControlName="street">
+      <mat-form-field>
         <mat-label>{{'i18n.community.form.label.street' | translate}}</mat-label>
-        <input matInput>
+        <input matInput formControlName="street">
       </mat-form-field>
       <div class="form-row">
-        <mat-form-field formControlName="zip" class="input-30">
+        <mat-form-field class="input-30">
           <mat-label>{{'i18n.community.form.label.zip' | translate}}</mat-label>
-          <input matInput>
+          <input matInput formControlName="zip">
         </mat-form-field>
-        <mat-form-field formControlName="town" class="input-60">
+        <mat-form-field class="input-60">
           <mat-label>{{'i18n.community.form.label.town' | translate}}</mat-label>
-          <input matInput>
+          <input matInput formControlName="town">
         </mat-form-field>
       </div>
       <div class="form-row space-after">
-        <section class="input-30">
+        <section class="input-30" formGroupName="rope">
           <h4>{{'i18n.community.form.label.rope' | translate}}</h4>
-          <mat-checkbox *ngFor="let length of AVAILABLE_ROPE_LENGTHS" [value]="toString(length.value)">
+          <mat-checkbox [formControlName]="length.value" *ngFor="let length of AVAILABLE_ROPE_LENGTHS; let i = index">
             {{length.name}}
           </mat-checkbox>
         </section>
-        <mat-radio-group class="radio-group-vertical input-60" labelPosition="after">
+        <mat-radio-group formControlName="difficulty" class="radio-group-vertical input-60" labelPosition="after">
           <h4>{{'i18n.community.form.label.difficulty' | translate}}</h4>
           <mat-radio-button class="example-radio-button" *ngFor="let difficulty of SPOT_DIFFICULTIES"
                             [value]="difficulty.value">
@@ -38,11 +38,12 @@
       </div>
       <mat-form-field>
         <mat-label>{{'i18n.community.form.label.additional' | translate}}</mat-label>
-        <textarea matInput placeholder="{{'i18n.community.form.placeholder.free-text' | translate}}"></textarea>
+        <textarea matInput formControlName="comments"
+                  placeholder="{{'i18n.community.form.placeholder.free-text' | translate}}"></textarea>
       </mat-form-field>
-      <a mat-raised-button color="primary" (click)="submitSpotRecommendation()">
+      <button mat-raised-button color="primary" type="submit">
         {{'i18n.community.form.action.submit' | translate}}
-      </a>
+      </button>
     </form>
   </div>
 </div>
