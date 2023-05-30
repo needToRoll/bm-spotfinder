@@ -1,6 +1,6 @@
 import {
+  AfterViewInit,
   Component,
-  OnInit,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -19,7 +19,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   templateUrl: './community-spot.component.html',
   styleUrls: ['./community-spot.component.scss'],
 })
-export class CommunitySpotComponent implements OnInit {
+export class CommunitySpotComponent implements AfterViewInit {
   public readonly AVAILABLE_ROPE_LENGTHS = AVAILABLE_ROPE_LENGTHS;
   public readonly SPOT_DIFFICULTIES = SPOT_DIFFICULTIES;
   overlayPortal: TemplatePortal;
@@ -48,7 +48,7 @@ export class CommunitySpotComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this._initializeSpinnerOverlay();
   }
 
