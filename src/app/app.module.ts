@@ -5,7 +5,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule as MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +21,8 @@ import '@angular/common/locales/global/de-CH';
 import { AppRoutingModule } from './app-routing.module';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAppCheck } from '@angular/fire/app-check';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, SidenavComponent],
@@ -29,6 +30,8 @@ import { provideAppCheck } from '@angular/fire/app-check';
     CommonModule,
     HttpClientModule,
     MatToolbarModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
@@ -42,7 +45,6 @@ import { provideAppCheck } from '@angular/fire/app-check';
         deps: [HttpClient],
       },
     }),
-    NoopAnimationsModule,
     MatButtonModule,
     MatIconModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

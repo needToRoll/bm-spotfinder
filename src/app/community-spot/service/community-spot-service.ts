@@ -15,15 +15,6 @@ export class CommunitySpotService {
 
   private _persistInFirestore(spot: CommunitySpot): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      if (!spot.coords) {
-        spot.coords = {
-          lat: 0.0,
-          lng: 0.0,
-        };
-      }
-      if (!spot.placeId) {
-        spot.placeId = '<UNKNOWN>';
-      }
       let waterLevelsCollection = collection(
         this.firestore,
         'user-proposed-surfspots'

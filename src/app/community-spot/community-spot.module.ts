@@ -17,6 +17,8 @@ import { MatListModule } from '@angular/material/list';
 import { CommunitySpotRoutingModule } from './community-spot-routing.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [CommunitySpotComponent],
@@ -38,6 +40,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatOptionModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
+    OverlayModule,
   ],
   exports: [CommunitySpotComponent],
 })

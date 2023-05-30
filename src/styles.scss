@@ -23,6 +23,11 @@ html, body {
   padding: 0;
 }
 
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {
+  background-color: $black;
+  opacity: 0.2;
+}
+
 .mat-button-base, h1, h2, h3 {
   text-transform: uppercase !important;
 }
