@@ -54,7 +54,7 @@ export class CommunitySpotComponent implements OnInit {
 
   submitSpotRecommendation() {
     if (this.communitySpotFrom.valid) {
-      this.overlayRef.attach(this.overlayPortal);
+      this._openSpinner();
       let value = this.communitySpotFrom.value as CommunitySpotFormValue;
       let dto = this._formValuesToDto(value);
       console.log(JSON.stringify(dto));
@@ -63,6 +63,10 @@ export class CommunitySpotComponent implements OnInit {
         .then(() => this.communitySpotFrom.reset())
         .finally(() => this._closeSpinner());
     }
+  }
+
+  private _openSpinner() {
+    this.overlayRef.attach(this.overlayPortal);
   }
 
   private _closeSpinner() {
