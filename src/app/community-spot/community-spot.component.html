@@ -2,52 +2,74 @@
   <h1>{{'i18n.community.heading' | translate}}</h1>
   <p>{{'i18n.community.intro' | translate}}</p>
   <div id="spot-form-container">
-    <form [formGroup]="communitySpotFrom" (ngSubmit)="submitSpotRecommendation()">
-      <mat-form-field>
-        <mat-label>{{'i18n.community.form.label.name' | translate}}</mat-label>
-        <input matInput formControlName="title">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>{{'i18n.community.form.label.street' | translate}}</mat-label>
-        <input matInput formControlName="street">
-      </mat-form-field>
-      <div class="form-row">
-        <mat-form-field class="input-30">
-          <mat-label>{{'i18n.community.form.label.zip' | translate}}</mat-label>
-          <input matInput formControlName="zip">
+    <div *ngIf="!(shouldDisplaySuccess | async); else elseBlock">
+      <form [formGroup]="communitySpotFrom" (ngSubmit)="submitSpotRecommendation()">
+        <mat-form-field>
+          <mat-label>{{'i18n.community.form.label.name' | translate}}</mat-label>
+          <input matInput formControlName="title">
         </mat-form-field>
-        <mat-form-field class="input-60">
-          <mat-label>{{'i18n.community.form.label.town' | translate}}</mat-label>
-          <input matInput formControlName="town">
+        <mat-form-field>
+          <mat-label>{{'i18n.community.form.label.street' | translate}}</mat-label>
+          <input matInput formControlName="street">
         </mat-form-field>
-      </div>
-      <div class="form-row space-after">
-        <section class="input-30" formGroupName="rope">
-          <h4>{{'i18n.community.form.label.rope' | translate}}</h4>
-          <mat-checkbox [formControlName]="length.value" *ngFor="let length of AVAILABLE_ROPE_LENGTHS; let i = index">
-            {{length.name}}
-          </mat-checkbox>
-        </section>
-        <mat-radio-group formControlName="difficulty" class="radio-group-vertical input-60" labelPosition="after">
-          <h4>{{'i18n.community.form.label.difficulty' | translate}}</h4>
-          <mat-radio-button class="example-radio-button" *ngFor="let difficulty of SPOT_DIFFICULTIES"
-                            [value]="difficulty.value">
-            {{difficulty.name | translate}}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <mat-form-field>
-        <mat-label>{{'i18n.community.form.label.additional' | translate}}</mat-label>
-        <textarea matInput formControlName="comments"
-                  placeholder="{{'i18n.community.form.placeholder.free-text' | translate}}"></textarea>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">
-        {{'i18n.community.form.action.submit' | translate}}
-      </button>
-    </form>
+        <div class="form-row">
+          <mat-form-field class="input-30">
+            <mat-label>{{'i18n.community.form.label.zip' | translate}}</mat-label>
+            <input matInput type="number" formControlName="zip">
+          </mat-form-field>
+          <mat-form-field class="input-60">
+            <mat-label>{{'i18n.community.form.label.town' | translate}}</mat-label>
+            <input matInput formControlName="town">
+          </mat-form-field>
+        </div>
+        <div class="form-row space-after">
+          <section class="input-30" formGroupName="rope">
+            <h4>{{'i18n.community.form.label.rope' | translate}}</h4>
+            <mat-checkbox [formControlName]="length.value" *ngFor="let length of AVAILABLE_ROPE_LENGTHS; let i = index">
+              {{length.name}}
+            </mat-checkbox>
+          </section>
+          <mat-radio-group formControlName="difficulty" class="radio-group-vertical input-60" labelPosition="after">
+            <h4>{{'i18n.community.form.label.difficulty' | translate}}</h4>
+            <mat-radio-button class="example-radio-button" *ngFor="let difficulty of SPOT_DIFFICULTIES"
+                              [value]="difficulty.value">
+              {{difficulty.name | translate}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <mat-form-field>
+          <mat-label>{{'i18n.community.form.label.additional' | translate}}</mat-label>
+          <textarea matInput formControlName="comments"
+                    placeholder="{{'i18n.community.form.placeholder.free-text' | translate}}"></textarea>
+        </mat-form-field>
+        <div class="notify-warn" *ngIf="shouldDisplayWarning | async">
+          <b>{{'i18n.community.error' | translate}}</b>
+          <br>
+          <span class="tech-error"><i>{{errorReason}}</i></span>
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!communitySpotFrom.valid">
+          {{'i18n.community.form.action.submit' | translate}}
+        </button>
+      </form>
+    </div>
   </div>
 </div>
+
 <ng-template #progressSpinnerRef>
   <mat-progress-spinner color="accent" mode="indeterminate" value="50">
   </mat-progress-spinner>
+</ng-template>
+
+<ng-template #elseBlock>
+  <div class="notify-success">
+    <b>{{'i18n.community.success.heading' | translate}}</b>
+    <br>
+    <p>{{'i18n.community.success.status' | translate}}</p>
+    <a mat-raised-button color="primary" routerLink="/map">
+      {{'i18n.community.success.action.map' | translate}}
+    </a>
+    <a mat-raised-button color="primary" (click)="shouldDisplaySuccess.next(false)">
+      {{'i18n.community.success.action.recommend' | translate}}
+    </a>
+  </div>
 </ng-template>

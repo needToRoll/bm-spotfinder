@@ -13,6 +13,7 @@ import { CommunitySpot } from '../shared/model/CommunitySpot';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-community-spot',
@@ -22,20 +23,23 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 export class CommunitySpotComponent implements AfterViewInit {
   public readonly AVAILABLE_ROPE_LENGTHS = AVAILABLE_ROPE_LENGTHS;
   public readonly SPOT_DIFFICULTIES = SPOT_DIFFICULTIES;
-  overlayPortal: TemplatePortal;
-  overlayRef: OverlayRef;
+
   @ViewChild('progressSpinnerRef')
   spinnerTemplateRef: TemplateRef<MatProgressSpinner>;
 
-  communitySpotFrom: FormGroup = new FormGroup<any>({
-    title: new FormControl<string>('', Validators.required),
-    street: new FormControl<string>('', Validators.required),
-    zip: new FormControl<number>(undefined, Validators.required),
-    town: new FormControl<string>('', Validators.required),
-    rope: new FormGroup({}),
-    difficulty: new FormControl(undefined, Validators.required),
-    comments: new FormControl(''),
-  });
+  communitySpotFrom: FormGroup =
+    CommunitySpotComponent._buildCommunityFromGroup();
+
+  shouldDisplayWarning: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+  shouldDisplaySuccess: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+  errorReason = '';
+
+  overlayPortal: TemplatePortal;
+  overlayRef: OverlayRef;
 
   constructor(
     private vcRef: ViewContainerRef,
@@ -57,12 +61,34 @@ export class CommunitySpotComponent implements AfterViewInit {
       this._openSpinner();
       let value = this.communitySpotFrom.value as CommunitySpotFormValue;
       let dto = this._formValuesToDto(value);
-      console.log(JSON.stringify(dto));
       this.communitySpotService
         .saveSpot(dto)
-        .then(() => this.communitySpotFrom.reset())
+        .then(() => {
+          this._handleSuccess();
+        })
+        .catch((reason) => this._handleError(reason))
         .finally(() => this._closeSpinner());
     }
+  }
+
+  private _handleSuccess() {
+    this._resetFrom();
+    this.shouldDisplaySuccess.next(true);
+  }
+
+  private _handleError(error: any) {
+    if (typeof error == 'string') {
+      this.errorReason = error;
+    } else {
+      this.errorReason = JSON.stringify(error);
+    }
+    this.shouldDisplayWarning.next(true);
+  }
+
+  private _resetFrom() {
+    this.communitySpotFrom.clearValidators();
+    this.communitySpotFrom.reset();
+    this.shouldDisplayWarning.next(false);
   }
 
   private _openSpinner() {
@@ -75,16 +101,16 @@ export class CommunitySpotComponent implements AfterViewInit {
 
   private _formValuesToDto(formValue: CommunitySpotFormValue): CommunitySpot {
     let selectedRopeLength: number[] = [];
-    for (const [k, v] of Object.entries(formValue.rope))
-      if (v) {
-        selectedRopeLength.push(parseInt(k));
+    for (const [propertyName, propertyValue] of Object.entries(formValue.rope))
+      if (propertyValue) {
+        selectedRopeLength.push(parseInt(propertyName));
       }
     let additionalInfo = formValue.comments
       .split('\n')
       .map((value) => value.trim())
       .filter((value) => value.length != 0);
     return {
-      placeId: 'UNKNOWN',
+      placeId: '',
       title: formValue.title,
       address1: formValue.street,
       address2: formValue.zip + ' ' + formValue.town,
@@ -114,6 +140,22 @@ export class CommunitySpotComponent implements AfterViewInit {
       this.spinnerTemplateRef,
       this.vcRef
     );
+  }
+
+  private static _buildCommunityFromGroup() {
+    return new FormGroup<any>({
+      title: new FormControl<string>('', Validators.required),
+      street: new FormControl<string>('', Validators.required),
+      zip: new FormControl<number>(undefined, [
+        Validators.required,
+        Validators.min(1000),
+        Validators.max(999999),
+      ]),
+      town: new FormControl<string>('', Validators.required),
+      rope: new FormGroup({}),
+      difficulty: new FormControl(undefined),
+      comments: new FormControl(''),
+    });
   }
 }
 

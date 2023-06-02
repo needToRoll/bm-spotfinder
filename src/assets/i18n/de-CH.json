@@ -4,12 +4,13 @@
       "name": "Spotfinder"
     },
     "community": {
+      "error": "Sorry, ein Fehler ist aufgetreten. Versuche es später erneut",
       "form": {
         "action": {
           "submit": "Senden"
         },
         "label": {
-          "additional": "Sag uns, was es zu diesem Spot zu Wissen gilt",
+          "additional": "Weitere Angaben",
           "difficulty": "Schwierigkeit",
           "name": "Name",
           "rope": "Seillänge",
@@ -22,7 +23,15 @@
         }
       },
       "heading": "Spot empfehlen",
-      "intro": "Danke das du deine Empfehlung mit uns teilst!"
+      "intro": "Danke, dass du deine Empfehlung mit uns teilst!",
+      "success": {
+        "action": {
+          "map": "Zur Karte",
+          "recommend": "Weitere Empfehlung abgeben"
+        },
+        "heading": "Deine Empfehlung wurde gespeichert",
+        "status": "Wir werden deine Angaben prüfen, bevor wir sie hier anzeigen"
+      }
     },
     "contact": {
       "address": {
@@ -33,18 +42,18 @@
       },
       "email": "info@bungeemonkey.ch",
       "heading": "Kontakt und Impressum",
-      "into": "Für Fragen und Anregungen sind wir gerne für dich da",
+      "into": "Bei Fragen und Anregungen sind wir gerne für dich da",
       "sources": {
         "flow": {
           "l1": "Die Daten zur Wasserführung stammen von Drittanbietern.",
           "l2": "Die Quelle des Wasserdurchflusses ist (falls vorhanden) direkt verlinkt."
         },
         "heading": "Quellen",
-        "review": "Nachdem ein neuer Surf spot gemeldet wird, werden wir die Angaben überprüfen, bevor wir sie hier zu verfügung stellen.",
+        "review": "Nachdem ein neuer Surfspot gemeldet wird, werden wir die Angaben überprüfen, bevor wir sie hier zur Verfügung stellen.",
         "spots": {
           "p1": "Falls du einen Surfspot kennst und gerne mit uns und der Community teilen möchtest, kannst du ihn ",
           "p2": "hier",
-          "p3": " eintragen. Danke!"
+          "p3": " eintragen. Danke"
         },
         "subheading": {
           "flow": "Wasserführung",

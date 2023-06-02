@@ -108,7 +108,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       .getSurfSpotsMatchingFilter(spotFilter)
       .pipe(withLatestFrom(this.userSelectedLocation))
       .subscribe(([spots, coords]) => {
-        console.warn('Filter matched: ' + spots.length + ' spots!');
         if (coords != undefined) {
           this.distanceMatrixService
             .calculateDistanceFromOriginToSpots(coords, spots)
@@ -166,12 +165,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   shouldUseBottomSheet() {
     return this._shouldUseBottomSheet.bind(this);
   }
-
   //endregion
 
   private _trySetCenterMapComponent(coords: LatLngLiteral) {
     this._getGoogleMapObject()?.setCenter(coords);
-    console.log('Center set');
   }
 
   private _handleLocationChange(newLocationCoordinates: LatLngLiteral) {

@@ -1,16 +1,14 @@
-$sidenav-bg-color: black;
-$sidenav-text-color: white;
 .mat-drawer-container {
   min-height: 100vh;
 }
 
 .mdc-list-item__primary-text {
-  color: $sidenav-text-color !important;
+  color: var(--bm-theme-primary-text) !important;
 }
 
 .mat-expansion-panel {
-  background-color: $sidenav-bg-color;
-  color: $sidenav-text-color;
+  background-color: var(--bm-theme-primary);
+  color: var(--bm-theme-primary-text);
 }
 
 .mat-expansion-panel-header {
@@ -19,7 +17,7 @@ $sidenav-text-color: white;
 }
 
 .mat-mdc-list-item-unscoped-content {
-  color: $sidenav-text-color !important;
+  color: var(--bm-theme-primary-text) !important;
 }
 
 .spacer {

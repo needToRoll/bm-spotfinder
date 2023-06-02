@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin define-theme-vars($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+  $warn-palette: map.get($color-config, 'warn');
+  $secondary-palette: map.get($color-config, 'secondary');
+
+  :root {
+    --bm-theme-primary: #{mat.get-color-from-palette($primary-palette, 900)};
+    --bm-theme-primary-text: #{mat.get-contrast-color-from-palette($primary-palette, 900)};
+    --bm-theme-primary-backdrop: #{mat.get-color-from-palette($primary-palette, 900, 0.2)};
+    --bm-theme-warn: #{mat.get-color-from-palette($warn-palette, 100, 0.8)};
+    --bm-theme-warn-text: #{mat.get-contrast-color-from-palette($warn-palette, 100)};
+    --bm-theme-warn-backdrop: #{mat.get-color-from-palette($warn-palette, 100, 0.2)};
+  }
+
+}
+
+@mixin define-success-vars($success-palette) {
+  :root {
+    --bm-theme-secondary: #{mat.get-color-from-palette($success-palette, 600)};
+    --bm-theme-secondary-text: #{mat.get-contrast-color-from-palette($success-palette, 600)};
+    --bm-theme-secondary-backdrop: #{mat.get-color-from-palette($success-palette, 200, 0.2)};
+  }
+}

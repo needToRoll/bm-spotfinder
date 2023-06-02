@@ -9,22 +9,20 @@ export class CommunitySpotService {
   constructor(private firestore: Firestore) {}
 
   saveSpot(spot: CommunitySpot) {
-    let persistRef = this._persistInFirestore.bind(this);
-    return this._determinePlaceId(spot).then(persistRef, persistRef);
+    let persistRef = this._persistInFirestore.bind(this, spot);
+    let errorRef = this._handlePlaceSearchFail.bind(this, spot);
+    return this._determinePlaceId(spot).catch(errorRef).then(persistRef);
   }
 
-  private _persistInFirestore(spot: CommunitySpot): Promise<boolean> {
+  private _persistInFirestore(spot: CommunitySpot): Promise<void> {
     return new Promise((resolve, reject) => {
       let waterLevelsCollection = collection(
         this.firestore,
         'user-proposed-surfspots'
       );
       addDoc(waterLevelsCollection, Object.assign({}, spot)).then(
-        () => resolve(true),
-        (reason) => {
-          console.warn(reason);
-          reject(reason);
-        }
+        () => resolve(),
+        reject
       );
     });
   }
@@ -57,10 +55,13 @@ export class CommunitySpotService {
             reject(status);
           }
         } catch (e) {
-          console.error(e);
           reject(e);
         }
       });
     });
+  }
+
+  private _handlePlaceSearchFail(spot: CommunitySpot) {
+    spot.placeId = 'UNKNOWN';
   }
 }

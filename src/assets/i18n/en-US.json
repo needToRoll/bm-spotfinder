@@ -4,12 +4,13 @@
       "name": "Spotfinder"
     },
     "community": {
+      "error": "Sorry, an error occurred please try again later",
       "form": {
         "action": {
           "submit": "Submit"
         },
         "label": {
-          "additional": "Tell us what there is to know about this spot",
+          "additional": "Additional information",
           "difficulty": "Difficulty",
           "name": "Name",
           "rope": "Rope length",
@@ -22,7 +23,15 @@
         }
       },
       "heading": "Recommend a spot",
-      "intro": "Thank you for sharing your recommendation with us!"
+      "intro": "Thank you for sharing your recommendation with us!",
+      "success": {
+        "action": {
+          "map": "To the map",
+          "recommend": "Recommend another"
+        },
+        "heading": "Your recommendation has been saved",
+        "status": "Thank you, we will verify your information before displaying it here."
+      }
     },
     "contact": {
       "address": {
@@ -44,7 +53,7 @@
         "spots": {
           "p1": "If you know a surf spot and would like to share it with us and the community, you can submit it ",
           "p2": "here",
-          "p3": ". Thank you!"
+          "p3": ". Thank you"
         },
         "subheading": {
           "flow": "Water flow",

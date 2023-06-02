@@ -1,5 +1,7 @@
 @use '@angular/material' as mat;
+@use "theme_vars" as theme_vars;
 @import '@angular/material/theming';
+
 
 @include mat.core();
 
@@ -22,7 +24,6 @@
 $black: #000000;
 $white: #ffffff;
 
-$gray: #b3b3b3;
 $bm_primary: (
   50: #f5f5f5,
   100: #e9e9e9,
@@ -39,11 +40,11 @@ $bm_primary: (
   A400: white,
   A700: white,
   contrast: (
-    50: white,
-    100: white,
-    200: white,
-    300: white,
-    400: white,
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
     500: white,
     600: white,
     700: white,
@@ -57,68 +58,141 @@ $bm_primary: (
 );
 
 $grassGreen: #228848;
-$grassGreen-light: #bddbc8;
-$grassGreen-dark: #146b30;
 $bm-grassGreen: (
-  main: $grassGreen,
-  lighter: $grassGreen-light,
-  darker: $grassGreen-dark,
-  200: $grassGreen-light, // For slide toggle,
-  contrast : (
-    main: $white,
-    lighter: $black,
-    darker: $white,
+  50: #e6f4ea,
+  100: #c2e4cc,
+  200: #9cd2ac,
+  300: #73c28c,
+  400: #54b574,
+  500: #33a95d,
+  600: #2b9a53,
+  700: #228847,
+  800: #1a773d,
+  900: #0c582a,
+  A100: black,
+  A200: black,
+  A400: white,
+  A700: white,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: black,
+    600: black,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: black,
+    A700: black
   )
 );
 
-
-$skyBlue: #298fc2;
-$skyBlue-light: #bfdded;
-$skyBlue-dark: #1972ac;
-$bm-skyBlue: (
-  main: $skyBlue,
-  lighter: $skyBlue-light,
-  darker: $skyBlue-dark,
-  200: $skyBlue-light, // For slide toggle,
-  text: $white,
-  contrast : (
-    main: $white,
-    lighter: $black,
-    darker: $white,
+$bm_skyBlue: (
+  50: #e3f6fb,
+  100: #b7e7f5,
+  200: #8ad8ef,
+  300: #63c8e9,
+  400: #4abce6,
+  500: #39b0e3,
+  600: #32a2d5,
+  700: #298fc2,
+  800: #267eae,
+  900: #1c5e8c,
+  A100: black,
+  A200: black,
+  A400: white,
+  A700: white,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: black,
+    600: black,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: black,
+    A700: black
   )
 );
 
 
 $banana: #ffcd00;
-$banana-dark: #ffba00;
-$banana-light: #fff0b3;
-
-$bm-banana: (
-  main: $banana,
-  lighter: $banana-light,
-  darker: $banana-dark,
-  text: $black,
-  200: $banana-light, // For slide toggle,
-  contrast : (
-    main: $black,
-    lighter: $black,
-    darker: $black,
+$bm_banana: (
+  50: #fff8e0,
+  100: #ffedb0,
+  200: #ffe17c,
+  300: #ffd743,
+  400: #ffcc00,
+  500: #ffc300,
+  600: #ffb500,
+  700: #ffa100,
+  800: #ff8f00,
+  900: #ff6d00,
+  A100: black,
+  A200: black,
+  A400: black,
+  A700: black,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: black,
+    600: black,
+    700: black,
+    800: black,
+    900: black,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white
   )
 );
 
 
 $bm-white: (
-  main: $white,
-  lighter: $white,
-  darker: lightgray,
-  text: $black,
-  200: lightgray,
-  contrast : (
-    main: $black,
-    lighter: $black,
-    darker: $black,
+  50: white,
+  100: white,
+  200: white,
+  300: white,
+  400: white,
+  500: white,
+  600: white,
+  700: white,
+  800: white,
+  900: white,
+  A100: black,
+  A200: black,
+  A400: black,
+  A700: black,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: black,
+    600: black,
+    700: black,
+    800: black,
+    900: black,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white
   )
 );
+
 // endregion
 
 // region typography
@@ -195,18 +269,20 @@ $bm-typography: mat.define-legacy-typography-config(
 //endregion
 
 //region palette definition
-$angular-pwa-primary: mat.define-palette($bm_primary, 900, 300, 900, A700);
-$angular-pwa-accent: mat.define-palette($bm-skyBlue, main, lighter, darker, text);
+$bm-pwa-primary: mat.define-palette($bm_primary, 900, 300, 900, A700);
+$bm-pwa-accent: mat.define-palette($bm_skyBlue, 700, 300, 900, A100);
+$bm-pwa-secondary: mat.define-palette($bm_grassGreen, 600, 300, 800, A100);
 
-$angular-pwa-warn: mat.define-palette($bm-banana, main, lighter, darker, text);
-$angular-pwa-white: mat.define-palette($bm-white, main, lighter, darker, text);
+$bm-pwa-warn: mat.define-palette($bm_banana, 400, 100, 600, A700);
+$bm-pwa-white: mat.define-palette($bm_white, 900, 900, 900, A700);
+
 
 $angular-pwa-theme: mat.define-light-theme((
   color: (
-    primary: $angular-pwa-primary,
-    accent: $angular-pwa-accent,
-    warn: $angular-pwa-warn,
-    light: $angular-pwa-white
+    primary: $bm-pwa-primary,
+    accent: $bm-pwa-accent,
+    warn: $bm-pwa-warn,
+    light: $bm-pwa-white,
   ),
   typography: $bm-typography
 ));
@@ -214,3 +290,5 @@ $angular-pwa-theme: mat.define-light-theme((
 @include mat.core-theme($angular-pwa-theme);
 @include mat.all-component-typographies($angular-pwa-theme);
 @include mat.all-component-themes($angular-pwa-theme);
+@include theme_vars.define-theme-vars($angular-pwa-theme);
+@include theme_vars.define-success-vars($bm-pwa-secondary);
