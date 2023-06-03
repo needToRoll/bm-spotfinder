@@ -46,3 +46,25 @@ html, body {
     max-width: 120px;
   }
 }
+
+@media only screen and (max-width: 500px) {
+
+  .mat-mdc-option {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .mat-mdc-option .mdc-list-item__primary-text {
+    overflow: hidden !important;
+    text-overflow: unset !important;
+  }
+
+  .mdc-text-field {
+    padding: 0 8px !important;
+  }
+
+  .mat-mdc-select-value {
+    overflow: hidden !important;
+    text-overflow: unset !important;
+  }
+}
