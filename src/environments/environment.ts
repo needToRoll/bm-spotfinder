@@ -14,9 +14,13 @@ export const environment = {
     measurementId: 'G-0NDJP13RYL',
   },
   recaptchaSiteKey: '6Lca-0smAAAAAKKBUoFxK3jTXZ4W8Po_h56opjyD',
-  spotCollectionName: 'bm-surfspots',
+  spotCollectionName: 'bm-surfspots-dev',
   ropeLengthUnit: 'm',
   waterLevelUnit: 'm^3',
+  waterLevelConnectionName: 'bm-water-levels-dev',
+  hydroDataSourceCollectionName: 'bm-hydro-data-sources-dev',
+  communitySpotCollectionName: 'user-proposed-surfspots-dev',
+  appCheckDebugToken: false,
   production: false,
 };
 

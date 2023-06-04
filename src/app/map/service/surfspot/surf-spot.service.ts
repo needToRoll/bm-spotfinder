@@ -1,6 +1,6 @@
-import { SpotFilter } from '../../model/SpotFilter';
+import { SpotFilter } from '../../../shared/model/SpotFilter';
 import { Observable } from 'rxjs';
-import { SurfSpot } from '../../model/SurfSpot';
+import { SurfSpot } from '../../../shared/model/SurfSpot';
 
 export interface SurfSpotService {
   getAllSurfSpots(): Observable<SurfSpot[]>;

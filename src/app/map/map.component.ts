@@ -17,7 +17,7 @@ import {
   GoogleMapsMarkerElement,
 } from '../shared/model/Types';
 import { DistanceMatrixService } from './service/distance/distance-matrix.service';
-import { FirebaseSurfSpotService } from '../shared/service/surfspot/firebase-surf-spot.service';
+import { FirebaseSurfSpotService } from './service/surfspot/firebase-surf-spot.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DeviceClassificationService } from '../shared/service/device-classification.service';
 import { MobileSpotInfoSheetComponent } from './mobile-spot-info-sheet/mobile-spot-info-sheet.component';
@@ -165,6 +165,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   shouldUseBottomSheet() {
     return this._shouldUseBottomSheet.bind(this);
   }
+
   //endregion
 
   private _trySetCenterMapComponent(coords: LatLngLiteral) {

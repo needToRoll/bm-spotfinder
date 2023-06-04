@@ -2,8 +2,11 @@
   "targets": {
     "lithe-bazaar-341817": {
       "hosting": {
-        "angular-pwa": [
+        "prod": [
           "bm-spotfinder-dev"
+        ],
+        "test": [
+          "lithe-bazaar-341817"
         ]
       }
     }

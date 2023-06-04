@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule as MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule as MatListModule } from '@angular/material/list';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore/lite';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';

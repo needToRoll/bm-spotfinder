@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CommunitySpot } from '../../shared/model/CommunitySpot';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore/lite';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class CommunitySpotService {
     return new Promise((resolve, reject) => {
       let waterLevelsCollection = collection(
         this.firestore,
-        'user-proposed-surfspots'
+        environment.spotCollectionName
       );
       addDoc(waterLevelsCollection, Object.assign({}, spot)).then(
         () => resolve(),

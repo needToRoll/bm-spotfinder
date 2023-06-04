@@ -4,6 +4,7 @@ import { filter, pipe } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,8 @@ export class AppComponent implements AfterViewInit {
     public translate: TranslateService,
     public router: Router
   ) {
+    (self as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
+      environment.appCheckDebugToken;
     translate.addLangs(['en-US', 'de-CH']);
     translate.setDefaultLang('de-CH');
     this.updates.versionUpdates.subscribe(() =>
@@ -43,6 +46,6 @@ export class AppComponent implements AfterViewInit {
 
   onUpdateAvailable() {
     console.warn('New version is ready: Reloading');
-    this.updates.activateUpdate().then(() => document.location.reload());
+    this.updates.activateUpdate().then(window.location.reload);
   }
 }

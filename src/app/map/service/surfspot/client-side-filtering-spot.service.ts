@@ -1,7 +1,7 @@
 import { SurfSpotService } from './surf-spot.service';
-import { SpotFilter } from '../../model/SpotFilter';
+import { SpotFilter } from '../../../shared/model/SpotFilter';
 import { map, Observable } from 'rxjs';
-import { SurfSpot } from '../../model/SurfSpot';
+import { SurfSpot } from '../../../shared/model/SurfSpot';
 
 export abstract class ClientSideFilteringSpotService
   implements SurfSpotService
