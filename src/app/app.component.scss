@@ -12,6 +12,11 @@ mat-toolbar-row {
   top: 0;
   z-index: 1000;
 }
+.mat-mdc-button > .mat-icon {
+  height: 24px !important;
+  width: 24px !important;
+  font-size: 24px !important;
+}
 
 mat-toolbar img {
   max-height: 40px !important;

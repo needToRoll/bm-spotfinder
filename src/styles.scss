@@ -28,6 +28,11 @@ html, body {
   text-transform: uppercase !important;
 }
 
+div.mat-mdc-form-field-subscript-wrapper {
+  line-height: 5px !important;
+  height: 5px !important;
+}
+
 
 .mat-bottom-sheet-container {
   border-top-left-radius: 15px !important;
