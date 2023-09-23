@@ -5,19 +5,31 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-
-//TODO: Remove admin comments before prod release
 export class AppComponent implements AfterViewInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
 
+  private static _customIcons = [
+    'bm-compass',
+    'bm-entry',
+    'bm-exit',
+    'bm-lightbulb',
+    'bm-ruler',
+    'bm-warn',
+    'bm-water',
+  ];
+
   constructor(
-    private readonly updates: SwUpdate,
+    private readonly _updates: SwUpdate,
+    private _iconRegistry: MatIconRegistry,
+    private _domSanitizer: DomSanitizer,
     public translate: TranslateService,
     public router: Router
   ) {
@@ -25,7 +37,7 @@ export class AppComponent implements AfterViewInit {
       environment.appCheckDebugToken;
     translate.addLangs(['en-US', 'de-CH']);
     translate.setDefaultLang('de-CH');
-    this.updates.versionUpdates.subscribe(() =>
+    this._updates.versionUpdates.subscribe(() =>
       pipe(
         filter(
           (evt: VersionReadyEvent): evt is VersionReadyEvent =>
@@ -34,6 +46,7 @@ export class AppComponent implements AfterViewInit {
         this.onUpdateAvailable
       )
     );
+    this.initializeIcons();
   }
 
   ngAfterViewInit(): void {
@@ -46,6 +59,17 @@ export class AppComponent implements AfterViewInit {
 
   onUpdateAvailable() {
     console.warn('New version is ready: Reloading');
-    this.updates.activateUpdate().then(window.location.reload);
+    this._updates.activateUpdate().then(window.location.reload);
+  }
+
+  initializeIcons(): void {
+    for (let icon of AppComponent._customIcons) {
+      this._iconRegistry.addSvgIcon(
+        icon,
+        this._domSanitizer.bypassSecurityTrustResourceUrl(
+          `assets/icons/custom/${icon}.svg`
+        )
+      );
+    }
   }
 }

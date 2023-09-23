@@ -82,6 +82,11 @@ input[matinput][type=number] {
 }
 
 @media only screen and (max-width: 500px) {
+
+  #spot-form-container {
+    max-width: 320px;
+  }
+
   .component-parent {
     margin: 9px 18px;
   }

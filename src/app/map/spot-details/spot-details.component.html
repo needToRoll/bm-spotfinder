@@ -1,14 +1,14 @@
 <div class="spot-list-item-body">
   <app-spot-icon-attribute
     [values]="getAddressPartsList()"
-    matIcon="explore"
+    matIcon="bm-compass"
     title="Address">
   </app-spot-icon-attribute>
   <mat-divider></mat-divider>
   <app-spot-icon-attribute
     *ngIf="surfspot.bmSpotInfo.dangers.length > 0"
     [values]="surfspot.bmSpotInfo.dangers"
-    matIcon="error"
+    matIcon="bm-warn"
     title="Dangers">
   </app-spot-icon-attribute>
   <mat-divider
@@ -16,8 +16,7 @@
   <app-spot-icon-attribute
     *ngIf="surfspot.bmSpotInfo.additionalInfo.length > 0"
     [values]="surfspot.bmSpotInfo.additionalInfo"
-    matIcon="lightbulb_circle"
-
+    matIcon="bm-lightbulb"
     title="Information">
   </app-spot-icon-attribute>
   <mat-divider
@@ -25,18 +24,18 @@
   </mat-divider>
   <app-spot-icon-attribute
     [values]="surfspot.bmSpotInfo.entries"
-    matIcon="login"
+    matIcon="bm-entry"
     title="Entries">
   </app-spot-icon-attribute>
   <mat-divider></mat-divider>
   <app-spot-icon-attribute
     [values]="surfspot.bmSpotInfo.exits"
-    matIcon="logout"
+    matIcon="bm-exit"
     title="Exits">
   </app-spot-icon-attribute>
   <mat-divider></mat-divider>
   <app-spot-icon-attribute [values]="getRopeLengthsWithUnit()"
-                           matIcon="straighten"
+                           matIcon="bm-ruler"
                            title="Rope length">
   </app-spot-icon-attribute>
   <mat-divider></mat-divider>
@@ -47,6 +46,10 @@
      color="primary"
      target="_blank"
      [href]="surfspot.bmSpotInfo.webLink">
-    <ng-container>{{'i18n.spot.actions.map' | translate}}</ng-container>
+    <ng-container>
+      <span class="spot-action-button-label">
+      {{'i18n.spot.actions.map' | translate | uppercase}}
+      </span>
+    </ng-container>
   </a>
 </div>
