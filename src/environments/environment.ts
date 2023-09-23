@@ -17,9 +17,9 @@ export const environment = {
   spotCollectionName: 'bm-surfspots-dev',
   ropeLengthUnit: 'm',
   waterLevelUnit: 'm^3',
-  waterLevelConnectionName: 'bm-water-levels-dev',
-  hydroDataSourceCollectionName: 'bm-hydro-data-sources-dev',
-  communitySpotCollectionName: 'user-proposed-surfspots-dev',
+  waterLevelConnectionName: 'bm-water-levels',
+  hydroDataSourceCollectionName: 'bm-hydro-data-sources',
+  communitySpotCollectionName: 'user-proposed-surfspots',
   appCheckDebugToken: false,
   production: false,
 };
